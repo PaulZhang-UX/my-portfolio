@@ -1,26 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
+
 @import "tailwindcss";
 
+/* 激活 Tailwind v4 基于类名的暗色模式变体 */
+@variant dark (.dark &);
+
+@theme {
+  --font-sans: 'Inter', 'Noto Sans SC', sans-serif;
+  /* 注入微软雅黑与苹方回退，彻底根除 Windows 浏览器由于等宽降级为宋体中文字体的缺陷 */
+  --font-mono: 'JetBrains Mono', 'Microsoft YaHei', 'PingFang SC', monospace;
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
+  --background: #FAFAFA;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 极客终端与画廊暗色基础 */
+.dark {
+  --background: #030303;
+  --foreground: #F5F5F5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 银翼杀手全局背景与文字前景色，使用最强硬的选择器绑定，彻底消除层叠变量失效 */
+html.bladerunner,
+html.bladerunner body {
+  background-color: #E6CEB8 !important; /* 默认 Light 模式为荒漠温暖黄沙色 */
+  color: #1D1107 !important;
+}
+
+html.bladerunner.dark,
+html.bladerunner.dark body {
+  background-color: #03050C !important; /* Dark 模式为经典深幽蓝色 */
+  color: #F5EFEB !important;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* Apple 缓动过渡定义 */
+.transition-apple {
+  transition-property: all;
+  transition-timing-function: var(--ease-apple);
+  transition-duration: 800ms;
+}
+
+/* CRT Scanline 扫描线效果重构 */
+.scanline-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.12) 50%
+  );
+  background-size: 100% 8px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.dark .scanline-overlay {
+  opacity: 0.08;
+}
+
+.bladerunner .scanline-overlay {
+  opacity: 0.15;
+  background: linear-gradient(
+    rgba(224, 90, 16, 0) 50%,
+    rgba(224, 90, 16, 0.1) 50%
+  );
+  background-size: 100% 6px;
+}
+
+.bladerunner:not(.dark) .scanline-overlay {
+  opacity: 0.12;
+  background: linear-gradient(
+    rgba(29, 17, 7, 0) 50%,
+    rgba(29, 17, 7, 0.08) 50%
+  );
+  background-size: 100% 6px;
+}
+
+/* 点阵装饰背景 */
+.dot-matrix {
+  background-image: radial-gradient(rgba(120, 120, 120, 0.1) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .dot-matrix {
+  background-image: radial-gradient(rgba(245, 245, 245, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* 隐藏滚动条 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ========================================================= */
+/* CSS CRT 绿字荧光呼吸灯效果 (解决极客模式静态下无动效缺陷) */
+/* ========================================================= */
+@keyframes phosphor-glow {
+  0%, 100% {
+    opacity: 0.98;
+    filter: drop-shadow(0 0 3px rgba(34, 197, 94, 0.4));
+  }
+  50% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 9px rgba(34, 197, 94, 0.75));
+  }
+}
+
+.hermes .text-green-500,
+.hermes .text-green-400,
+.hermes .border-green-500 {
+  animation: phosphor-glow 3.5s infinite ease-in-out;
+}
+
+/* ========================================================= */
+/* CSS Chromatic Aberration Glitch (色差分离故障抖动) 核心特效 */
+/* ========================================================= */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+               -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+               0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+.glitch-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow: -2px 0 #FF0055;
+  clip-path: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-1 5s infinite linear alternate-reverse;
+  background: transparent;
+  opacity: 0.8;
+}
+
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow: -2px 0 #00F2FE, 0 2px #00F2FE;
+  clip-path: rect(85px, 450px, 140px, 0);
+  animation: glitch-anim-2 5s infinite linear alternate-reverse;
+  background: transparent;
+  opacity: 0.8;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+  }
+  40% {
+    clip-path: inset(15% 0 80% 0);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+  80% {
+    clip-path: inset(3% 0 92% 0);
+  }
+  100% {
+    clip-path: inset(55% 0 30% 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(25% 0 58% 0);
+  }
+  20% {
+    clip-path: inset(70% 0 5% 0);
+  }
+  40% {
+    clip-path: inset(5% 0 90% 0);
+  }
+  60% {
+    clip-path: inset(83% 0 12% 0);
+  }
+  80% {
+    clip-path: inset(12% 0 85% 0);
+  }
+  100% {
+    clip-path: inset(45% 0 35% 0);
+  }
+}
+
+@keyframes glitch-skew {
+  0% {
+    transform: skew(1deg);
+  }
+  10% {
+    transform: skew(-1deg);
+  }
+  20% {
+    transform: skew(2deg);
+  }
+  30% {
+    transform: skew(0deg);
+  }
+  40% {
+    transform: skew(-2deg);
+  }
+  50% {
+    transform: skew(1deg);
+  }
+  60% {
+    transform: skew(0deg);
+  }
+  70% {
+    transform: skew(-1deg);
+  }
+  80% {
+    transform: skew(3deg);
+  }
+  90% {
+    transform: skew(0deg);
+  }
+  100% {
+    transform: skew(1deg);
+  }
 }
