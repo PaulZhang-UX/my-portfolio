@@ -1,0 +1,487 @@
+Premium Private Dental Clinic — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/f806de3a-ae47-4358-8b95-10b1ea4d545a/13967015
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a premium private dental clinic design system for a brand called Aline dental.
+
+Brand character:
+- Calm, high-trust, precise, editorial, private, and quietly premium.
+- Focus on natural results, clear treatment planning, digital diagnostics, and a low-pressure consultation experience.
+- Avoid loud cosmetic dentistry advertising, exaggerated white smiles, generic hospital blue, or cold medical dashboard styling.
+
+Color system:
+- Use white #FFFFFF as the main page surface.
+- Use cool page gray #F5F7F9 for quiet panels, image backplates, and closing conversion areas.
+- Use brand cyan-blue #029DC9 for display accents, labels, progress lines, and primary CTAs.
+- Use action blue #027EA3 for hover and interactive emphasis.
+- Use soft cyan #DEF3F7 for selected states and the Booking & Contact background.
+- Use pale yellow #FFF697 and soft yellow #FFFEF2 only as subtle secondary accents.
+- Use near-black ink #0F1417 for headings and primary text, muted blue-gray #5C6670 for body copy, and faint gray-blue #8B959E for inactive labels.
+- Use warm-gray borders such as #E5E7EB and keep contrast quiet but accessible.
+
+Typography:
+- Use Inter for navigation, body copy, controls, labels, facts, and form UI.
+- Use Fraunces as the primary editorial serif for hero headings and major section headings.
+- Use Fraunces italic or Instrument Serif italic for pull quotes and selected editorial phrases.
+- Use compact uppercase eyebrow labels at 11px with 0.25em tracking.
+- Use responsive display sizes from approximately 40px mobile to 64px desktop.
+- Use relaxed body copy around 15–16px with 1.6 line-height.
+
+Layout:
+- Use a 1440px wide desktop container, an 1180px editorial container, and a 960px case-grid container.
+- Use 24px horizontal padding on mobile and 40px on desktop.
+- Use 96px mobile and 128px desktop standard section spacing; use 80px/96px for compact sections.
+- Use 12-column desktop grids and single-column mobile stacks.
+- Use 14px editorial media radii, 10px case tile radii, 6px control radii, and full pill CTAs.
+- Keep the page airy, aligned to strong horizontal keylines, and avoid dense card dashboards.
+
+Component language:
+- Use cyan-blue filled buttons with white text and compact rounded corners.
+- Use ink-outline buttons and underlined text links for secondary actions.
+- Use thin gray rules for editorial lists, pricing rows, accordion rows, and information dividers.
+- Use square case tiles, wide clinical image containers, and portrait patient images with object-top cropping.
+- Use a fixed frosted-glass “Online Consultation” pill with a cyan breathing halo.
+
+Image direction:
+- Use believable premium dental photography: patients with natural smiles, dentists in consultation, digital scans, dental models, aligners, implants, veneers, and calm private clinic interiors.
+- Prefer cool neutral professional light, soft gray or white environments, natural skin texture, and quiet compositions.
+- Avoid overly retouched smiles, generic stock-photo poses, dramatic shadows, and saturated colors.
+
+Motion language:
+- Use long, controlled, editorial motion rather than bouncy UI animation.
+- Use calm ease-in-out cubic navigation scroll, GSAP expo easing for image-to-overlay transitions, and 600–700ms image crossfades.
+- Allow the Hero patient image to travel continuously from the Hero slot into the Concern Finder slot while the Hero copy fades and lifts.
+- Use sticky scroll scenes for Practice and First Visit.
+- Use restrained hover tilt for Results tiles, accordion expansion, case fly-to-detail transitions, a soft consultation halo, and a low-contrast particle ribbon.
+- Respect reduced-motion where possible and provide a stable static layout when motion is disabled.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Reconstruct a complete premium private dental clinic website called Aline dental. The page should feel calm, precise, quietly luxurious, and high-trust. It should help a patient understand their concerns, explore real-looking outcomes, understand the clinic and first-visit process, compare treatments and indicative pricing, and open a consultation request drawer.
+
+Project Definition
+
+Build a responsive React and TypeScript website with Vite, React Router, Tailwind CSS, GSAP, GSAP ScrollTrigger, and a Canvas-based ambient particle layer. Implement the actual route structure:
+
+- `/` — the complete Home page.
+- `*` — a simple 404 placeholder page.
+
+Do not create additional route pages for case detail, treatment detail, doctor detail, practice, or booking. Case details and concern details must open as full-screen overlays on the Home page. Booking is represented by a consultation drawer. Do not invent a backend, database, CRM, payment system, calendar availability, or real submission endpoint.
+
+Global Visual Direction
+
+- Make the clinic feel like a premium private dental practice focused on natural results, clear treatment planning, digital diagnostics, and calm consultation.
+- Use a white page surface with cool pale-gray panels and a restrained cyan-blue brand accent.
+- Brand cyan: #029DC9. Action/hover blue: #027EA3. Soft cyan: #DEF3F7.
+- Use near-black ink #0F1417, muted text #5C6670, and faint text #8B959E.
+- Use pale yellow #FFF697 and #FFFEF2 only as subtle secondary accents.
+- Use Inter for all interface and body copy. Use Fraunces for large editorial headings. Use Fraunces italic or Instrument Serif italic for selected phrases and pull quotes.
+- Use believable premium dental photography with cool neutral professional lighting, natural skin texture, real clinic equipment, digital scans, dental models, aligners, implants, and natural smiles.
+- Avoid generic stock-photo dentistry, over-retouched smiles, saturated colors, loud gradients, and a cold hospital-dashboard aesthetic.
+
+Design System
+
+- Use a 1440px wide container with 24px horizontal mobile padding and 40px desktop padding.
+- Use an 1180px editorial container for content-heavy detail, and a 960px max-width for the 3x3 Results grid.
+- Use 96px mobile and 128px desktop vertical spacing for standard sections; use 80px mobile and 96px desktop for compact sections.
+- Use 14px media radii, 10px case-tile radii, 6px compact controls, and full pill buttons when the component is explicitly a pill.
+- Use thin gray rules for lists, pricing rows, accordion rows, and editorial dividers.
+- Use compact uppercase eyebrows at 11px, medium weight, 0.25em tracking.
+- Use responsive display type from approximately 40px mobile to 64px desktop, with a tight but readable editorial line-height.
+- Primary CTA buttons use cyan-blue background, white text, a right arrow, and a hover state around #027EA3.
+- Secondary actions use a thin ink border or an underlined text link.
+
+Global Shell
+
+Implement a fixed top navigation with a 64px mobile height and 72px desktop height. At the top of the page it is transparent; after scrollY exceeds 40px, switch to a white 95%-opacity background with backdrop blur and a subtle bottom border.
+
+The navigation brand is a small inline SVG tooth-like mark followed by “Aline dental”. Desktop links are:
+
+- Concern → `#concern`
+- Results → `#results`
+- Practice → `#practice`
+- First Visit → `#first-visit`
+- Treatments → `#treatments`
+- Pricing → `#pricing`
+- Contact → `#contact`
+
+Add a desktop “Book a Consultation” button that opens the consultation drawer. On mobile, replace the links with a menu button; the expanded panel contains the same links and the consultation button.
+
+Implement custom anchor scrolling rather than relying on browser instant jumps. Calculate the target with a 72px header offset, use an easeInOutCubic interpolation, and choose a duration between about 700ms and 1400ms based on distance. Update the URL hash with history.replaceState. Close the mobile menu after navigation.
+
+Add a fixed “Online Consultation” floating button at bottom-right. It is a translucent white frosted-glass pill with 20px blur, a thin border, subtle shadow, a cyan chat icon, and a cyan radial breathing halo. The halo breathes over about 4.2 seconds. Hide the floating button while the drawer is open.
+
+Home Page Structure
+
+Render the following sections in exactly this order:
+
+1. Hero / Private Dentistry
+2. Concern Finder
+3. Real Results
+4. Practice & Doctor
+5. First Visit
+6. Treatments
+7. Pricing + FAQ
+8. Booking & Contact
+9. Footer
+
+Do not add a separate page header, footer between sections, or unrequested secondary pages.
+
+Section 01 — Hero / Private Dentistry
+
+Purpose: establish the clinic’s promise and introduce the calm, private, high-trust tone.
+
+Layout:
+- Use a white background with generous top padding for the fixed header.
+- Use a 12-column desktop grid: the main copy spans 8 columns and the actions/benefit list spans 4 columns.
+- Use a mobile single-column layout.
+- Eyebrow: “Private Dentistry · Est. 2011”.
+- Heading: “Private dentistry” on the first line and “designed around you.” on the second line, with the second phrase in cyan-blue.
+- Supporting text: “Natural results, clear treatment planning and a calmer private dental experience — from consultation to follow-up.”
+- Add an outlined button/link: “Find the Right Treatment” linking to `#concern`.
+- Add four compact benefits: Private Consultation, Personalized Plans, Digital Diagnostics, Flexible Booking.
+- Below the copy, create a wide empty image slot with approximately 16:8 mobile and 16:7 desktop aspect ratio, 16px radius, and a caption row: “Aline Dental · Consultation Room 02” plus a desktop Scroll/down-arrow hint.
+
+The actual visual patient image is a fixed shared image layer supplied by the Home page, not a normal image inside the Hero slot. The shared image uses the source `SHARED_PATIENT_IMAGE`, currently a remote static image.
+
+Signature Hero → Concern transition:
+- Create one fixed shared image layer above the page content and below the navigation.
+- Use GSAP ScrollTrigger to define a continuous progress from the Hero section to the top portion of the Concern section. Start when the Hero reaches the top of the viewport and end when the Concern section reaches approximately 22% of the viewport.
+- Move the shared image rectangle from the Hero slot’s current DOMRect to the Concern image slot’s DOMRect. Interpolate left, top, width, height, border radius from 16px to 14px, and object position from approximately 50% 45% to 65% 50%.
+- Smooth target progress with a requestAnimationFrame loop using a smoothing factor around 0.12 and clamp each step to approximately 0.06.
+- Use a smootherstep curve for the visual interpolation.
+- Fade the `.hero-copy` beginning around 10% progress and finish by around 30%; its opacity goes to 0 and it translates upward up to about 40px.
+- When progress reaches approximately 0.995, hide the shared image and reveal the native Concern image in the same visual frame. When scrolling back, reverse the handoff without leaving duplicate images visible.
+- The source explicitly does not include a Concern → Results shared-image transition; Results is a static image grid.
+
+Section 02 — Concern Finder
+
+Purpose: let patients identify the concern closest to their situation and open either a detailed concern overlay or the consultation drawer.
+
+Layout:
+- Use a white background and a desktop 7/5 grid.
+- Left column eyebrow: “02 · Concern Finder”.
+- Heading: “What would you like to improve?”
+- Supporting copy: “Choose what's most on your mind. We'll show you a real patient with a similar starting point.”
+- Render six editorial index rows with top and final bottom rules:
+  01 Whiter Teeth
+  02 Straighter Alignment
+  03 Missing or Damaged Teeth
+  04 A More Balanced Smile
+  05 Replacing Old Dental Work
+  06 I'm Not Sure Yet
+- Each row contains the index, label, and a circular plus/right-arrow icon. The active row uses cyan-blue index/icon treatment.
+- The right column contains the shared 4:5 patient image slot. It is sticky at desktop around top 112px and displays the active patient’s name/age, concern, direction, and a “View Story” link to `#results`.
+
+Behavior:
+- Clicking rows 01–05 updates the active index and opens the corresponding Concern Detail Overlay.
+- Clicking row 06 opens the Consultation Drawer instead of a detail overlay.
+- Keep the active image/patient information synchronized with the selected index.
+
+Section 03 — Real Results
+
+Purpose: show a visual index of eight real-looking outcomes while preserving the clinic’s natural-results positioning.
+
+Layout:
+- White background, compact vertical spacing.
+- Eyebrow: “03 · Real Results”.
+- Heading: “Real change, without losing what makes you look like you.”
+- Supporting copy: “A private practice built around individual outcomes — not templates. Every result begins with a real conversation.”
+- Build a 3×3 square grid with eight case tiles around an empty center copy cell. Keep the grid at a maximum width around 960px.
+- Center cell contains “Real Results”, “Careful, nuanced improvements — for natural results.” and a “View All Cases” link to `#treatments`.
+- Case tiles include portrait/lifestyle/detail images, but only reveal a bottom gradient caption on hover.
+- Use the eight cases: Emma / In-clinic Whitening, Marcus / Clear Aligners, Sofia / Smile Design, Detail / Veneer Close-up, Detail / Whitening Close-up, Aiko / Clear Aligners, Julien / Porcelain Veneers, Rahim / Implants — Lifestyle.
+
+Case tile interaction:
+- On pointer move, tilt the tile away from the cursor using perspective 700px, rotateX/rotateY up to about 10 degrees, translateZ 6px, and scale 1.03.
+- On pointer leave, restore perspective rotation and scale 1.
+- On click, neutralize the hover transform before capturing the image DOMRect, hide the source tile, and open a full-screen Case Detail Overlay.
+
+Section 04 — Practice & Doctor
+
+Purpose: explain the clinic environment, the consultation/treatment sequence, and introduce the lead doctor.
+
+Intro:
+- Eyebrow: “04 · Practice & Doctor”.
+- Heading: “The place, and the person behind the work.”
+
+Sticky scene:
+- Use a 300vh wrapper with a viewport-height sticky stage.
+- Use three scenes selected by scroll progress: “01 Arrive — A calmer arrival.”, “02 Consult — Conversation, before treatment.”, and “03 Treat — Precision, quietly delivered.”
+- Place scene copy on the left and a 16:10 image stage on the right on desktop; stack on mobile.
+- Active scene opacity is 1, inactive scenes opacity around 0.3. Only active scene copy is expanded.
+- The image stack crossfades between scenes over approximately 700ms.
+- Determine active index from wrapper scroll progress using floor(progress × 3), clamped to 0–2.
+
+Doctor tail:
+- After the sticky stage, use a top border and a two-column doctor profile.
+- Show a 4:5 portrait of Dr. Ava Aline.
+- Show “Lead Doctor”, “Dr. Ava Aline”, “Cosmetic & Restorative Dentistry · 15+ years”, and the italic quote “The best result shouldn't look like treatment.”
+- Show fact groups: Education, Focus Areas, Memberships, Languages, Patients treated. Add “Meet the Doctor” linked to `#contact`.
+
+Section 05 — First Visit
+
+Purpose: make the first appointment feel concrete and understandable.
+
+Layout and scroll behavior:
+- Use a cool pale-gray background.
+- Intro eyebrow: “05 · First Visit”.
+- Heading: “Your first visit, clearly explained.” with the second phrase italic.
+- Use a wrapper with 500vh height and a viewport-height sticky stage.
+- Render five full-bleed-ish image states inside a rounded media frame with 60vh height on mobile and 64vh on desktop.
+- Select the active state by floor(wrapperProgress × 5), clamped to 0–4.
+- Crossfade images over approximately 700ms.
+- Overlay the current step badge and title/copy in the lower-left: Talk / Scan / Plan / Treat / Follow Up.
+- Below the stage, render a horizontal progress line with step IDs and labels. Completed segments turn cyan-blue; incomplete segments remain gray.
+- On narrow screens, allow the progress line to horizontally scroll without showing a scrollbar.
+
+Section 06 — Treatments Accordion
+
+Purpose: present five treatment options with transparent, structured detail.
+
+Layout:
+- White background.
+- Eyebrow: “06 · Treatments”.
+- Heading: “Focused options, honestly explained.”
+- Render five bordered rows: Porcelain Veneers, Clear Aligners, Whitening, Implants, Smile Design.
+- Each row shows an index, uppercase treatment name, desktop-only tag, plus icon, and an expandable content region.
+- First treatment is open by default; clicking the open row closes it; clicking another row opens that one and closes the previous.
+- Active row has a soft cyan background.
+
+Expanded content:
+- Use a 12-column desktop grid: image, treatment metadata, and Craft & Technology block.
+- Show tag, suits, typical timeline, technology copy, and “View Treatment” link to `#contact`.
+- Use grid rows 0fr/1fr and opacity to animate expansion over about 500ms.
+- Rotate the plus icon about 45 degrees in the open state.
+- On mobile, stack the image and metadata and hide nonessential desktop-only tag text.
+
+Section 07 — Pricing + FAQ
+
+Purpose: give indicative cost transparency and answer common patient concerns.
+
+Layout:
+- White background with a desktop 7/5 grid.
+- Pricing side eyebrow: “07 · Pricing”; heading: “Clear pricing, before you decide.”
+- Pricing rows: Initial Consultation — €90; Professional Whitening — from €480; Clear Aligners — from €2,900; Porcelain Veneers — from €780 / tooth; Dental Implant — from €2,400.
+- Add the note: “Final treatment plans and costs are confirmed after consultation.”
+- Add a blue “Ask About My Treatment Cost” button that opens the Consultation Drawer.
+- FAQ side eyebrow: “FAQ”; heading: “A few things patients often ask.”
+- Render five questions: pain, natural result, treatment time, first consultation, and instalments.
+- First FAQ item is open by default. Clicking an open item closes it; clicking another switches to that item.
+- Use a soft pale-yellow open background, plus icon rotated 45 degrees, grid-row expansion, opacity, and approximately 400ms transition.
+
+Section 08 — Booking & Contact
+
+Purpose: close the page with conversion actions, clinic facts, and contact information.
+
+Layout:
+- Use soft cyan `#DEF3F7` background.
+- Use a desktop 6/6 grid with text/actions on the left and a 4:3 clinic entrance image on the right.
+- Eyebrow: “08 · Booking & Contact”.
+- Heading: “Ready when you are.”
+- Supporting copy: “Start with a consultation, or ask us a question first.”
+- Buttons: “Book a Consultation” and outlined “Online Consultation”; both open the same Consultation Drawer.
+- Below, show four fact columns: Address, Contact, Opening Hours, Emergencies.
+- Use the source details: Aline Dental, 14 Wester Straat, 1017 CT, Amsterdam, NL; +31 20 220 4180; WhatsApp +31 6 4402 1120; hello@aline-dental.com; Mon–Fri 08:30–19:00; Sat 09:00–14:00; Sun Closed; existing patients only emergency line +31 6 4402 8899.
+- Add a white footer with Aline dental mark, “© 2026 · Amsterdam”, and Privacy / Terms / Imprint placeholder hash links.
+
+Consultation Drawer
+
+Implement a right-side consultation drawer opened by any consultation CTA.
+
+- Render a fixed full-screen translucent black backdrop and a white panel from the right.
+- On desktop the panel is about 480px wide; on mobile it is full width.
+- Open state: opacity 1, panel translateX 0; closed state: opacity 0, panel translateX 100%; panel transition about 500ms.
+- Lock body overflow while open and restore the previous overflow value on close/unmount.
+- Header: “Aline Dental”, “Online Consultation”, close button.
+- Options: “I'm not sure what treatment I need”, “I want to understand pricing”, “I'm worried about pain”, “I want to know treatment time”, “I want to book a consultation”, “Other question”.
+- Selecting an option applies a cyan border and soft cyan background.
+- Include a 500-character message textarea with live character count, required name, required email, and hidden `website_alt` honeypot.
+- Submit is local-only: prevent default, switch the button text to “Received — we'll be in touch”, wait about 1600ms, close drawer, clear all local fields, and return to idle.
+- Do not send a network request or claim that the appointment was booked.
+- Support backdrop click and close button. Add sensible aria labels and preserve keyboard access.
+
+Concern Detail Overlay
+
+When concern IDs 01–05 are clicked, open a full-screen white overlay and lock body scrolling.
+
+- Overlay header is sticky, with “Concern Finder / [Concern]” and a close button.
+- Open animation: overlay fade in 0.5s; panel starts at yPercent 6 and autoAlpha 0, then moves to yPercent 0 over 0.85s with expo.out; content blocks start y 24/autoAlpha 0 and reveal over 0.7s with 0.06 stagger.
+- Render these content sections in order: concern hero, three-column overview, four-step Journey, Your Options list, two-image gallery, Doctor Note + Common Questions, and a Next Step CTA.
+- Concern hero contains eyebrow/title/lede, “Book a consultation” button, “See indicative pricing” link to `#pricing`, and 8:5 hero image.
+- Overview fields are Who it's for, Typical timeline, Our approach.
+- Journey has four numbered steps.
+- Options list has three rows with name, suits, timeline, and note.
+- Gallery has two 4:5 images with captions.
+- Doctor Note uses italic editorial quote and “— Dr. Ava Nordin”.
+- Common Questions is a static list of three questions/answers for the selected concern.
+- Next Step CTA says “A quiet consultation, on your timing.” and offers consultation and Back to overview.
+- Book a consultation closes this overlay and opens the Consultation Drawer.
+- ESC closes the overlay with a panel fade/slide and restores body scroll.
+
+Case Detail Overlay
+
+When a Results tile is clicked, open a full-screen case study overlay.
+
+- Capture the clicked image’s resting DOMRect and source image.
+- Temporarily hide the source tile and create a fixed flying image layer at the source rectangle.
+- Fade in the white overlay around 0.45s while the flying image moves to the detail image rectangle over about 0.9s using GSAP expo.inOut, changing radius from 10px to 16px.
+- Reveal the detail image and content synchronously when the fly animation completes; the content should fade/translate in without a blank frame.
+- Lock body scroll and compensate scrollbar width with padding-right to avoid layout shift.
+- Render a sticky overlay header with “Real Results / [case name]” and close button.
+- Detail body is a desktop 7/5 grid: 4:5 case image on the left and Case Study text on the right.
+- Include case name, treatment, Initial Concern, Treatment Plan, Timeline, and Doctor Note.
+- On close, hide the detail image, restore the fly image at the target rectangle, animate it back to the current source tile rectangle over about 0.85s, fade overlay over 0.5s, restore the source tile, clear inline styles, release body scroll, and unmount.
+- Support ESC. If the user scrolls underneath, use the current origin tile rectangle when available.
+
+Particle Ribbon
+
+Add a fixed pointer-events-none Canvas layer at z-index 35 below the shared image and nav.
+
+- Hide/skip particle initialization below 640px.
+- Use 180 particles from 640px to 1023px and 320 particles at 1024px or wider.
+- Distribute particles across four horizontal bands between normalized y 0.15 and 0.85.
+- Use small cyan-blue circles with a few larger accent particles, low opacity, randomized phase, wave amplitude, frequency, and depth.
+- Use two overlapping low-frequency swell oscillators and spring-toward-target dynamics with stiffness around 3.5 and damping around 2.2.
+- Add scroll impulse: scrolling down pushes the particles upward; decay the impulse exponentially so the field coasts.
+- Fade the field while the `#practice` section enters the viewport: active at practice top around 80% viewport height, invisible by around 20% viewport height. Also hide after the Hero is far above the viewport.
+- Use devicePixelRatio-aware canvas sizing and reinitialize on resize.
+
+404 Page
+
+For all unmatched routes, show a centered full-viewport placeholder with a large pale background “404”, the heading “This page has not been generated”, the current pathname in monospace gray text, and the message “Tell me more about this page, so I can generate it”.
+
+Technical Requirements
+
+- Keep home data in typed local modules equivalent to `src/mocks/home.ts`, `src/mocks/concernDetails.ts`, and `src/mocks/sharedPatient.ts`.
+- Register GSAP ScrollTrigger once before using it.
+- Keep shared patient image transition orchestration in the Home page so Hero and Concern know the same source/target DOMRects.
+- Use `requestAnimationFrame` for smoothed shared-image rendering and Canvas animation; clean up every event listener, animation frame, timeout, and GSAP trigger on unmount.
+- Prevent duplicate image flashes during handoff and case overlay animation.
+- Use object-cover and object-top where the original media logic uses them.
+- Keep the fixed nav, floating consultation button, canvas layer, shared patient layer, overlays, and content z-indexes separate: nav above overlays trigger layer, shared image below nav, canvas below shared image, consult floating button above main content.
+- Do not add a backend or real form submission. The drawer is a local demo state.
+- Do not treat prices, case outcomes, credentials, patient counts, or medical statements as verified claims.
+
+Quality Assurance
+
+- Verify `/` and the unmatched 404 route.
+- Verify the exact eight home sections and anchor IDs: `top`, `concern`, `results`, `practice`, `first-visit`, `treatments`, `pricing`, `contact`.
+- Verify desktop Hero → Concern shared image motion, copy fade, handoff threshold, reverse scroll, and no duplicate image flash.
+- Verify the 3×3 case ring, hover tilt, click origin capture, case fly-to-overlay, ESC close, body scroll lock, and scrollbar compensation.
+- Verify Concern 01–05 overlays, each data set, journey/options/gallery/FAQ content, Back to overview, and consultation drawer handoff.
+- Verify Practice 300vh sticky scene selection and First Visit 500vh sticky progress selection.
+- Verify Treatments and Pricing FAQ single-open behavior and initial open state.
+- Verify mobile nav, mobile overlay layouts, mobile progress-line scrolling, and Particle Ribbon hidden below 640px.
+- Verify the consultation drawer resets after the 1600ms sent state and makes no network request.
+- Verify remote images and CDN fonts/icons independently because the source contains no local assets.
+
+Explicit Constraints / Avoidances
+
+- Do not invent secondary route pages that are absent from the current source.
+- Do not replace the Hero shared-image transition with a generic fade or a static image.
+- Do not describe the Concern → Results transition as implemented; the current source uses a static Results grid.
+- Do not simplify the case ring into a normal card grid without its 3×3 center safe zone and tile hover tilt.
+- Do not reduce the Practice or First Visit sections to ordinary image carousels; preserve their sticky scroll stages.
+- Do not make the consultation drawer claim that a real booking was created.
+- Do not add Stripe, Supabase, Firebase, a database, a payment flow, or real availability unless explicitly requested later.
+- Do not convert static patient examples, prices, doctor information, or treatment claims into independently verified medical claims.
+
+============================================================
+3. 分模块 Prompt（14 段）
+============================================================
+
+DENTAL-01 — Hero + Shared Patient Transition
+
+Create a premium private dental clinic hero for Aline dental. Use a white background, a wide editorial container, and a responsive 12-column layout with the main copy spanning eight columns and the action block spanning four columns. Add the eyebrow “Private Dentistry · Est. 2011”, the Fraunces headline “Private dentistry” followed by “designed around you.” in brand cyan #029DC9, and the supporting sentence “Natural results, clear treatment planning and a calmer private dental experience — from consultation to follow-up.” Add an outlined “Find the Right Treatment” link to the Concern section and a compact four-item benefit list: Private Consultation, Personalized Plans, Digital Diagnostics, Flexible Booking.
+
+Below the copy, reserve a rounded wide media slot around 16:7 on desktop and 16:8 on mobile, with the caption “Aline Dental · Consultation Room 02” and a desktop Scroll cue. Use one shared fixed patient image layer for the signature transition: as the user scrolls from the Hero toward the Concern Finder, smoothly move the image rectangle from the Hero slot DOMRect to the Concern slot DOMRect, interpolate its size and radius, shift object position from about 50% 45% to 65% 50%, and fade/lift the Hero copy between roughly 10% and 30% progress. Use GSAP ScrollTrigger for target progress and a requestAnimationFrame smoothing loop. At about 99.5% progress hand off to the native Concern image in the same frame. Reverse the handoff when scrolling upward. Do not implement a Concern-to-Results image transition.
+
+DENTAL-02 — Concern Finder
+
+Build a Concern Finder section for a premium private dental clinic. Use a white background and a desktop 7/5 editorial grid. On the left, show the eyebrow “02 · Concern Finder”, the heading “What would you like to improve?”, and the sentence “Choose what's most on your mind. We'll show you a real patient with a similar starting point.”
+
+Render six full-width editorial list rows with thin top/bottom rules: “01 Whiter Teeth”, “02 Straighter Alignment”, “03 Missing or Damaged Teeth”, “04 A More Balanced Smile”, “05 Replacing Old Dental Work”, and “06 I'm Not Sure Yet”. Each row has an index, a large list label, and a circular plus/right-arrow indicator. The active row uses cyan-blue text. On desktop, place a sticky 4:5 patient portrait to the right with the active patient’s name, age, concern, treatment direction, and a “View Story” link. Clicking items 01–05 updates the active patient and opens a full-screen detail overlay; clicking item 06 opens an Online Consultation drawer. Stack the layout on mobile.
+
+DENTAL-03 — Real Results Ring
+
+Create a “Real Results” section for a premium dental clinic. Use a white background, the eyebrow “03 · Real Results”, the heading “Real change, without losing what makes you look like you.”, and supporting copy about individual outcomes instead of templates.
+
+Build a centered 3×3 square grid with eight case image tiles around a blank center text cell. In the center show “Real Results”, “Careful, nuanced improvements — for natural results.” and a “View All Cases” link. Use the cases Emma — In-clinic Whitening, Marcus — Clear Aligners, Sofia — Smile Design, two close-up Detail tiles, Aiko — Clear Aligners, Julien — Porcelain Veneers, and Rahim — Implants — Lifestyle. Each tile has a subtle bottom gradient caption on hover.
+
+On pointer move, tilt the tile away from the cursor using perspective 700px, rotateX/rotateY up to about 10 degrees, translateZ 6px, and scale 1.03. On leave, restore the resting transform. On click, neutralize the transform, capture the image rectangle, hide the source tile, and open a full-screen case detail animation.
+
+DENTAL-04 — Case Detail Fly Overlay
+
+Create a full-screen case study overlay for a premium dental results grid. When a case tile is clicked, capture its resting image rectangle, temporarily hide the tile, and animate a fixed flying copy of the image from that rectangle into a large 4:5 detail image using GSAP expo.inOut over about 0.9 seconds. Fade the white overlay in over about 0.45 seconds and change the image radius from 10px to 16px. Lock body scrolling and compensate the scrollbar width.
+
+Use a sticky white overlay header reading “Real Results / [case name]” with a close button. The body uses a desktop 7/5 grid: the case image on the left and a text column on the right with a small “Case Study” label, case name, treatment, Initial Concern, Treatment Plan, Timeline, and Doctor Note. Reveal the detail content only when the flying image has arrived so there is no blank frame. On close or Escape, reverse the flying image back to the current source tile rectangle, fade the overlay out, restore the source tile transform/visibility, clear inline styles, and unlock body scrolling.
+
+DENTAL-05 — Practice & Doctor Sticky Scenes
+
+Build a Practice & Doctor section for a premium dental clinic. Start with the eyebrow “04 · Practice & Doctor” and the heading “The place, and the person behind the work.”.
+
+Create a 300vh scroll wrapper with a viewport-height sticky stage. Present three scenes selected by scroll progress: “01 Arrive — A calmer arrival.”, “02 Consult — Conversation, before treatment.”, and “03 Treat — Precision, quietly delivered.”. On desktop place scene text on the left and a rounded 16:10 image stage on the right. Make the active scene fully opaque and show its supporting copy; dim inactive scenes to about 30% opacity. Crossfade the scene images over about 700ms. Select the scene with floor(progress × 3), clamped to 0–2.
+
+After the sticky stage, add a bordered doctor profile area with a 4:5 portrait, “Lead Doctor”, “Dr. Ava Aline”, “Cosmetic & Restorative Dentistry · 15+ years”, the italic quote “The best result shouldn't look like treatment.”, and fact groups for Education, Focus Areas, Memberships, Languages, and Patients treated.
+
+DENTAL-06 — First Visit Sticky Stage
+
+Create a cool pale-gray “First Visit” section with the eyebrow “05 · First Visit” and the heading “Your first visit, clearly explained.”, using an italic serif treatment for “clearly explained.”.
+
+Use a 500vh wrapper with a viewport-height sticky stage. Inside a rounded media frame, crossfade five editorial images selected by scroll progress: Talk — “We listen first.”, Scan — “Digital diagnostics.”, Plan — “A plan you understand.”, Treat — “Precise, calm treatment.”, and Follow Up — “We stay with you.”. Use 60vh media height on mobile and 64vh on desktop. Place a translucent white step badge, the current title, and supporting copy at the lower-left of the image. Below the frame, render a horizontal progress line with each step ID and label; completed segments become cyan-blue. Allow the progress line to scroll horizontally on mobile without showing a scrollbar.
+
+DENTAL-07 — Treatments Accordion
+
+Create a premium dental Treatments accordion with the eyebrow “06 · Treatments” and the heading “Focused options, honestly explained.”. Render five bordered rows: Porcelain Veneers, Clear Aligners, Whitening, Implants, and Smile Design. Each row has an index, uppercase title, a desktop-only tag, and a plus icon. Open Porcelain Veneers initially.
+
+Allow one row at a time to be open, with clicking the active row closing it. Give the active row a soft cyan background and rotate its plus icon about 45 degrees. Animate the content from grid rows 0fr to 1fr with opacity over about 500ms. Expanded content uses a desktop 12-column grid with a 4:3 image, treatment tag, suits text, typical timeline, a Craft & Technology label, technology description, and a “View Treatment” underlined arrow link. Stack the expanded content on mobile.
+
+DENTAL-08 — Pricing + FAQ
+
+Build a two-column Pricing and FAQ section on a white background. The pricing column uses the eyebrow “07 · Pricing”, the heading “Clear pricing, before you decide.”, and rows for Initial Consultation — €90, Professional Whitening — from €480, Clear Aligners — from €2,900, Porcelain Veneers — from €780 / tooth, and Dental Implant — from €2,400. Add the note “Final treatment plans and costs are confirmed after consultation.” and a cyan button labeled “Ask About My Treatment Cost” that opens the consultation drawer.
+
+The FAQ column uses the eyebrow “FAQ”, the heading “A few things patients often ask.”, and questions about pain, natural results, timelines, the first consultation, and instalments. Open the first answer by default, allow one answer at a time, use a pale-yellow open background, rotate the plus icon 45 degrees, and animate panel height/opacity over about 400ms. Stack the columns on mobile. Treat all prices as indicative static content, not real quotes.
+
+DENTAL-09 — Booking & Contact
+
+Create a final Booking & Contact section for a premium dental clinic using soft cyan #DEF3F7 as the background. Use a desktop 6/6 grid with the eyebrow “08 · Booking & Contact”, the heading “Ready when you are.”, the sentence “Start with a consultation, or ask us a question first.”, a filled cyan “Book a Consultation” button, and an outlined “Online Consultation” button. Both buttons open the same local consultation drawer.
+
+Place a bright 4:3 image of the clinic entrance on the right. Below the main grid, show four compact facts: Address, Contact, Opening Hours, and Emergencies. Use the source Aline Dental Amsterdam contact details and keep the layout airy. Finish with a white footer containing the inline tooth mark, “Aline dental · © 2026 · Amsterdam”, and placeholder Privacy, Terms, and Imprint links. Stack the main grid on mobile and keep facts in two columns.
+
+DENTAL-10 — Consultation Drawer
+
+Create a local-only consultation drawer for a premium dental clinic. When opened, show a fixed dark translucent backdrop and a white right-side panel, about 480px wide on desktop and full width on mobile. Animate the panel from translateX(100%) to 0 over 500ms, lock body scrolling while open, and close on backdrop click or the close button.
+
+Use the header “Aline Dental” / “Online Consultation”. Offer selectable options: “I'm not sure what treatment I need”, “I want to understand pricing”, “I'm worried about pain”, “I want to know treatment time”, “I want to book a consultation”, and “Other question”. Selected options use a cyan border and soft cyan background. Add a 500-character message textarea with a live character count, required name and email fields, a hidden website_alt honeypot, and a full-width submit button.
+
+This is a frontend demo only: prevent default submission, change the button to “Received — we'll be in touch”, wait about 1600ms, close the drawer, clear every local field, and return to the idle state. Do not make a network request and do not claim that an appointment was booked.
+
+DENTAL-11 — Concern Detail Overlay
+
+Create a full-screen concern detail overlay for a premium dental clinic. The overlay has a sticky white header reading “Concern Finder / [concern]” and a close button. Lock body scrolling while open. Animate the overlay opacity in over 0.5 seconds, animate the content panel from yPercent 6 to 0 over 0.85 seconds with expo.out, and reveal marked content blocks from y 24 with a 0.06 stagger over 0.7 seconds.
+
+For each concern, render the following sequence: a two-column hero with eyebrow, large title, lede, “Book a consultation” button, “See indicative pricing” link, and 8:5 hero image; a three-column overview containing Who it's for, Typical timeline, and Our approach; a four-step “The Journey” section; a three-row “Your Options” list with suits, timeline, and notes; a two-image gallery with captions; a Doctor Note quote and Common Questions; and a cool-gray Next Step CTA titled “A quiet consultation, on your timing.”. The consultation button closes the overlay and opens the consultation drawer. ESC and close animate the panel out and restore page scrolling.
+
+DENTAL-12 — Particle Ribbon Canvas
+
+Add an ambient fixed Canvas particle ribbon behind the main content and below the navigation. Disable it below 640px. Use 180 particles on tablet and 320 on desktop, distributed across four soft horizontal bands. Render small cyan-blue circles with a few larger accent particles and low opacity.
+
+Give every particle a normalized home position, phase, depth, wave amplitude, and frequency. Animate two low-frequency ocean-like swell oscillators and move particles toward their wave-adjusted targets with spring stiffness around 3.5 and damping around 2.2. When the page scrolls, add a signed impulse so particles coast briefly; decay the impulse exponentially. Fade the field out as the Practice section moves from about 80% to 20% of the viewport and hide it after the Hero is far above the viewport. Make the canvas devicePixelRatio-aware and resize safely. Keep pointer-events disabled and clean up the animation frame/listeners on unmount.
+
+DENTAL-13 — Navigation + Anchor Scroll
+
+Create a fixed premium dental navigation with a 64px mobile height and 72px desktop height. Use a small inline tooth-like SVG and the wordmark “Aline dental”. Keep the header transparent at the top of the page; once scrollY exceeds 40px, add a white 95%-opacity background, backdrop blur, and a subtle bottom border.
+
+Show desktop anchor links for Concern, Results, Practice, First Visit, Treatments, Pricing, and Contact, plus a cyan “Book a Consultation” button. On mobile, replace the links with a menu icon; the open panel contains all anchor links and the consultation button. Intercept anchor clicks, scroll to the target with a 72px header offset using easeInOutCubic over a distance-based duration between about 700ms and 1400ms, update the hash with history.replaceState, and close the mobile menu after selection.
+
+DENTAL-14 — Footer and 404
+
+Create a minimal white footer for Aline dental. Place the inline tooth-like mark and the wordmark “Aline dental”, followed by “· © 2026 · Amsterdam”. On the opposite side show understated links labeled Privacy, Terms, and Imprint. Stack the footer content on small screens and keep the typography around 12px with muted blue-gray color.
+
+For all unmatched routes, create a full-viewport centered placeholder with a giant pale “404” anchored near the bottom, the heading “This page has not been generated”, the current pathname in gray monospace text, and the message “Tell me more about this page, so I can generate it”.

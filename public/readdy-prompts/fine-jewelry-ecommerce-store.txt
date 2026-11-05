@@ -1,0 +1,316 @@
+Fine Jewelry Ecommerce Store — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/b571cd37-6f4e-4d79-80ab-bd24e871d654/14029526
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a premium contemporary fine jewelry website for a brand called AURELIN. The visual language should feel quiet, architectural, warm, and carefully made in a small Antwerp atelier. Use a near-white canvas, pale stone surfaces, deep ink purple as the brand anchor, and muted brass as the accent. Use sale red-orange only for restrained sale and low-stock signals.
+
+Use Inter for navigation, body copy, forms, labels, prices, and utility text. Use a light Cormorant Garamond-style serif for editorial headings, hero statements, and collection titles. Use uppercase eyebrow labels around 12px with approximately 0.16em letter spacing. Buttons should be rectangular, approximately 44px high, uppercase, and tracked around 0.20em; avoid rounded SaaS-style controls.
+
+Build a centered 1320px content shell with 48px desktop, 32px tablet, and 20px mobile horizontal padding. Use spacious editorial sections, a 2-column mobile and 4-column desktop product grid, square or portrait jewelry imagery, and a 7/5 desktop product detail split. Keep borders thin, shadows very limited, and image backgrounds warm white or pale stone.
+
+Use refined jewelry photography: white seamless packshots, close-up on-body portraits, warm neutral linen, stone, wood, brass tools, workshop hands, and soft natural window light. Emphasize recycled 18k gold, platinum, sterling silver, traceable stones, small runs, and hand finishing. Avoid neon colors, glossy over-retouching, loud luxury decoration, heavy cards, and generic stock photography.
+
+Motion should be slow and tactile. Use a scroll-scrubbed muted jewelry film in the main hero, subtle image crossfades on product hover, restrained header and overlay transitions, a slow satin-like brand gradient, a paused-on-hover review marquee, animated accordions, and reduced-motion fallbacks. Preserve readable content and never require hover to access product information.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Project Definition
+
+Reconstruct a complete responsive front-end ecommerce website for AURELIN, a contemporary fine jewelry house based in Antwerp. The catalog contains earrings, necklaces, rings, and bracelets made in recycled precious metals, platinum, sterling silver, and traceable stones. The brand should communicate quiet luxury, architectural simplicity, small-run production, hand finishing, and pieces intended for daily wear.
+
+This is a static front-end template. Keep product and editorial content in typed local mock data. Do not invent a database, CMS, user account system, real payment processing, inventory API, or live customer service backend. External form POSTs and simulated chat replies must be documented as integration placeholders.
+
+Global Visual Direction
+
+Use a near-white canvas #FDFDFD, pale stone surface #F2F2F2, deep ink purple #1E144D, secondary satin purple #2A2061, muted brass #B2915B, graphite #434343, and restrained sale red-orange #BD4C2A. The mood is warm, quiet, precise, editorial, and architectural. Create luxury through proportion, material photography, type, and whitespace rather than gold gradients, ornate borders, heavy shadows, or promotional clutter.
+
+Use refined contemporary jewelry imagery: white seamless packshots, close-up on-body crops, warm cream linen, neutral stone, wood workbenches, brass tools, soft window light, polishing, stone setting, chains, cuffs, rings, and small atelier scenes. Avoid neon, glossy fashion retouching, busy props, generic stock imagery, and loud luxury decoration.
+
+Design System
+
+Use Inter for body, navigation, labels, forms, prices, and utilities. Use a light Cormorant Garamond-style serif for display headings and editorial titles. Pacifico may remain unused. Eyebrow labels are uppercase, about 12–13px, weight 500, with approximately 0.16em letter spacing. Buttons are rectangular, about 44px high, uppercase, with approximately 0.20em tracking and no border radius.
+
+Use a centered content shell with max width 1320px and horizontal padding 48px desktop, 32px tablet, and 20px mobile. Use white or pale stone image containers, thin neutral borders, low shadow, and 2-column mobile / 4-column desktop catalog grids. Use a 7/5 desktop gallery-to-purchase split on product pages.
+
+Global Application Shell
+
+Create a Layout containing:
+1. a fixed 32px announcement ticker;
+2. a fixed Header positioned below the ticker;
+3. a route-faded main area;
+4. a Footer;
+5. a CartDrawer;
+6. a full-screen SearchOverlay;
+7. a bottom-right simulated ChatWidget.
+
+The announcement messages rotate every 4200ms with a 500ms opacity crossfade. Use exactly these messages: “Complimentary shipping worldwide”, “Made to order in Antwerp”, and “30-day returns on unworn pieces”.
+
+Header
+
+Create the AURELIN header with a centered brass wordmark, desktop navigation for Shop, Collections, and About, a text Search control on desktop, search icon on mobile, and a shopping bag icon with live item count. The header is fixed below the announcement bar. It becomes a near-white background with a thin bottom border after scrollY exceeds 8. On the Home route, keep it transparent and hidden with opacity zero plus an upward shift while the sticky hero is active; reveal it around the end of the 300vh hero, approximately when scrollY reaches two viewport heights minus 40px.
+
+On mobile replace the desktop navigation with a menu button. Opening the menu renders a near-white panel with Shop, Collections, About, and Search. Closing the menu occurs when a link is selected. Search opens the global SearchOverlay. Bag opens the CartDrawer.
+
+Home Page
+
+Build the Home page in this exact order:
+1. Scroll-scrub Hero video
+2. Brand Promise Row
+3. The Ring Edit / Best Sellers
+4. Objects of Winter collection campaign
+5. Shop by Category
+6. Material & Craft
+7. Worn Slowly / Journal
+8. Footer
+
+Hero
+
+Create an outer section with height 300vh and a sticky inner stage with height 100vh. Use the supplied jewelry campaign video as the background, muted, playsInline, preloaded, object-cover, with the supplied poster fallback. Put the copy at the bottom inside the shell:
+- eyebrow: “Winter 2026 · Volume II”
+- title: “Quiet objects, considered forever.”
+- primary CTA: “Shop Collection” to /shop
+- secondary CTA: “Our House” to /about
+
+Drive video currentTime from the hero scroll progress. Smooth currentTime toward the target using a low tracking factor close to 0.08 instead of playing automatically. Apply the copy exit between approximately 62% and 84% of hero progress: reduce opacity, translate upward by up to 12px, and blur by up to 4px with an ease-in-out curve. Keep the hero legible and provide the poster when video metadata is not ready.
+
+Brand Promise Row
+
+Add a bordered row with four promises in a 2-column mobile / 4-column desktop grid:
+- Complimentary Shipping — Worldwide, on all orders over $200.
+- 30-Day Returns — Considered purchases, easy returns.
+- Responsibly Made — Recycled metals, traceable stones.
+- Secure Checkout — Protected payments, private data.
+
+Use small Remix-style icons in brass. Hide the supporting copy on mobile while keeping the promise titles visible.
+
+The Ring Edit
+
+Add a centered editorial section with eyebrow “The Ring Edit”, title “A quiet study in rings”, four product cards for Arc Signet Ring, Orbit Band Ring, Stellar Pavé Ring, and Lumen Cluster Ring, and a “View All” link to /shop. Use a 2-column mobile / 4-column desktop grid.
+
+Objects of Winter Campaign
+
+Use a full-width editorial still-life image around a 16/7 ratio and at least 420px tall. Apply a left-to-right dark readability gradient. Overlay:
+- eyebrow: “Collection”
+- title: “Objects of Winter”
+- copy: “Sculpted in recycled 18k gold and platinum. Twelve quiet pieces for the season.”
+- link: “Explore the Collection” to /shop
+
+Shop by Category
+
+Use the eyebrow “Shop by Category” and title “A quiet, complete wardrobe”. Show four square image tiles named Earrings, Necklaces, Rings, and Bracelets, linking to /shop?category=Earrings, /shop?category=Necklaces, /shop?category=Rings, and /shop?category=Bracelets. Use a 2-column mobile / 4-column desktop grid, pale stone image surfaces, and subtle opacity feedback on hover.
+
+Material & Craft
+
+Create a two-part editorial split. The left side is a large atelier image of jeweler hands polishing a gold ring. The right side is a deep charcoal panel with:
+- eyebrow: “Material & Craft”
+- title: “Made slowly, in small runs.”
+- copy explaining certified recycled 18k gold or platinum, an Antwerp atelier, and a team of five
+- link: “Inside the Atelier” to /about#materials
+
+On desktop use a 7/5 image-to-text split with an image-to-panel gradient edge; on mobile stack image above text.
+
+Worn Slowly Journal Preview
+
+Create a shell section with eyebrow “Journal”, title “Worn slowly”, a desktop “View the Journal” link, and three equal editorial portrait cards:
+- Worn in the first light. — Portrait
+- The language of gold. — Journal
+- Worn with ease. — Study
+
+Use 4/5 portrait image ratios, 3 columns on desktop and one column on mobile, subtle scale around 1.015 over approximately 380ms, and a mobile View the Journal link.
+
+Shop Page
+
+Create /shop with a breadcrumb, title “All Jewelry”, and the description “Considered pieces cast in recycled precious metals. Every object is hand-finished in our Antwerp atelier.”. Add category controls All, Earrings, Necklaces, Rings, and Bracelets. The active category uses a dark border; other controls are neutral text. On mobile make the category row horizontally scrollable.
+
+On desktop add a Sort select with Featured, Price: Low to High, Price: High to Low, and Newest. Featured preserves source order; the price modes sort numerically; Newest is available as a label but the source does not implement a separate isNew sort branch, so do not invent one without documenting it. Store category in the URL search parameter category and update it without a full navigation.
+
+Render the filtered products in a 2-column mobile / 4-column desktop grid. Show “No pieces found in this category.” if empty.
+
+Collections Index and Detail
+
+Create /collections with breadcrumb, title “The Aurelin Collections”, supporting text about small releases from the Antwerp atelier, and three collection cards:
+- Form 01 — Sculptural essentials
+- Everyday Metal — Pieces designed for daily wear
+- New Arrivals — Latest objects from the studio
+
+Each card uses a square cover image, serif title, tagline, and “View Collection” link. Detail routes use breadcrumb, a 16/9 collection image, centered serif collection name, collection-specific introduction, and a 2-column mobile / 4-column desktop product grid. The source collections are:
+- Form 01: p3, p4, p7, p1
+- Everyday Metal: p2, p6, p8, p5
+- New Arrivals: p1, p5, p6, p7
+
+For an invalid collection slug, show “This collection could not be found.” and a Back to Collections link inside the normal Layout.
+
+Product Detail
+
+Create /product/:slug with breadcrumb Home / Shop / category / product. The source uses a 12-column desktop layout: a 7-column image gallery and 5-column sticky purchase column. Use four gallery entries: packshot, second angle, on-body, and detail. Desktop uses vertical thumbnails; mobile uses a horizontal thumbnail row below the main square image. Use a warm #F4F1EC media background and a 320ms image soft-in animation.
+
+Show category, product name, price, optional compare-at price, sale percentage, rating, review count, description, material, variant selector, quantity control, Add to Bag button, stock status, and shipping line. For rings, the variant label is Ring Size with 48, 50, 52, 54, 56, 58. For non-rings, the variant label is Finish with Polished and Brushed.
+
+Use these source-confirmed behaviors:
+- Add to Bag calls the client UI context with product, selected variant, and quantity.
+- Quantity cannot go below one.
+- Product detail starts with the first variant and the Details accordion open.
+- Accordions are Details, Materials, Care, and Shipping & Returns.
+- Accordion opening uses max-height and opacity animation.
+- An unknown product slug falls back to the first product in the static array. Preserve this source behavior unless a product decision explicitly changes it.
+
+After the purchase area, add:
+1. a pale stone On the Body section with title “A quiet weight, a considered scale.” and fit-model copy;
+2. a deep purple brand-satin Material & Quality section with Material, Weight, Origin, and Care facts;
+3. a pale stone Reviews section with rating summary and an infinite review marquee;
+4. a Wear It With section titled “Considered companions” with four related ProductCards.
+
+Cart and CartDrawer
+
+Use UIContext for an in-memory client-side cart. Identify an item by product id plus variant string. Adding an existing product/variant merges quantity and opens the CartDrawer. Quantity updates have a minimum of one. Remove actions animate the row closed over approximately 240–260ms.
+
+CartDrawer behavior:
+- black translucent full-screen backdrop, z-index below the drawer
+- right drawer full width on mobile and 440px on small desktop
+- 64px top row with “Your Bag (count)” and close button
+- item rows with product image, name, variant, total line price, quantity controls, and Remove
+- subtotal and “Shipping and taxes calculated at checkout.”
+- “Secure Checkout” link to /cart
+- “Continue Shopping” button that closes the drawer
+- body scroll lock whenever cart or search is open
+- Escape closes cart and search
+
+Important source boundary: /cart is not connected to UIContext. It initializes its own local state with products.slice(0, 2), supports quantity and remove locally, always shows complimentary shipping, and the Secure Checkout button has no navigation handler. Preserve this as an audit finding, or explicitly repair it in a future implementation rather than silently claiming that the source has a complete checkout.
+
+Search Overlay
+
+Create a full-screen near-white SearchOverlay that mounts when opened and fades from opacity 0 plus translateY 8px to visible over approximately 260ms. Autofocus an input with placeholder “Search jewelry”. With an empty query show the first six products as Suggested. With a query filter product name, category, and material. Show Results (count) or “No pieces found.”. Use a 2-column mobile / 4-column desktop result grid. Clicking a result navigates to its product route and closes the overlay.
+
+About / Our House
+
+Create /about with an overlay-style hero image of a quiet Antwerp atelier, dark overlay, eyebrow “Our House”, and title “A small house, quietly built.”. Add breadcrumb About. Then render:
+1. Origin — “Founded in Antwerp, 2019.” with five-person atelier story and portrait.
+2. a wide hand-polishing campaign image.
+3. Material — “Recycled precious metals, always.” with recycled gold, platinum, sterling silver, and traceable-stone copy.
+4. Practice — “Small runs, hand finished.” with edition sizes, made-to-order behavior, and stone-setting image.
+
+Support /about#story and /about#materials by smoothly scrolling to the matching section after a short delay.
+
+Care Guide
+
+Create /care with breadcrumb, “Care Guide”, supporting text, and four content sections: Gold & Silver Care, Storage, Water & Perfume, and Cleaning. Use a narrow 8-column content area centered inside the shell and long readable paragraphs.
+
+FAQ
+
+Create /faq with breadcrumb and “Frequently Asked”. Use five accordion groups: Orders, Materials, Sizing, Shipping, and Returns. Each group contains two questions. Only one item needs to be active at a time; clicking an open item closes it. Use plus/minus icons, thin top/bottom borders, and readable answer text.
+
+Contact
+
+Create /contact with breadcrumb, title “Contact”, a short client-care introduction, and a 4/7 desktop information/form layout. Show:
+- Atelier: Hopland 34, 2000 Antwerp, Belgium
+- Client Care: care@aurelin.com and +32 3 210 44 90
+- Hours: Monday – Friday, 10:00 – 18:00 CET
+
+The form has required Name, required Email, optional Order Number, required Message, maxLength 500, and a hidden website_alt honeypot. Submit URL-encoded data to the external Readdy endpoint only as an integration placeholder. Use idle/loading/success/error state. Success shows “Received”, “Thank you.”, and a one-business-day response message. A filled honeypot also follows the success path and resets the form.
+
+Journal
+
+Create /journal with breadcrumb, title “Journal”, supporting text “Slow notes from the Antwerp atelier — on material, craft and the pieces we wear.”, and a 3-column desktop / one-column mobile editorial grid. Use three static entries: Notes from the Studio, The Language of Gold, and Worn With Ease. Show date, meta category, portrait image, title, and description.
+
+Footer
+
+Create a deep purple brand-satin Newsletter section with the title “Quiet updates. New releases and slow journal entries.”, email field, hidden website_alt honeypot, and Subscribe button. Rotate through idle/loading/success/error. Success shows “Thank you for joining.”. Submit to the external Readdy endpoint only as a placeholder.
+
+Below it create the AURELIN footer navigation with Shop, Care, About, Social, and Legal links. Include Shop All, four categories, Shipping & Returns, Care Guide, FAQ, Contact, Our Story, Materials, Journal, Instagram, Pinterest, Privacy, Terms, and the copyright “© 2026 Aurelin Maison. All rights reserved.”.
+
+Chat Widget
+
+Create a fixed 56px purple circular chat button at bottom 24px/right 24px. Clicking toggles a 360px wide, 520px tall panel, max-width viewport minus 2rem, with an approximately 240ms fade/translate/scale transition. The panel header says “AURELIN CARE” and “We'll reply as soon as we can”. Start with the message “Hello — welcome to Aurelin. How can we help you today?”. Provide quick replies Sizing help, Shipping & delivery, and Order status. Submitted text adds a message and schedules the simulated response “Thanks for the note — our team will reply shortly. In the meantime, feel free to browse the collection.” after approximately 900ms. Do not claim this is a real chat backend.
+
+Responsive Design
+
+Use 20px mobile, 32px tablet, and 48px desktop shell padding. Collapse navigation into a menu on mobile. Use 2-column product grids on mobile and 4 columns on desktop. Stack About, Material, Product, and other editorial split layouts on mobile. Put product gallery thumbnails below the main image on mobile and vertically beside it on desktop. Keep the CartDrawer full width on mobile and 440px on desktop. Make SearchOverlay full screen at all widths. Keep important product text and controls accessible without hover.
+
+Motion and Accessibility
+
+Implement announcement crossfade, Home video scrub, copy fade/blur/translate, route enter motion, product image crossfade, SearchOverlay transition, CartDrawer slide, accordion transition, satin animation, review marquee, chat transition, and cart removal animation. Respect prefers-reduced-motion by stopping satin and marquee animation, disabling route animation, and removing or minimizing transitions. Use semantic buttons and links, labels, alt text, keyboard focus, aria labels, and aria-expanded for accordions.
+
+Technical Requirements
+
+Use React, TypeScript, React Router, Tailwind CSS, typed static mock data, and semantic HTML. Keep all current routes and copy relationships. Do not add backend/database/payment/account/CMS behavior. Do not replace the scroll-scrubbed video with a generic autoplay video. If the remote video is unavailable, retain the poster and document the asset limitation.
+
+Quality Assurance
+
+Verify every route, exact Home section order, announcement cycling, Header reveal threshold, Home video scrubbing, copy fade interval, category filters, sort behavior, collection product assignments, product gallery, ring-size/finish variants, sale badges, stock messaging, accordion state, review marquee, SearchOverlay filtering, CartDrawer merge/removal/scroll-lock, the independent /cart state, FAQ accordion, about hash scrolling, form success/error paths, ChatWidget delayed reply, reduced-motion behavior, and unknown-route rendering.
+
+Explicit Constraints and Avoidances
+
+Do not redesign AURELIN into a generic jewelry marketplace. Do not add rounded cards, neon gold, excessive sparkle effects, fake account pages, fake payment confirmation, real customer-service claims, or unverified stock/inventory logic. Do not describe the in-memory cart as persistent. Preserve the current source limitations and distinguish all external resources from local assets.
+
+============================================================
+3. 分模块 Prompt（16 段）
+============================================================
+
+S01 — Announcement Ticker
+
+Create a fixed 32px AURELIN announcement ticker above the site header. Rotate these messages in order: “Complimentary shipping worldwide”, “Made to order in Antwerp”, and “30-day returns on unworn pieces”. Change the active message every 4200ms using a 500ms opacity crossfade. Use deep ink purple, white uppercase text, about 11px sizing, and approximately 0.18em tracking. Keep the bar accessible as an announcement region and prevent layout overlap with the fixed header.
+
+S02 — Global Header
+
+Build a fixed AURELIN header below a 32px announcement bar. Center a brass AURELIN wordmark with wide letter spacing. On desktop show Shop, Collections, About, Search, and a shopping bag icon with live count. On mobile show menu and search icons plus the bag icon; opening the menu reveals Shop, Collections, About, and Search in a white panel. On non-home pages, add a near-white background and thin bottom border after scrollY exceeds 8. On the home page, keep the header transparent and hidden with opacity and upward translation while the 300vh sticky hero is active, revealing it near the end of the hero. Connect Search to a full-screen overlay and Bag to a cart drawer.
+
+S03 — Scroll-Scrub Hero
+
+Create a 300vh AURELIN home hero with a 100vh sticky inner stage and a muted, playsInline, object-cover jewelry campaign video. Use the poster as a fallback. Place bottom-aligned copy inside the content shell: “Winter 2026 · Volume II”, “Quiet objects, considered forever.”, a “Shop Collection” button to /shop, and an “Our House” button to /about. Do not autoplay the film as a normal video. Map hero scroll progress to video currentTime, smooth the currentTime toward its target with a tracking factor close to 0.08, and fade the copy between about 62% and 84% progress with opacity loss, up to 12px upward movement, and up to 4px blur.
+
+S04 — Brand Promise Row
+
+Create a restrained AURELIN promise row with four items: “Complimentary Shipping — Worldwide, on all orders over $200.”, “30-Day Returns — Considered purchases, easy returns.”, “Responsibly Made — Recycled metals, traceable stones.”, and “Secure Checkout — Protected payments, private data.”. Use small brass line icons, a thin bottom border, a 2-column mobile grid, and a 4-column desktop grid. Hide the supporting copy on mobile but keep the promise titles visible.
+
+S05 — Ring Edit Product Grid
+
+Build a centered AURELIN product section with eyebrow “The Ring Edit”, heading “A quiet study in rings”, four product cards for Arc Signet Ring, Orbit Band Ring, Stellar Pavé Ring, and Lumen Cluster Ring, and an underlined “View All” link to /shop. Use a 2-column mobile and 4-column desktop grid. Each card should use a warm pale-stone square image container and crossfade from the packshot to the on-body image on hover when an alternate image exists.
+
+S06 — Objects of Winter Campaign
+
+Create a full-width AURELIN seasonal campaign section with a 16:7 editorial still-life image and a minimum height around 420px. Use recycled gold and platinum jewelry on warm beige linen with natural window light. Add a left-to-right dark readability gradient and overlay “Collection”, “Objects of Winter”, “Sculpted in recycled 18k gold and platinum. Twelve quiet pieces for the season.”, and an underlined “Explore the Collection” link to /shop.
+
+S07 — Shop by Category
+
+Create an AURELIN “Shop by Category” section with the title “A quiet, complete wardrobe”. Display four square image tiles named Earrings, Necklaces, Rings, and Bracelets. Link them to /shop?category=Earrings, /shop?category=Necklaces, /shop?category=Rings, and /shop?category=Bracelets. Use warm pale-stone image surfaces, a 2-column mobile and 4-column desktop grid, centered labels, and a subtle image opacity change on hover.
+
+S08 — Material and Craft Split
+
+Build a two-part AURELIN Material & Craft editorial section. Use a large image of jeweler hands polishing a gold ring on the left and a deep charcoal text panel on the right. Show the eyebrow “Material & Craft”, heading “Made slowly, in small runs.”, copy about certified recycled 18k gold or platinum and a five-person Antwerp atelier, and the underlined brass link “Inside the Atelier” to /about#materials. Use a 7/5 desktop split with a soft gradient edge and stack image above text on mobile.
+
+S09 — Journal Preview
+
+Create an AURELIN Journal preview with eyebrow “Journal”, heading “Worn slowly”, and a desktop and mobile “View the Journal” link to /journal. Show three portrait cards in a 3-column desktop and 1-column mobile grid: “Worn in the first light.” tagged Portrait, “The language of gold.” tagged Journal, and “Worn with ease.” tagged Study. Use 4:5 images and a subtle 1.015 hover scale over about 380ms.
+
+S10 — Shop Browser
+
+Build an AURELIN Shop page with breadcrumb, title “All Jewelry”, and description “Considered pieces cast in recycled precious metals. Every object is hand-finished in our Antwerp atelier.”. Add category controls All, Earrings, Necklaces, Rings, and Bracelets; persist the selected category in the category URL search parameter without a full navigation. Make the controls horizontally scrollable on mobile. On desktop include a Sort select with Featured, Price: Low to High, Price: High to Low, and Newest. Implement the two price sorts numerically and preserve source order for Featured; document that Newest has no separate source sort branch if the source behavior is unchanged. Use a 2-column mobile and 4-column desktop ProductCard grid.
+
+S11 — Collections
+
+Create an AURELIN Collections index titled “The Aurelin Collections” with supporting text about small considered releases from the Antwerp atelier. Show three cards: Form 01 — Sculptural essentials, Everyday Metal — Pieces designed for daily wear, and New Arrivals — Latest objects from the studio. Use square cover images, serif names, taglines, and “View Collection” links. For each detail route, show breadcrumb, a 16:9 editorial image, centered collection name and introduction, then a 2-column mobile / 4-column desktop grid of its assigned products. For an unknown slug show “This collection could not be found.” and a Back to Collections link.
+
+S12 — Product Detail
+
+Build an AURELIN product detail page with breadcrumb, a 7/5 desktop gallery-to-purchase split, and a stacked mobile layout. Use a warm #F4F1EC square media background, four gallery states named Packshot, Second angle, On-body, and Detail, vertical thumbnails on desktop, and a horizontal thumbnail row on mobile. Show category, name, price, optional compare-at price and sale percentage, rating, reviews, description, material, variant selector, quantity, Add to Bag, stock status, and shipping line. For rings use sizes 48, 50, 52, 54, 56, 58; for non-rings use finishes Polished and Brushed. Add Details, Materials, Care, and Shipping & Returns accordions. After the purchase area add On the Body, a deep-purple Material & Quality module, an animated review marquee, and four Considered companions cards. Unknown product slugs should follow the documented source fallback unless explicitly repaired.
+
+S13 — Cart Drawer and Cart Page
+
+Create an AURELIN CartDrawer backed by an in-memory UI context. Identify an item by product id plus variant and merge duplicate variants. Use a full-screen black translucent backdrop, a right drawer that is full width on mobile and 440px on desktop, a 64px header, item rows, quantity controls, remove animation, subtotal, “Secure Checkout” to /cart, and “Continue Shopping”. Lock body scroll while open and close on backdrop or Escape. Preserve the source limitation that the standalone /cart page currently owns a separate local state initialized with the first two products and does not implement real checkout; do not claim persistence or payment processing.
+
+S14 — Search Overlay
+
+Create a full-screen AURELIN search overlay that mounts when opened and transitions from opacity 0 and translateY 8px to visible over 260ms using a restrained cubic-bezier. Autofocus an input with placeholder “Search jewelry”. With an empty query show the first six products under “Suggested”; with a query filter product name, category, and material. Show “Results (count)” or “No pieces found.”. Use a 2-column mobile and 4-column desktop grid, link results to product detail, and close the overlay after navigation or the close button.
+
+S15 — About / Care / FAQ / Info
+
+Create an AURELIN support and brand-content system. On /about use an atelier hero titled “A small house, quietly built.”, then Origin “Founded in Antwerp, 2019.”, Material “Recycled precious metals, always.”, and Practice “Small runs, hand finished.” with editorial images and a 50/50 or 7/5 rhythm. Support /about#story and /about#materials with smooth delayed scrolling. On /care show Gold & Silver Care, Storage, Water & Perfume, and Cleaning. On /faq show Orders, Materials, Sizing, Shipping, and Returns as one-open accordion groups. On /shipping, /privacy, and /terms use a shared narrow text layout and the source copy. Keep all content static and avoid inventing account or CMS behavior.
+
+S16 — Contact, Newsletter, Chat
+
+Create an AURELIN Contact page with Antwerp address, care email, phone, hours, required Name, required Email, optional Order Number, required Message with maxLength 500, and hidden website_alt honeypot. Use loading, success, and error states; success says “Received”, “Thank you.”, and that client care will respond within one business day. Build a deep-purple Newsletter block with “Quiet updates. New releases and slow journal entries.”, email input, Subscribe, hidden honeypot, and success “Thank you for joining.”. Add a fixed purple chat bubble and 360px by 520px panel titled “AURELIN CARE”, with quick replies Sizing help, Shipping & delivery, and Order status; send a simulated reply after about 900ms. Clearly treat forms and chat as external or simulated placeholders.

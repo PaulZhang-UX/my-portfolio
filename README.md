@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zhang Yong Portfolio
 
-## Getting Started
+张雍的个人作品集网站，基于 Next.js App Router 构建，包含首页、四个项目案例、两个交互 Demo、音乐播放器、简历和作品集下载。
 
-First, run the development server:
+## 页面与资源
+
+- `/`：首页（Magazine / Hermes 两种视觉入口）
+- `/work/mirror`：Mirror 项目
+- `/work/ui-trace`：UI Trace 项目
+- `/work/chatgpt-redesign`：ChatGPT 进展板项目
+- `/work/meituan`：美团移动体验研究项目
+- `/demo/`：Mirror 交互 Demo
+- `/demo/chat-board/`：ChatGPT 进展板 Web / Mobile Demo
+- `/zhang-yong-resume.png`：简历下载
+- `/zhang-yong-portfolio.pdf`：33 页作品集下载
+
+## 本地开发
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 <http://localhost:3000>。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+开发预览使用 `next dev --webpack`。不要把开发服务器当作生产服务使用；此前的开发进程曾因反复编译和大体积静态资源出现高内存占用。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 发布前检查
 
-## Learn More
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\preflight-deploy.ps1
+```
 
-To learn more about Next.js, take a look at the following resources:
+该检查只验证关键文件、下载入口、Demo 路由和静态资源，不代替生产构建。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 生产运行
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js 官方 Node.js 自托管流程为：
 
-## Deploy on Vercel
+```bash
+npm ci
+npm run build
+npm run start -- -H 127.0.0.1 -p 3000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+腾讯云部署、Nginx / EdgeOne、COS 迁移和资源清单见 [docs/tencent-cloud-deployment.md](docs/tencent-cloud-deployment.md) 与 [docs/release-inventory.md](docs/release-inventory.md)。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+交给腾讯 WorkBuddy 执行最终部署时，优先阅读 [docs/workbuddy-handoff.md](docs/workbuddy-handoff.md)。
+
+## 目录说明
+
+- `app/`：页面路由与全局样式
+- `components/`：页面、案例和交互组件
+- `content/`：项目文案和章节配置
+- `public/`：项目图片、Demo、视频、音乐、简历和作品集文件
+- `scripts/`：发布前检查脚本和历史维护脚本
+
+不要提交 `node_modules/`、`.next/`、日志、临时截图、实验目录或环境变量文件。当前工作区仍包含一批历史未提交文件，正式上线前请先人工确认 Git 提交边界。

@@ -11,36 +11,29 @@ export const SmoothFollower: React.FC = () => {
 
   const dotRef = useRef<HTMLDivElement>(null);
   const borderRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const visibleRef = useRef(false);
 
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(() => (
+    typeof document !== 'undefined' && document.body.dataset.chatBoardDemoOpen === 'true'
+  ));
 
   const DOT_SMOOTHNESS = 0.2;
   const BORDER_SMOOTHNESS = 0.15;
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePosition.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) {
-        setIsVisible(true);
-      }
+    const handleDemoStateChange = () => {
+      setIsDemoOpen(document.body.dataset.chatBoardDemoOpen === 'true');
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target) return;
-      const isInteractive = target.closest('a, button, [role="button"], input, textarea, select, .interactive-cursor');
-      setIsHovering(!!isInteractive);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('chat-board-demo-statechange', handleDemoStateChange);
 
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor;
     };
 
-    let animationId: number;
     const animate = () => {
       dotPosition.current.x = lerp(dotPosition.current.x, mousePosition.current.x, DOT_SMOOTHNESS);
       dotPosition.current.y = lerp(dotPosition.current.y, mousePosition.current.y, DOT_SMOOTHNESS);
@@ -55,17 +48,55 @@ export const SmoothFollower: React.FC = () => {
         borderRef.current.style.transform = `translate3d(${borderPosition.current.x}px, ${borderPosition.current.y}px, 0) translate(-50%, -50%)`;
       }
 
-      animationId = requestAnimationFrame(animate);
+      const remaining = Math.max(
+        Math.abs(dotPosition.current.x - mousePosition.current.x),
+        Math.abs(dotPosition.current.y - mousePosition.current.y),
+        Math.abs(borderPosition.current.x - mousePosition.current.x),
+        Math.abs(borderPosition.current.y - mousePosition.current.y),
+      );
+
+      if (remaining > 0.08) {
+        animationRef.current = requestAnimationFrame(animate);
+      } else {
+        animationRef.current = null;
+      }
     };
 
-    animationId = requestAnimationFrame(animate);
+    const startAnimation = () => {
+      if (animationRef.current === null) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mousePosition.current = { x: e.clientX, y: e.clientY };
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        setIsVisible(true);
+      }
+      startAnimation();
+    };
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+      const isInteractive = target.closest('a, button, [role="button"], input, textarea, select, .interactive-cursor');
+      setIsHovering(!!isInteractive);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
-      cancelAnimationFrame(animationId);
+      window.removeEventListener('chat-board-demo-statechange', handleDemoStateChange);
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
     };
-  }, [isVisible]);
+  }, []);
 
   // 根据当前 style 和 theme 返回跟随器颜色 (自适应极客/Hermes 的黑底绿鼠、白底黑鼠，以及银翼的黑底橙鼠、白底红褐鼠)
   const getFollowerColors = () => {
@@ -92,7 +123,7 @@ export const SmoothFollower: React.FC = () => {
     };
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || isDemoOpen) return null;
 
   const colors = getFollowerColors();
 

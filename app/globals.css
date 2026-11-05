@@ -1,108 +1,147 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
-
 @import "tailwindcss";
 
-/* 激活 Tailwind v4 基于类名的暗色模式变体 */
-@variant dark (.dark &);
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', 'Noto Sans SC', sans-serif;
-  /* 注入微软雅黑与苹方回退，彻底根除 Windows 浏览器由于等宽降级为宋体中文字体的缺陷 */
-  --font-mono: 'JetBrains Mono', 'Microsoft YaHei', 'PingFang SC', monospace;
-  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+
+  --color-matrix-green: rgb(var(--matrix-green));
+  --color-matrix-white: rgb(var(--matrix-white));
+  --color-matrix-dark: rgb(var(--matrix-dark));
+
+  --font-apple: var(--font-apple);
+  --font-hacker-zh: var(--font-hacker-zh);
+  --font-hacker-en: var(--font-hacker-en);
+  --font-hacker-num: var(--font-hacker-num);
 }
 
-:root {
-  --background: #FAFAFA;
-  --foreground: #171717;
+@layer base {
+  :root {
+    /* ---------------------------------------------------- */
+    /* APPLE / MAGAZINE MODE (Light by default)             */
+    /* ---------------------------------------------------- */
+    --background: 255 255 255; /* #FFFFFF */
+    --foreground: 23 23 23;    /* #171717 */
+    
+    --muted: 245 245 245;      /* #F5F5F5 */
+    --muted-foreground: 115 115 115; /* #737373 */
+
+    /* Typography */
+    --font-apple: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  }
+
+  .dark {
+    /* APPLE / MAGAZINE MODE (Dark variation) */
+    --background: 10 10 10;    /* #0A0A0A */
+    --foreground: 245 245 245; /* #F5F5F5 */
+    
+    --muted: 38 38 38;         /* #262626 */
+    --muted-foreground: 163 163 163; /* #A3A3A3 */
+  }
+
+  /* ---------------------------------------------------- */
+  /* HERMES / HACKER MODE (Overrides)                     */
+  /* ---------------------------------------------------- */
+  .hermes {
+    --matrix-green: 34 197 94;  /* #22c55e */
+    --matrix-white: 240 253 244;/* #f0fdf4 */
+    --matrix-dark: 0 0 0;       /* #000000 */
+
+    --matrix-ink-color: #22c55e;
+    --matrix-ink-rgb: 34 197 94;
+    --matrix-page-color: #020202;
+    --matrix-screen-color: rgba(2, 5, 3, 0.5);
+    --matrix-chassis-color: #2a2b2c;
+    --matrix-chassis-border: #3a3b3c;
+    --matrix-chassis-shadow: 0 0 100px rgba(0,0,0,0.9), inset 0 2px 5px rgba(255,255,255,0.1), inset 0 -5px 10px rgba(0,0,0,0.5);
+    --matrix-screen-shadow: inset 0 0 120px rgba(0,0,0,1), inset 0 0 20px rgba(34,197,94,0.15), 0 0 20px rgba(0,0,0,0.8);
+    --matrix-vignette: radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.95) 100%);
+    --matrix-scanlines: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.4) 50%), linear-gradient(90deg, rgba(255,0,0,0.08), rgba(0,255,0,0.03), rgba(0,0,255,0.08));
+    --matrix-glare-primary: radial-gradient(ellipse 150% 100% at 50% 5%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 40%);
+    --matrix-glare-secondary: radial-gradient(ellipse 80% 50% at 80% 90%, rgba(34,197,94,0.05) 0%, rgba(34,197,94,0) 40%);
+    --matrix-header-gradient: linear-gradient(90deg, rgba(34,197,94,0.15) 0%, rgba(0,0,0,0) 100%);
+    --matrix-glow-shadow: rgba(34,197,94,0.72);
+    --matrix-soft-glow: rgba(34,197,94,0.5);
+    --matrix-card-bg: rgba(34,197,94,0.02);
+    --matrix-card-bg-hover: rgba(34,197,94,0.05);
+    --matrix-card-shadow-hover: rgba(34,197,94,0.1);
+    --matrix-logo-main: #e8ffe9;
+    --matrix-logo-glow: #59ff75;
+    --matrix-vent-color: #1a1a1a;
+    --matrix-vent-shadow: inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.1);
+    --matrix-link-hover: #ffffff;
+    --matrix-button-fill: #22c55e;
+    --matrix-button-contrast: #000000;
+    
+    --background: 0 0 0;        
+    --foreground: 34 197 94;    
+    
+    --muted: 10 10 10;
+    --muted-foreground: 21 128 61; /* #15803d */
+
+    /* Typography Updated */
+    --font-hacker-zh: '更纱黑体 SC', 'Sarasa UI SC', 'Sarasa Gothic SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    --font-hacker-en: 'Rajdhani', monospace;
+    --font-hacker-num: 'DSEG7 Modern', monospace;
+  }
+
+  .hermes:not(.dark) {
+    --matrix-green: 5 5 5;
+    --matrix-white: 5 5 5;
+    --matrix-dark: 255 255 255;
+
+    --background: 255 255 255;
+    --foreground: 5 5 5;
+    --muted: 245 245 245;
+    --muted-foreground: 42 42 42;
+
+    --matrix-ink-color: #050505;
+    --matrix-ink-rgb: 5 5 5;
+    --matrix-page-color: #ffffff;
+    --matrix-screen-color: rgba(255,255,255,0.9);
+    --matrix-chassis-color: #e7e7e5;
+    --matrix-chassis-border: #c9c9c6;
+    --matrix-chassis-shadow: 0 24px 80px rgba(0,0,0,0.18), inset 0 2px 5px rgba(255,255,255,0.95), inset 0 -5px 10px rgba(0,0,0,0.12);
+    --matrix-screen-shadow: inset 0 0 90px rgba(0,0,0,0.14), inset 0 0 20px rgba(0,0,0,0.06), 0 0 20px rgba(0,0,0,0.16);
+    --matrix-vignette: radial-gradient(circle at center, transparent 48%, rgba(0,0,0,0.13) 100%);
+    --matrix-scanlines: linear-gradient(rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%), linear-gradient(90deg, transparent, rgba(0,0,0,0.015), transparent);
+    --matrix-glare-primary: radial-gradient(ellipse 150% 100% at 50% 5%, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0) 42%);
+    --matrix-glare-secondary: radial-gradient(ellipse 80% 50% at 80% 90%, rgba(0,0,0,0.025) 0%, rgba(0,0,0,0) 42%);
+    --matrix-header-gradient: linear-gradient(90deg, rgba(0,0,0,0.08) 0%, rgba(255,255,255,0) 100%);
+    --matrix-glow-shadow: rgba(0,0,0,0.2);
+    --matrix-soft-glow: rgba(0,0,0,0.15);
+    --matrix-card-bg: rgba(0,0,0,0.018);
+    --matrix-card-bg-hover: rgba(0,0,0,0.045);
+    --matrix-card-shadow-hover: rgba(0,0,0,0.08);
+    --matrix-logo-main: #080808;
+    --matrix-logo-glow: #111111;
+    --matrix-vent-color: #b8b8b5;
+    --matrix-vent-shadow: inset 0 1px 2px rgba(0,0,0,0.35), 0 1px 1px rgba(255,255,255,0.7);
+    --matrix-link-hover: #555555;
+    --matrix-button-fill: #050505;
+    --matrix-button-contrast: #ffffff;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-apple);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .hermes body {
+    font-family: var(--font-hacker-zh);
+  }
 }
 
-/* 极客终端与画廊暗色基础 */
-.dark {
-  --background: #030303;
-  --foreground: #F5F5F5;
-}
-
-/* 银翼杀手全局背景与文字前景色，使用最强硬的选择器绑定，彻底消除层叠变量失效 */
-html.bladerunner,
-html.bladerunner body {
-  background-color: #E6CEB8 !important; /* 默认 Light 模式为荒漠温暖黄沙色 */
-  color: #1D1107 !important;
-}
-
-html.bladerunner.dark,
-html.bladerunner.dark body {
-  background-color: #03050C !important; /* Dark 模式为经典深幽蓝色 */
-  color: #F5EFEB !important;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
-}
-
-/* Apple 缓动过渡定义 */
-.transition-apple {
-  transition-property: all;
-  transition-timing-function: var(--ease-apple);
-  transition-duration: 800ms;
-}
-
-/* CRT Scanline 扫描线效果重构 */
-.scanline-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.12) 50%
-  );
-  background-size: 100% 8px;
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.dark .scanline-overlay {
-  opacity: 0.08;
-}
-
-.bladerunner .scanline-overlay {
-  opacity: 0.15;
-  background: linear-gradient(
-    rgba(224, 90, 16, 0) 50%,
-    rgba(224, 90, 16, 0.1) 50%
-  );
-  background-size: 100% 6px;
-}
-
-.bladerunner:not(.dark) .scanline-overlay {
-  opacity: 0.12;
-  background: linear-gradient(
-    rgba(29, 17, 7, 0) 50%,
-    rgba(29, 17, 7, 0.08) 50%
-  );
-  background-size: 100% 6px;
-}
-
-/* 点阵装饰背景 */
-.dot-matrix {
-  background-image: radial-gradient(rgba(120, 120, 120, 0.1) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
-.dark .dot-matrix {
-  background-image: radial-gradient(rgba(245, 245, 245, 0.05) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
-/* 隐藏滚动条 */
+/* ---------------------------------------------------- */
+/* UI UTILITIES                                         */
+/* ---------------------------------------------------- */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -111,140 +150,178 @@ body {
   scrollbar-width: none;
 }
 
-/* ========================================================= */
-/* CSS CRT 绿字荧光呼吸灯效果 (解决极客模式静态下无动效缺陷) */
-/* ========================================================= */
-@keyframes phosphor-glow {
-  0%, 100% {
-    opacity: 0.98;
-    filter: drop-shadow(0 0 3px rgba(34, 197, 94, 0.4));
-  }
-  50% {
-    opacity: 0.82;
-    filter: drop-shadow(0 0 9px rgba(34, 197, 94, 0.75));
-  }
+/* Matrix（红药丸）窗口滚动条：绿色细条，提示内容可滚动 */
+[data-ratchet-scroll] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--matrix-ink-color) transparent;
+}
+[data-ratchet-scroll]::-webkit-scrollbar {
+  width: 6px;
+}
+[data-ratchet-scroll]::-webkit-scrollbar-track {
+  background: transparent;
+}
+[data-ratchet-scroll]::-webkit-scrollbar-thumb {
+  background: var(--matrix-ink-color);
+  border-radius: 3px;
+  opacity: 0.7;
 }
 
-.hermes .text-green-500,
-.hermes .text-green-400,
-.hermes .border-green-500 {
-  animation: phosphor-glow 3.5s infinite ease-in-out;
+.magazine-scroll {
+  isolation: isolate;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* ========================================================= */
-/* CSS Chromatic Aberration Glitch (色差分离故障抖动) 核心特效 */
-/* ========================================================= */
-.glitch-text {
+.magazine-shell {
   position: relative;
-  display: inline-block;
-  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-               -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
-               0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-  animation: glitch-skew 1s infinite linear alternate-reverse;
+  z-index: 1;
 }
 
-.glitch-text::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-shadow: -2px 0 #FF0055;
-  clip-path: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim-1 5s infinite linear alternate-reverse;
+html.magazine {
+  scroll-padding-top: 6rem;
+}
+
+/* The two shell shadows are pre-rendered and only cross-fade by opacity.
+   This avoids re-rasterizing a very large blur on every theme-transition frame. */
+@media (min-width: 768px) {
+  .magazine-scroll::before,
+  .magazine-scroll::after {
+    content: '';
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 100vh;
+    pointer-events: none;
+    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity;
+  }
+
+  .magazine-scroll::before {
+    opacity: 0;
+    box-shadow:
+      0 0 110px rgba(255, 255, 255, 0.16),
+      0 0 240px rgba(255, 255, 255, 0.065);
+  }
+
+  .magazine-scroll::after {
+    opacity: 1;
+    box-shadow: 0 0 70px rgba(0, 0, 0, 0.035);
+  }
+
+  .dark .magazine-scroll::before {
+    opacity: 1;
+  }
+
+  .dark .magazine-scroll::after {
+    opacity: 0;
+  }
+}
+
+/* Hermes color system: structure and content stay unchanged between themes. */
+.matrix-theme-transition,
+.matrix-theme-transition *:not(canvas) {
+  transition-property: color, background-color, border-color, box-shadow, filter, fill, stroke;
+  transition-duration: 720ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.matrix-text-90 { color: rgb(var(--matrix-ink-rgb) / 0.9); }
+.matrix-text-80 { color: rgb(var(--matrix-ink-rgb) / 0.8); }
+.matrix-text-70 { color: rgb(var(--matrix-ink-rgb) / 0.7); }
+.matrix-text-60 { color: rgb(var(--matrix-ink-rgb) / 0.6); }
+.matrix-border-30 { border-color: rgb(var(--matrix-ink-rgb) / 0.3); }
+.matrix-glow-strong { filter: drop-shadow(0 0 8px var(--matrix-glow-shadow)); }
+.matrix-glow-soft { filter: drop-shadow(0 0 5px var(--matrix-soft-glow)); }
+
+.matrix-scanline-overlay {
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+.hermes:not(.dark) .matrix-scanline-overlay {
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+
+.matrix-control:hover {
+  background: rgb(var(--matrix-ink-rgb) / 0.1);
+  border-color: rgb(var(--matrix-ink-rgb) / 0.3);
+}
+
+.matrix-return-control {
+  border-color: rgb(var(--matrix-ink-rgb) / 0.5);
+  box-shadow: 0 0 10px rgb(var(--matrix-ink-rgb) / 0.1);
+}
+.matrix-return-control:hover { background: rgb(var(--matrix-ink-rgb) / 0.2); }
+
+.matrix-project-card {
+  border-color: rgb(var(--matrix-ink-rgb) / 0.2);
+  background: var(--matrix-card-bg);
+  box-shadow: inset 0 0 20px transparent;
+}
+.matrix-project-card:hover {
+  border-color: rgb(var(--matrix-ink-rgb) / 0.8);
+  background: var(--matrix-card-bg-hover);
+  box-shadow: inset 0 0 20px var(--matrix-card-shadow-hover);
+}
+.matrix-project-thumb { border-color: rgb(var(--matrix-ink-rgb) / 0.4); }
+.matrix-project-link { color: var(--matrix-ink-color); }
+.matrix-project-link:hover { color: var(--matrix-link-hover); }
+
+.matrix-download-primary {
+  color: var(--matrix-ink-color);
+  border-color: var(--matrix-ink-color);
+  background: rgb(var(--matrix-ink-rgb) / 0.1);
+}
+.matrix-download-primary:hover {
+  color: var(--matrix-button-contrast);
+  background: var(--matrix-button-fill);
+}
+.matrix-download-secondary {
+  border-color: rgb(var(--matrix-ink-rgb) / 0.5);
   background: transparent;
-  opacity: 0.8;
 }
+.matrix-download-secondary:hover { background: rgb(var(--matrix-ink-rgb) / 0.2); }
 
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-shadow: -2px 0 #00F2FE, 0 2px #00F2FE;
-  clip-path: rect(85px, 450px, 140px, 0);
-  animation: glitch-anim-2 5s infinite linear alternate-reverse;
-  background: transparent;
-  opacity: 0.8;
-}
+.hermes:not(.dark) .wordmark { filter: none; }
 
-@keyframes glitch-anim-1 {
-  0% {
-    clip-path: inset(40% 0 61% 0);
+@media (prefers-reduced-motion: reduce) {
+  html.magazine,
+  .magazine-scroll {
+    scroll-behavior: auto;
   }
-  20% {
-    clip-path: inset(92% 0 1% 0);
-  }
-  40% {
-    clip-path: inset(15% 0 80% 0);
-  }
-  60% {
-    clip-path: inset(80% 0 5% 0);
-  }
-  80% {
-    clip-path: inset(3% 0 92% 0);
-  }
-  100% {
-    clip-path: inset(55% 0 30% 0);
+
+  .matrix-theme-transition,
+  .matrix-theme-transition *:not(canvas) {
+    transition-duration: 0ms;
   }
 }
 
-@keyframes glitch-anim-2 {
-  0% {
-    clip-path: inset(25% 0 58% 0);
-  }
-  20% {
-    clip-path: inset(70% 0 5% 0);
-  }
-  40% {
-    clip-path: inset(5% 0 90% 0);
-  }
-  60% {
-    clip-path: inset(83% 0 12% 0);
-  }
-  80% {
-    clip-path: inset(12% 0 85% 0);
-  }
-  100% {
-    clip-path: inset(45% 0 35% 0);
-  }
+/* ---------------------------------------------------- */
+/* CRT EFFECTS (Only applied inside Hermes Viewport)    */
+/* ---------------------------------------------------- */
+.hermes-bezel {
+  box-shadow: 
+    inset 0 0 100px rgba(0,0,0,0.9),
+    inset 0 0 20px rgba(0,0,0,0.8),
+    inset 0 0 3px 2px rgba(255,255,255,0.1);
+  border: 24px solid #0a0a0a;
+  border-radius: 32px;
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
 }
 
-@keyframes glitch-skew {
-  0% {
-    transform: skew(1deg);
-  }
-  10% {
-    transform: skew(-1deg);
-  }
-  20% {
-    transform: skew(2deg);
-  }
-  30% {
-    transform: skew(0deg);
-  }
-  40% {
-    transform: skew(-2deg);
-  }
-  50% {
-    transform: skew(1deg);
-  }
-  60% {
-    transform: skew(0deg);
-  }
-  70% {
-    transform: skew(-1deg);
-  }
-  80% {
-    transform: skew(3deg);
-  }
-  90% {
-    transform: skew(0deg);
-  }
-  100% {
-    transform: skew(1deg);
-  }
+.hermes-crt-lens {
+  perspective: 1000px;
+  overflow: hidden;
+}
+.hermes-crt-lens > * {
+  transform: scale(1.02) rotateX(0.5deg) rotateY(0.2deg);
+  transform-style: preserve-3d;
+  filter: contrast(1.05) brightness(1.05);
 }

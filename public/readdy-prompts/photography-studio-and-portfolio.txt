@@ -1,0 +1,286 @@
+Photography Studio & Portfolio — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/8a2b9ae7-7be7-4365-b5c4-6a0320efb2de/14334539
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a minimal editorial photography portfolio for a photographer named Maren Voss, working between Berlin and Lisbon. The interface should feel like a contemporary photo exhibition and fashion magazine contact sheet: quiet, precise, human, and image-led. Keep the UI monochrome so the photography carries the color.
+
+Use Inter Tight for display headings and Inter for body copy, labels, metadata, and navigation. Use compact modern sans-serif typography, small uppercase micro labels with approximately 0.12em letter spacing, large but restrained section headings, and concise editorial copy. Avoid decorative serif branding, heavy bold type, and generic agency dashboards.
+
+Use a neutral theme system. In light mode use white #FFFFFF, warm surface #F5F5F2, divider #DEDEDC, text #0B0B0B, secondary text #555555, and muted text #898989. In dark mode use #090909, #121212, #292927, #F2F2EF, #A6A6A2, and #777773. Use square corners and one-pixel rules; reserve rounded geometry for a small scroll cue only.
+
+Build a 1200px content system with a 64px sticky top navigation, generous 16px mobile and 40px desktop side gutters, and disciplined editorial spacing. Use four-column by two-row contact-sheet grids for work, 4:5 images for work cards, full-bleed studio imagery, and a spacious dark footer. Provide a light/dark toggle persisted in local storage and initialized from the user's system preference.
+
+Use fashion campaigns, portraits, beauty, still life, lifestyle, hospitality, food, and behind-the-scenes studio imagery. Use object-cover in grids and object-contain in the full-screen detail viewer. Preserve focal positions supplied by the image data.
+
+The motion language should reference photography and film: continuous image streams along a soft path, restrained proximity magnification, a camera-shutter transition between the hero and work archive, grid previews that unfold into larger frames, a filmstrip detail viewer, gentle editorial reveals, and subtle button/underline movement. Do not add neon, particles, bounce, or generic app animation. Respect prefers-reduced-motion by freezing image streams, removing transforms, and making content immediately accessible.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Reconstruct a responsive editorial portfolio website for Maren Voss Photography, a fashion, campaign, portrait, beauty, lifestyle, and still-life photography studio working between Berlin and Lisbon.
+
+This is a front-end portfolio template with static project, service, studio, and testimonial data. Do not add a database, CMS, authentication, payment system, or user account flow. The inquiry form may post to a configurable external form endpoint, but the interface must also provide local mocked success and error behavior.
+
+Implement these public routes exactly:
+- / — Home
+- /studio — Studio page
+- /contact — Contact and inquiry page
+- * — Not Found
+
+Do not invent a public /project/:slug route. Project details are opened as a full-screen overlay from the Home Selected Work grid. Helper functions for slug-based project navigation may exist internally, but they are not part of the current public information architecture.
+
+Create a quiet, modern, image-led photographic exhibition. The UI must remain monochrome and editorial so the photography carries the color and emotion. The tone is precise but human: fashion magazine contact sheet, independent photographer portfolio, calm production process, and high-end visual craft.
+
+Use square corners, one-pixel rules, compact sans-serif typography, restrained uppercase metadata, generous whitespace, and a 1200px content system. Avoid generic agency cards, colorful UI accents, loud gradients, glassmorphism, heavy shadows, decorative particles, bouncy motion, and stock-photo corporate styling.
+
+Use Inter Tight for display headings and Inter for body copy, labels, navigation, and metadata. Use approximately 11px medium uppercase micro labels with 0.12em letter spacing. Use 32px mobile and 42px desktop section headings with compact line height. Use a 32px mobile and 52px desktop Home Hero heading.
+
+Use a light/dark neutral theme with these values:
+- light background #FFFFFF
+- light surface #F5F5F2
+- light divider #DEDEDC
+- light primary text and button #0B0B0B
+- light secondary text #555555
+- light muted text #898989
+- dark background #090909
+- dark surface #121212
+- dark divider #292927
+- dark primary text and button #F2F2EF
+- dark secondary text #A6A6A2
+- dark muted text #777773
+
+Persist the selected theme in localStorage under a stable key and initialize it from the user's system color preference when no saved choice exists. Do not apply a color filter to photography. Use a 64px sticky header, 1200px content width, 16px mobile and 40px desktop side gutters, and square geometry throughout except for the small scroll cue.
+
+The shared page frame contains a sticky SiteNav, a semantic main element, and a dark SiteFooter. The desktop SiteNav contains the Maren Voss wordmark with a “Photography” descriptor, Work, Studio, Services, Contact, Light/Dark theme toggle, and a “Book a shoot” button. The mobile SiteNav uses a menu button and a vertical menu panel.
+
+Work and Services are Home section anchors, not separate public routes. Studio and Contact are separate routes. Home section links from another route should navigate to /#work, /#services, /#studio, or /#contact and then perform a single offset-aware jump after layout settles.
+
+Build the Home page in this exact order:
+1. Hero layer
+2. Selected Work
+3. Studio
+4. Services
+5. Client Notes
+6. Rates
+7. Contact
+8. SiteFooter
+
+Hero layer:
+- Make the Hero a fixed layer from below the 64px navigation to the bottom of the viewport. Initially it covers the page and locks document scrolling.
+- Render two independent infinite streams of photographic cards along dynamically generated open SVG-like wave paths using CSS offset-path and requestAnimationFrame.
+- Use 4:3? No: use portrait cards with width 96px and height 128px on desktop, and 72px by 96px on mobile. Keep the card ratio 3:4 and crop images with object-fit: cover.
+- The upper stream should travel left-to-right over about 60 seconds around 17% of the stage height. The lower stream should travel right-to-left over about 68 seconds around 83% of the stage height. Use soft, organic sine-like paths with varying half-wave widths and amplitudes and enough off-screen overscan to hide wrapping.
+- In the calm center, show the two-line headline “Photography for people,” and “brands and stories.” with the support copy “Campaign, portrait and editorial photography.” Keep the text centered on desktop and bottom-left aligned on mobile.
+- Add a desktop-only mouse scroll cue near the bottom.
+- Cards must be display-only; the cards do not navigate. On desktop pointer proximity, smoothly magnify nearby cards up to about 1.3x, push them laterally up to about 22px, raise the nearest card's z-index, and reveal tiny title/category/year metadata under the active card. Use an approximately 380px horizontal field radius, 80ms exponential smoothing, and an 80ms hover intent.
+- On touch or small screens, disable the proximity field and keep the cards smaller. Honor prefers-reduced-motion by stopping the stream, removing pushes, and reducing magnification to about 1.04x.
+
+Hero-to-Work navigation:
+- While the Hero layer is visible, prevent normal wheel, touch, and relevant keyboard scrolling. A downward wheel/touch gesture, ArrowDown, PageDown, Space, or End starts a camera-shutter page flip to the Work section.
+- When the document is at the top and has rested briefly, an upward wheel/touch gesture, ArrowUp, PageUp, Home, or Shift+Space reverses the flip back to the Hero.
+- The Hero layer must never remain partially visible after the transition. The document should jump while the screen is fully closed.
+
+Selected Work:
+- Use the section label “02 — Work” and meta text “32 photographs · 8 projects · 2024–2026”.
+- Create a four-column by two-row editorial contact sheet for each eight-image block. The current static data contains eight projects with four photographs each, producing 32 gallery items and four complete blocks.
+- Use 4:5 portrait work images, thin exhibition grid lines, 24px to 56px responsive gaps, and a 1200px content width.
+- On desktop, hovering a card after about 80ms should activate a side-specific preview layer. The preview should select the relevant image immediately, expand toward the center using a GSAP timeline, fade the source products and move them subtly, and close/reverse on leave. The active preview uses a centered polygon clip that contracts the preview from a broad rectangular state to a center seam. Preserve the quiet title/category/year metadata under the preview.
+- On mobile, use a two-column grid with 12px gaps and do not render the preview layer.
+- Clicking any photograph opens a full-screen detail overlay. Lock body scrolling before measuring the source image, pause the hover controllers, animate thumbnails from the clicked image's original position into a bottom-centered filmstrip, and show a large image plus project information. Desktop may place the information at the right; mobile must stack the main image and filmstrip.
+- Detail information includes project number, title, statement, discipline, year, location, and selected credits for Photography, Creative Direction, and Styling. Include a Close button and close on Escape. Clicking a filmstrip item preloads it and crossfades the main image out and in over roughly 90ms each. Close by reversing the same opening timeline and restore the work grid only after the stage is hidden and cleanup is complete.
+
+Studio section:
+- Use the label “03 — Studio” and a full-width daylight studio image with a bottom dark gradient.
+- Use the heading “Photography shaped by people, light and collaboration.” and a “Visit the studio” link to /studio.
+- On mobile use approximately 520px image height; on desktop use about 72vh with a minimum near 560px.
+
+Services section:
+- Use the label “04 — Services”, title “What I shoot”, and meta text “5 disciplines”.
+- Render five numbered service rows with a title and description:
+  01 Editorial & Campaign — Magazine stories and seasonal campaigns with full production, casting and usage.
+  02 Portrait Sessions — Natural, flattering portraits for talent, founders and personal brands.
+  03 Brand & Lifestyle — Content that sells — people, product and place for web, social and ads.
+  04 Beauty & Detail — Skin, texture and close-ups with precise light and clean retouching.
+  05 Creative Direction — Moodboards, casting and art direction for teams who need a clear vision.
+
+Client Notes:
+- Use the label “05 — Client Notes”, title “In their words”, and meta text “3 recent commissions”.
+- Render three testimonial columns on desktop and one column on mobile. Each quote should have the client name, role, and brand. Use thin vertical rules between desktop entries, no star ratings, and quiet typography.
+
+Rates:
+- Use the label “06 — Rates”, title “Starting rates”, and meta text “Quotes shaped by usage, crew and timeline”.
+- Render the five service names and prices from the static data: Editorial & Campaign From €850; Portrait Sessions From €420; Brand & Lifestyle From €1,200; Beauty & Detail From €700; Creative Direction On request.
+
+Contact:
+- Use the label “07 — Contact”, title “Tell me about the project.”, meta text “Replies within two business days”, and copy “Campaigns, portraits and commercial commissions.” plus “Berlin / Lisbon · Available worldwide.”
+- Add a dark “Start an inquiry” button linking to /contact.
+
+Build /studio with the shared page frame and this exact order:
+1. Section header “01 — Studio”, title “Photography shaped by people, light and collaboration.”, meta “Berlin / Lisbon · Since 2016”, followed by a concise positioning paragraph.
+2. Full-width daylight studio hero image, approximately 420px high on mobile and 70vh on desktop.
+3. “02 — Approach”, title “How the work is made”, with three columns: Light first; Small crew; Made together.
+4. Subtle surface “03 — Process”, title “From brief to delivery”, meta “Typical timeline 2–5 weeks”, and four ordered rows: Conversation, Treatment, Shoot day, Edit & delivery.
+5. “04 — Behind the scenes”, title “On set”, meta “3 frames”, with three 3:4 portrait images.
+6. “05 — Locations”, title “Where we work”, with Berlin, Lisbon, and Worldwide rows, followed by a Selected clients line.
+7. A dark “Start an inquiry” CTA to /contact.
+8. SiteFooter.
+
+Use the static studio data and preserve its calm, collaborative, daylight-led tone. Do not invent a generic team page or a large headshot directory.
+
+Build /contact with the shared page frame and this exact order:
+1. “01 — Contact” header, title “Tell me about the project.”, meta “Commissions 2026–2027”.
+2. A two-part content area: information sidebar and inquiry form.
+
+The sidebar must show:
+- New work: Campaigns, portraits and commercial commissions.
+- Location: Berlin / Lisbon.
+- Availability: Available for travel / worldwide assignments.
+- Response: Replies within two business days.
+- Email: studio@marenvoss.com.
+
+The inquiry form must include required Name, required Email, optional Company / Brand, optional Project Type select, optional Estimated Budget select, optional Timeline / Shoot Date, and required “What’s the project?” textarea with a 500-character maximum. Include a hidden honeypot field named website_alt.
+
+Perform lightweight client-side validation for name, email format, and message presence/length. Post the remaining form fields as x-www-form-urlencoded to a configurable external endpoint. Model idle, sending, success, and error states. On success show “Inquiry received” and “Thank you — I’ll be in touch within two working days.” with a “Send another inquiry” action. On error show a retryable message. Keep the form usable without a backend by allowing mocked outcomes in development.
+
+Build a minimal standalone Not Found page for unregistered paths. Show a large pale “404” near the bottom, the message “This page has not been generated”, the current pathname in small mono-style text, and “Tell me more about this page, so I can generate it”. It may omit the normal navigation and footer because that is the current source behavior.
+
+Implement these interactions explicitly:
+
+1. Theme toggle
+- Store light/dark in localStorage under mv-theme.
+- Use system prefers-color-scheme only when no stored value exists.
+- Toggle the html dark class and color-scheme property. Animate non-image background and border colors for about 280ms and remove the theme animation marker after about 340ms.
+
+2. In-page reveals
+- Use IntersectionObserver with a threshold around .12 and a bottom root margin near -12%.
+- Build paused GSAP timelines and play them when the element enters view; if the content was already scrolled past, show it immediately.
+- Use power3.out for opacity and small x/y entrances. Use staggered rows/notes/rates/info according to their group type. Do not hide content permanently when GSAP is unavailable.
+
+3. Hero image streams
+- Generate deterministic open wave paths from cubic Bézier half-waves, using overscan so wrapping happens off-screen.
+- Position each card with offset-path and offset-distance. Update one shared progress value per track in requestAnimationFrame and wrap it from 0 to 100.
+- Upper track: duration 60 seconds, direction 1, midRatio about .17, amplitude 42px, wavelength about .62 of stage width on desktop.
+- Lower track: duration 68 seconds, direction -1, phase about 300, midRatio about .83, amplitude 46px, wavelength about .70 of stage width on desktop.
+- On mobile use smaller cards and tighter paths around midRatio .16 and .46; disable proximity hover.
+
+4. Hero proximity field
+- Ignore touch. On pointer movement, only engage when the pointer is within the track's vertical band.
+- Calculate horizontal influence with a cosine falloff inside a radius around 380px. Smooth card scales and lateral push using approximately 80ms exponential smoothing.
+- Magnify up to 1.3x, push up to 22px, bring the nearest card forward, and reveal its project title/category/year metadata. Clear state on pointer leave, window blur, or document visibility change.
+- Set the shared stream speed target to 0.16 while an item is active and return to 1 afterward. Smooth speed with stiffness 120 and damping 22.
+
+5. Camera-shutter Hero/Work transition
+- Create a fixed overlay with a radial iris mask, a focus frame with four corner marks and a center dot, and a soft backdrop blur.
+- On a downward wheel/touch/keyboard gesture while the Hero is visible, animate focus-frame entrance for 400ms, hold the frame for 220ms while focus sharpens from about 9px blur, play a synthesized camera shutter sound, close the iris over 360ms, keep the screen black for about 120ms, jump to the Work section, decode visible images for up to 700ms and wait two stable frames, then open the iris over 440ms while refocusing over about 680ms.
+- On upward gestures at the rested top of the Work document, reverse the direction and restore the Hero layer.
+- In reduced motion, replace the iris animation with a simpler approximately 170ms dark hold, 40ms jump hold, and 170ms fade-out.
+- Ensure only one shutter run can be active and never leave the document scroll locked.
+
+6. Work hover preview
+- Use an 80ms hover intent on desktop/hover devices.
+- Keep the product grid arranged as four columns by two rows. Route left/right product groups to the matching preview container.
+- Use a GSAP timeline with about 1.2s expo.inOut. Fade the source products, move them by about 2.5vw according to their quadrant, scale the preview toward its center by a 5vw shrink factor, and animate a polygon clip from a broad four-arm opening to a central seam.
+- When switching directly between products, move the timeline to approximately .34 progress over .16s, swap the selected preview image, and continue opening. Reverse the timeline on leave.
+
+7. Work detail overlay
+- On click, lock body scrolling before measuring the source image. Use the clicked image as filmstrip item zero and reorder the remaining project images after it.
+- Animate all thumbnails from the clicked image's source bounds to an 80px-wide centered bottom filmstrip with 10px gaps, using a 1.2s expo.inOut MotionPath timeline, end-to-start stagger of .02s, and curviness .45.
+- Fade in the featured stage and backdrop at the same time. Show the main image with object-contain and the project information panel on desktop.
+- On thumbnail selection, preload and decode the next image, fade the main image out for about .09s, replace its source/focal point, and fade it in for about .09s. Close with Escape or the Close button by reversing the same timeline. Hide the stage first, then clear animation styles and unlock scrolling.
+
+8. Form feedback
+- Keep the button disabled during sending. Show inline field errors for missing name, invalid email, empty message, or a message over 500 characters. Preserve the counter and active underline focus behavior.
+
+At desktop widths use the 64px horizontal navigation, two Hero image streams, pointer proximity effects, four-column by two-row work matrices, side preview layers, and a media-plus-information detail stage. At widths below 768px use a two-column work grid with no hover preview, smaller Hero cards, a mobile menu, stacked Studio/Process/Location sections, one-column testimonials, full-width form fields, and a mobile detail stage with bottom filmstrip. Keep all content accessible through click, touch, keyboard, and visible links; no core project information may depend only on hover.
+
+Use React, TypeScript, Vite, React Router, Tailwind CSS, GSAP, and GSAP MotionPathPlugin or equivalent. Keep project, service, studio, and testimonial content in static modules. Use semantic landmarks, heading hierarchy, alt text, keyboard focus styles, an accessible menu button, Escape-to-close detail behavior, and a skip-to-content link.
+
+Keep the form endpoint in one configurable constant. Do not introduce a database, CMS, auth, payment, or analytics requirement. Provide graceful fallbacks when remote images, fonts, icon fonts, Web Audio, IntersectionObserver, GSAP, or MotionPath are unavailable. Do not ship the internal source-plan assumptions as public routes unless explicitly requested.
+
+Verify the exact public route set: /, /studio, /contact, and *. Verify the Home section order and anchor ids: top, work, studio, services, client-notes, pricing, contact.
+
+Test the light/dark toggle and localStorage persistence. Test Hero scroll locking, downward and upward shutter gestures, wheel/touch/keyboard inputs, reduced motion, focus handling, synthesized sound permission behavior, and cleanup after a transition.
+
+On desktop test Hero wave paths, card wrapping, proximity magnification, speed slowdown, metadata reveal, eight-item work block preview opening/switching/closing, project detail overlay, filmstrip, Escape, resize, and scroll unlock. On mobile verify that hover preview is absent, the two-column work grid is stable, the detail filmstrip remains usable, the menu and form are readable, and no horizontal overflow occurs.
+
+Verify all eight project records, their four images, focal positions, project statements, and credits. Confirm the contact fields, 500-character limit, honeypot, error and success states. Check remote font/image/icon failures and the missing favicon reference before deployment.
+
+Do not invent an independent project-detail URL, CMS, project filtering system, database, or full production backend. Do not treat project_plan.md as proof that a route or feature is currently live. Do not replace the Hero path streams, camera-shutter transition, work-grid preview, or MotionPath detail stage with generic “smooth animation”. Preserve the specified triggers, state changes, timing, easing, responsive fallbacks, and reduced-motion behavior. Keep the UI neutral and let the photography remain the primary source of color.
+
+============================================================
+3. 分模块 Prompt（11 段）
+============================================================
+
+GLOBAL-01 — Navigation, Theme, and Page Frame
+
+Create a 64px sticky navigation for a monochrome editorial photography portfolio called Maren Voss Photography. Put the Maren Voss wordmark at the left with a small uppercase “Photography” descriptor. On desktop show Work, Studio, Services, and Contact links, a Light / Dark theme toggle, and a dark “Book a shoot” button. Work and Services should target Home section anchors; Studio and Contact should use real routes.
+
+On mobile replace the desktop links with an accessible menu button and a simple vertical panel. Close the panel whenever the route changes. Keep the header white or near-black according to the selected theme, use a one-pixel bottom divider and a subtle backdrop blur, and keep all corners square.
+
+Implement a persistent Light/Dark switch using localStorage and the system color preference as the initial fallback. Use neutral monochrome tokens and animate only backgrounds and borders for roughly 280ms. Add a skip-to-content link and a dark footer with the studio name, “Campaign, portrait and editorial photography.”, Berlin / Lisbon, email, Instagram, Vimeo, Work, Studio, Services, Contact, copyright, and “All photographs by Maren Voss”.
+
+HOME-01 — Hero Image Path Field
+
+Create a fixed full-screen photographic hero beneath a 64px sticky navigation. Build two independent infinite streams of portrait image cards moving along deterministic open Bézier wave paths. Use desktop cards around 96px by 128px, a 24px visual gap, and enough off-screen overscan to hide wrapping. Use a top track around 17% stage height moving forward over 60 seconds and a lower track around 83% stage height moving backward over 68 seconds. On mobile use 72px by 96px cards, smaller amplitudes, tighter waves, and no pointer hover field.
+
+Place the calm center copy “Photography for people, brands and stories.” as two lines with “Campaign, portrait and editorial photography.” beneath. On desktop center the copy; on mobile place it toward the lower left. Add a small desktop mouse-scroll cue.
+
+On desktop, when the pointer comes close to a track, use a horizontal cosine influence field of about 380px, smoothly scale nearby cards up to 1.3x, push them laterally up to 22px, raise the strongest card, and reveal its title/category/year metadata below it. Use about 80ms smoothing and an 80ms hover intent. Slow the shared stream speed toward 0.16 while a card is active, with a spring stiffness of 120 and damping of 22. Clear the field on pointer leave, window blur, or document visibility changes.
+
+HOME-02 — Camera Shutter Hero / Work Transition
+
+Create a two-state camera-shutter transition between a fixed photographic Hero layer and the Home Work archive. While the Hero is visible, lock document scrolling and intercept downward wheel, upward touch, and relevant keyboard gestures. A downward intent should enter a focus frame for 400ms, hold for 220ms while the scene briefly blurs by about 9px and refocuses, play a short synthesized shutter click, close a radial iris to black over 360ms, hold black for about 120ms, jump to the Work section, wait for visible images to decode and two stable animation frames, then open the iris over 440ms while refocusing over about 680ms.
+
+At the rested top of the Work document, reverse an upward gesture to restore the Hero. Support ArrowDown, PageDown, Space, End, ArrowUp, PageUp, Home, and Shift+Space without intercepting form controls. Prevent concurrent transitions, always release scroll locks, and provide a reduced-motion fallback with a simple dark hold and fade instead of the full iris and focus choreography.
+
+HOME-03 — Selected Work Contact Sheet
+
+Create a Selected Work section for a photography portfolio with the label “02 — Work” and meta text “32 photographs · 8 projects · 2024–2026”. Use a strict four-column by two-row contact sheet for every eight-image block, with 4:5 portrait image cells, square corners, thin exhibition grid lines, and responsive gaps between 24px and 56px. The current data contains eight projects with four images each, so produce four complete blocks.
+
+On desktop, after an approximately 80ms hover intent, open a side-specific preview layer for the hovered product. Immediately select the matching preview image, then use a roughly 1.2s GSAP expo.inOut timeline to fade the source products, move them subtly according to their quadrant, scale the preview toward its center by a small 5vw shrink factor, and animate a polygon clip from a broad opening to a center seam. Reverse the same timeline on leave and switch products through a progress gate around .34 over .16s.
+
+On mobile, use two columns with 12px gaps and remove the preview layer. Clicking any image must open a full-screen detail viewer rather than navigating to a separate project URL.
+
+HOME-04 — Full-Screen Work Detail Viewer
+
+Create a full-screen photography detail viewer opened by clicking an image in a contact sheet. Lock body scrolling before measuring the source image. Reorder the selected project images so the clicked image is first. Animate the thumbnail wrappers from the source image bounds into a centered bottom filmstrip with 80px thumbnail width and 10px gaps, using a 1.2s expo.inOut MotionPath animation with end-to-start stagger of .02 and curviness .45. Fade in the featured stage and backdrop at the same time.
+
+Display the main image with object-contain. On desktop place a project information panel at the right with project number, title, statement, discipline, year, location, and credits for Photography, Creative Direction, and Styling. On mobile stack the media and keep the filmstrip usable at the bottom. Add a Close button and Escape-to-close. When a thumbnail is clicked, preload and decode it, fade the current image out for about .09s, replace the source and focal position, then fade in for about .09s. Close by reversing the same opening timeline; hide the stage before clearing styles and unlocking body scroll.
+
+HOME-05 — Studio Image Statement
+
+Create a full-width Studio statement section for a photography portfolio. Use a daylight photography studio image with tall windows, diffusion panels, softboxes, a paper backdrop, a camera, a styling table, and crew working naturally. Use a 520px mobile height and roughly 72vh desktop height with a desktop minimum near 560px. Add a bottom black-to-transparent gradient.
+
+Overlay the editorial label “03 — Studio”, the heading “Photography shaped by people, light and collaboration.” in white, and a thin underlined “Visit the studio” arrow link. Reveal the image from a slightly larger scale around 1.07 to 1 over about 1.15s, then reveal the copy with restrained upward motion. Link the CTA to the studio route.
+
+HOME-06 — Services and Rates Lists
+
+Create two editorial list sections for a commercial photography studio. First use the label “04 — Services”, title “What I shoot”, and meta “5 disciplines”. Render five numbered rows with the service title and a concise description: Editorial & Campaign, Portrait Sessions, Brand & Lifestyle, Beauty & Detail, and Creative Direction.
+
+Later use the label “06 — Rates”, title “Starting rates”, and meta “Quotes shaped by usage, crew and timeline”. Render the same five services with these values: From €850, From €420, From €1,200, From €700, and On request. Use a thin top rule, restrained typography, tabular numbers, and a clear desktop grid that stacks on mobile. Reveal rows sequentially with small upward motion; do not add decorative service icons unless the source design explicitly displays them.
+
+HOME-07 — Client Notes
+
+Create a “Client Notes” section with the label “05 — Client Notes”, the title “In their words”, and the meta text “3 recent commissions”. Show three concise client testimonials in equal desktop columns and one stacked mobile column. Each quote should use a refined medium-sized display sans-serif, followed by the client name, role, and brand. Use subtle vertical rules between desktop columns, generous vertical space, and no avatars, star ratings, carousel controls, or marquee motion.
+
+STUDIO-01 — Studio Detail Page
+
+Create a Studio detail page for Maren Voss Photography, working between Berlin and Lisbon. Begin with “01 — Studio”, the title “Photography shaped by people, light and collaboration.”, meta “Berlin / Lisbon · Since 2016”, and a paragraph explaining a quiet, clear, human photographic method.
+
+Add a full-width daylight studio hero image. Then build “02 — Approach” with three columns titled Light first, Small crew, and Made together. Add a subtle-surface “03 — Process” section titled “From brief to delivery”, meta “Typical timeline 2–5 weeks”, and four rows: Conversation, Treatment, Shoot day, Edit & delivery. Add “04 — Behind the scenes” with three portrait images and “05 — Locations” with Berlin, Lisbon, and Worldwide rows. Finish with a Selected clients line, a dark “Start an inquiry” button, and the shared dark footer. Use restrained upward reveal motion and stack all multi-column sections on mobile.
+
+CONTACT-01 — Inquiry Form
+
+Create a Contact page for a campaign and editorial photography studio. Use the label “01 — Contact”, title “Tell me about the project.”, and meta “Commissions 2026–2027”. On desktop use a left information column and a larger right inquiry form; stack them on mobile.
+
+The information column must include: New work — Campaigns, portraits and commercial commissions; Location — Berlin / Lisbon; Availability — Available for travel / worldwide assignments; Response — Replies within two business days; Email — studio@marenvoss.com.
+
+The form must contain required Name, required Email, optional Company / Brand, optional Project Type select, optional Estimated Budget select, optional Timeline / Shoot Date input, and required “What’s the project?” textarea capped at 500 characters. Include a hidden field named website_alt as a honeypot. Validate the name, email format, and message locally. Submit x-www-form-urlencoded to a configurable external endpoint. During submission disable the button and show “Sending…”. On success show “Inquiry received” and “Thank you — I’ll be in touch within two working days.” with a “Send another inquiry” action. On error show a clear retry message. Use square bottom-line inputs, uppercase small labels, a focus underline, and a dark “Send inquiry” button with a subtle arrow nudge.
+
+QA-01 — Not Found and Missing Planned Route
+
+Create a minimal standalone Not Found page for unregistered routes. Center a concise message over a very large pale “404” positioned near the bottom. Show the current pathname in small mono-style text and the line “Tell me more about this page, so I can generate it”. Do not automatically add the shared portfolio navigation or invent a project-detail route unless a real router entry is provided.

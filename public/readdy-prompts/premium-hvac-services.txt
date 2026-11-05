@@ -1,0 +1,241 @@
+Premium HVAC Services — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/f7ad8ebc-337c-4051-ba46-7c55a52544f7/13788302
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a premium local HVAC service website for Austin homeowners under the brand “Summit Home Services.” Build the visual system around a white canvas, deep navy #0B1B3B, technical blue #2C55B8, darker blue #22459A, and urgent ember red #C8322A. Use Inter for body copy and Sora for display headlines. Make headings heavy, compact, left-aligned and editorial, with uppercase micro-labels using wide letter spacing. Use a centered max-width of about 1400px with 24px mobile padding and 40px desktop padding. Use rounded-md to rounded-2xl cards, low-contrast slate borders, restrained shadows, clean 12-column split layouts, three-column service grids and four-column process grids. Alternate white and slate-50 sections, reserving deep navy bands for same-day service proof, booking and footer. Use premium editorial HVAC photography: clean uniformed technicians, residential homes, stocked vans, thermostats, indoor air handlers and outdoor units. Favor natural daylight, crisp detail, neutral/cool tones and uncluttered compositions. Use ember red for booking and same-day urgency, blue for technical trust and interactive indicators. Add restrained viewport reveal animations, small image-scale hover states, active underlines, accordion expansion and cross-fade pagers. Keep the experience practical, trustworthy, local, fast-response and conversion-oriented. Preserve strong contrast, clear booking CTAs and responsive behavior across desktop, tablet and mobile.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Project Definition
+
+Build a single-page residential HVAC service website for “Summit Home Services,” a family-owned heating, cooling and indoor air quality company serving Austin, Texas and nearby communities. The website must prioritize same-day repair bookings, new-system estimates, seasonal maintenance and a clear local-service trust story. This is a front-end marketing and lead-capture experience, not a full booking database, CRM, payment system or customer portal.
+
+Global Visual Direction
+
+Create a premium, practical and trustworthy local-service brand. Use a predominantly white canvas with deep navy #0B1B3B, technical blue #2C55B8, dark blue #22459A and ember red #C8322A. Use blue for trust, technical clarity, links and interactive indicators. Use ember red for same-day urgency, emergency cues and primary booking actions. Use Sora for bold display headings and Inter for body copy, labels and forms. Use high-quality residential HVAC photography with clean technicians, service vans, thermostats, indoor units, outdoor equipment and bright Austin homes. Avoid generic abstract SaaS styling, excessive glassmorphism, dark-only layouts, neon colors and decorative elements that reduce service clarity.
+
+Design System
+
+Use a centered max-width of approximately 1400px with 24px mobile side padding and 40px desktop side padding. Use rounded-md buttons, rounded-xl or rounded-2xl cards, subtle 1px slate borders, restrained shadows and generous section spacing. Use Sora at weight 800 for large headings, usually with tight tracking and compact line-height. Use Inter at 14px to 17px for body copy. Use uppercase eyebrow labels with 0.18em to 0.22em letter spacing. Alternate white and slate-50 sections. Use deep navy for the dark navigation row, same-day band, booking CTA and footer. Keep all important actions visually explicit and keyboard accessible.
+
+Website Information Architecture
+
+Implement one real page at /. The wildcard route should render a simple not-found page. The home page is a long scroll narrative with these same-page anchors: #services, #systems, #how, #reviews, #financing, #area and #book. The main navigation links to those anchors. A 24/7 Emergency label may be shown in the navigation, but do not invent a separate emergency page unless one is provided.
+
+Page-by-Page Structure
+
+Page: Home
+
+Render the following sections in exactly this order:
+
+1. Fixed two-row Navbar
+2. Three-scene Hero
+3. TrustBar
+4. What Do You Need Today / Services
+5. Same-Day Service band
+6. Why Homeowners Choose Us
+7. Comfort System / System Upgrade
+8. How It Works
+9. Real Reviews
+10. Financing and Comfort Club
+11. Service Area
+12. Booking CTA and form
+13. Footer
+
+Section-by-Section Layout
+
+1. Navbar
+
+Purpose: establish the brand, proof, phone contact and primary conversion action before the visitor scrolls.
+
+Structure: Use a fixed header. The first white row is 56px high and contains a snowflake-style blue icon, the Summit Home Services wordmark, the subtitle “HEATING · COOLING · AIR QUALITY,” desktop trust claims, review score and a telephone link. The second desktop-only row is 52px high with a deep navy background. Place six links for Services, Systems, How it works, Reviews, Financing and Service Area. On the right, show “24/7 Emergency” and an ember “Book Service” button. At below-large breakpoints, show a menu button and a white vertical mobile menu with the same links and a blue booking button.
+
+Behavior: Add a subtle shadow when scrollY is greater than 40px. Smooth-scroll to hash targets with an offset based on the actual header height. Compute the active section based on its position relative to the header and show a short white underline on active desktop navigation. Close the mobile menu after navigation.
+
+2. Hero
+
+Purpose: make the same-day, new-system and year-round-care offers immediately understandable while creating a memorable HVAC visual.
+
+Desktop layout: Use a full-viewport, minimum 720px high stage with a residential background image, a local white readability glow, a left-aligned copy block and two foreground image layers on the right: a service van or HVAC equipment layer and a technician layer. Add an Austin, TX pill, a scene eyebrow, a large two-line Sora headline with a blue accent phrase, a short explanation, two CTAs and proof points for licensing, same-day service, upfront pricing and reviews. Show a vertical scene indicator at lower left and “SCROLL” with a bouncing arrow at lower right.
+
+Scenes:
+
+- Scene 01: “01 · SAME-DAY REPAIR”; headline “Comfort, delivered today.”; copy about fast, honest Austin repair within hours; primary CTA “Book Same-Day Repair”; secondary CTA is a phone action labeled “See How It Works” in the source.
+- Scene 02: “02 · NEW SYSTEM”; headline “Better comfort for what’s next.”; copy about high-efficiency heat pumps and complete systems; CTA “Get Free Estimate”; secondary CTA “See Financing.”
+- Scene 03: “03 · YEAR-ROUND CARE”; headline “One tune-up, a whole season easier.”; copy about seasonal maintenance, air-quality checks and smart thermostat tuning; CTA “Start Maintenance Plan”; secondary CTA “Learn More.”
+
+Desktop interaction: On initial load, lock document scrolling at the top. Intercept wheel events and relevant paging keys. A downward wheel advances to the next scene; an upward wheel returns to the previous scene. Ignore small wheel deltas and prevent rapid re-entry during transitions. After the third scene, release normal page scrolling. If the user clicks a non-empty in-page hash link, release the Hero lock so the anchor can be reached. When the user scrolls back to the very top, allow the lock to be restored.
+
+Scene transition sequence: fade/translate the technician out first, move the previous vehicle/equipment layer out, swap the background after the outgoing vehicle phase, fade the previous background over 500ms, then enter the new equipment/vehicle and technician. The source uses approximately 300ms technician-out, 850ms vehicle-out, 500ms background swap, 850ms vehicle-in, 350ms technician delay and 450ms technician entrance for the first scene. Scene 02 and 03 use tighter technician timing around 260ms to 320ms and specialized equipment entrance around 400ms. Use cubic-bezier(0.16,1,0.3,1), cubic-bezier(0.22,1,0.36,1) and ease-out where appropriate. Animate new scene eyebrow, headline, paragraph and CTA group with fade-up staggered by about 0ms, 120ms and 220ms.
+
+Mobile behavior: below 1024px, remove the document scroll lock and render a normal min-height section. Show only the first repair scene with the background image, white gradient wash, copy above a lower vehicle/technician composition, stacked CTAs and three compact proof points. Keep the Austin pill and accessible phone link.
+
+3. TrustBar
+
+Purpose: summarize proof immediately after the Hero.
+
+Layout: Use a white section with thin top and bottom borders and a four-column desktop grid, two-column mobile grid. Show four metric blocks with icons: “4.9 / 2,400+ Google Reviews,” “20+ yrs / Serving Austin,” “24/7 / Emergency Support,” and “Austin & Surrounding / Proudly Local.” Reveal each block on entry with a short upward fade and staggered delay.
+
+4. What Do You Need Today / Services
+
+Purpose: route the visitor to the three primary HVAC needs.
+
+Layout: Use a white section with a 1400px container and approximately 96px vertical padding. Add the eyebrow “WHAT DO YOU NEED TODAY?” and the headline “Three ways we bring the comfort back.” Then use three equal cards: Repair / “It’s broken,” Replace / “I need a new system,” and Maintain / “Keep it running.” Each card has a landscape image, a compact tag, a short description, three bullet benefits and a “Book now” arrow. Use rounded-2xl cards, subtle slate borders, image object-cover crops and a 1.05 image scale on hover. Every card links to #book.
+
+5. Same-Day Service band
+
+Purpose: prove the same-day promise with operational details and availability.
+
+Layout: Use a deep blue #152A4A section with a faint grid and subtle radial washes. On desktop use a 12-column layout: copy and proof on the left, a portrait service image on the right. Add the eyebrow “SAME-DAY SERVICE,” the large headline “Same-day means same-day,” a paragraph about calling before 2 PM and a 24/7 phone CTA. Show three proof items: 24/7 Call Support, Real Arrival Windows and Stocked Service Vehicles. In the right image, overlay a white availability card with “AVAILABLE TODAY,” a LIVE label, arrival rows for North Austin, Downtown, Round Rock and Cedar Park, a count-up “12 technicians available now” and overlapping technician avatars. Add a floating “AVG. ARRIVAL / 38 min” stat on desktop.
+
+Behavior: Section content uses one-time viewport reveal. Count 12 and 38 upward when the relevant elements intersect the viewport; use an eased requestAnimationFrame animation around 1400ms for the count-up.
+
+6. Why Homeowners Choose Us
+
+Purpose: communicate service values and reduce fear of hidden fees or poor in-home behavior.
+
+Layout: Use a white 12-column split. Left side contains the eyebrow “WHY HOMEOWNERS CHOOSE US,” the headline “What good home service actually feels like,” a paragraph, a compact review/credential proof card with overlapping homeowner avatars, 4.9 score, 2,400+ homeowners, TACLA #48120, licensed and insured, and family-owned since 2003. Right side contains a rounded slate-tinted accordion list with four principles:
+
+- Upfront, before we start
+- Repair when repair makes sense
+- Your home stays your home
+- One team from call to completion
+
+Each row has a number, title, icon, description and short proof detail. Keep the first row open initially. On hover or click, set the selected row active. The active row grows to about 200px, shows a blue left rail, larger typography, blue icon tile and expanded copy; inactive rows stay compact around 80px.
+
+7. Comfort System / System Upgrade
+
+Purpose: explain that comfort is a coordinated system, not a single machine, and guide visitors to a new-system estimate.
+
+Layout: Use a white 12-column split with a text/pager column on the left and a visual card composition on the right. The three content states are Smart control, Indoor comfort and Outdoor performance. Each state has a number, label, title and description. On desktop, show three tall portrait cards offset horizontally and stacked by z-index, with the active card brighter, larger-shadowed and slightly zoomed. On mobile, show one card at a time with previous/next circular controls and a “01 / 03” style position indicator. Include “Explore System Upgrades” and “Flexible financing available” links.
+
+Behavior: On desktop, hovering a card schedules activation after 200ms; leaving cancels a pending activation. On mobile, buttons cycle through the three states. Cross-fade the synchronized copy and image states over about 500ms, and use a 600ms cubic-bezier(0.16,1,0.3,1) image-scale transition.
+
+8. How It Works
+
+Purpose: make the service journey feel simple and predictable.
+
+Layout: Use a slate-50 background, an eyebrow and the headline “Four steps from hot to happy.” Show four equal white cards: Book online or call; Meet your tech; Upfront quote; Comfort restored. On large screens, align a thin horizontal progress line behind the cards with an ember-red fill and active nodes.
+
+Behavior: Once the section reaches about 35% intersection, activate the four cards in sequence after roughly 220ms, then every 120ms. Active cards rise about 6px, use a subtle red border/shadow and color the large step number ember. Hovering an active card lifts it an additional 8px and strengthens the shadow.
+
+9. Real Reviews
+
+Purpose: provide customer proof in a compact, scannable format.
+
+Layout: Use a white two-column section. Left contains “REAL REVIEWS,” the headline “Neighbors talking about Summit,” five ember stars, “4.9 / 5” and “2,400+ verified Google reviews.” Right contains a slate-50 rounded quote card with a large quote icon, one testimonial at a time, customer initials, neighborhood and Texas label. Use four supplied review states.
+
+Behavior: Auto-advance every 5 seconds. Also allow direct selection through compact pagination buttons. Cross-fade testimonial panels over about 700ms and disable pointer events on inactive panels.
+
+10. Financing and Comfort Club
+
+Purpose: address affordability and recurring maintenance.
+
+Layout: Use a slate-50 two-column section with two equal cards. The white financing card shows “0% APR for 24 months on approved credit,” copy about plans starting under $89/month, three benefits and a blue “Check Rates” CTA. The deep navy Comfort Club card shows “$19/mo maintenance plan,” four mini-stat tiles for 2x tune-ups, 15% off repairs, $0 overtime fees and priority booking, plus a white “Join Comfort Club” CTA. Add a restrained blue radial glow in the dark card.
+
+11. Service Area
+
+Purpose: confirm local coverage and reinforce that the business is geographically relevant.
+
+Layout: Use a white two-column section. Left contains “SERVICE AREA,” the headline “Proudly serving Greater Austin,” a short local paragraph and pill tags for Austin, Round Rock, Cedar Park, Pflugerville, Leander, Georgetown, Lakeway, Bee Cave, Buda, Kyle, Manor and Hutto. Right contains a 440px-high rounded Google Maps iframe centered on Austin, TX.
+
+12. Booking CTA and form
+
+Purpose: convert visitors into an HVAC service lead.
+
+Layout: Use a deep navy section with subtle blue and ember radial washes. On the left, show an “AVAILABLE TODAY” pill, the headline “Let’s get your comfort back,” short response-time copy, phone, email and street address. On the right, use a white rounded form card.
+
+Form fields: first name, last name, email, phone, service address, service needed select, preferred time select and optional details textarea. Service types are Same-Day Repair, New System Estimate, Maintenance / Tune-Up, Air Quality and Other. Preferred times are Today (ASAP), Tomorrow morning, Tomorrow afternoon and This week. Include a hidden honeypot field named website_alt, a privacy note and an ember “Book Service” submit button.
+
+Behavior: Prevent default submission. If the honeypot contains content, clear the form and show a success state without sending. Otherwise serialize the fields as URL-encoded data and POST to the supplied Readdy form endpoint. Show a disabled loading state with a spinner, then show success copy saying a dispatcher will call within 15 minutes, or show an error message from the response/network failure. Do not invent a local database or booking availability system.
+
+13. Footer
+
+Purpose: provide final brand context, secondary links and legal placeholders.
+
+Layout: Use deep navy. Show the blue snowflake-style mark, Summit Home Services, the Austin since 2003 statement, social icon buttons, and three columns for Services, Company and Contact. End with a thin divider, copyright, TACLA #48120, licensed/insured statement and Privacy, Terms and Accessibility placeholders.
+
+Content and Image Direction
+
+Use the exact content hierarchy described above. Keep the tone direct, neighborly and operational: same-day, local dispatcher, stocked trucks, upfront quote, clean in-home service and predictable comfort. Use image subjects that map directly to the service story. Preserve the supplied Hero layer images as independent background/equipment/technician layers when available. If remote image APIs are unavailable, substitute equivalent editorial residential HVAC imagery but retain subject, crop, light and aspect ratio.
+
+Interaction and Motion Behavior
+
+Implement only the behaviors supported by the source audit. Prefer CSS transitions and small React state machines. Use IntersectionObserver for one-time reveal and number animations. Use fixed staged timers only for the Hero scene state machine. Provide reduced-motion behavior in a production implementation: disable scroll hijacking and shorten nonessential transitions when prefers-reduced-motion is enabled.
+
+Responsive Design
+
+At desktop width, use the two-row navigation and three-scene Hero. At widths below 1024px, use the mobile Hero and mobile menu. Collapse major grids to one column, turn the system card stack into a pager, stack forms, wrap trust metrics and keep all buttons at least comfortably tappable. Preserve image readability and do not allow technician or equipment layers to overlap the header.
+
+Technical Requirements
+
+Use React, TypeScript, Vite and Tailwind CSS or equivalent utility classes. Keep the home page and component boundaries clear. Use semantic sections and labels. Use real anchor targets. Load Inter and Sora or a close local fallback. Use Remix Icon or an equivalent icon set. Keep all external image, map and form dependencies explicit and replaceable. Do not add a CMS, database, payment flow, authenticated account area or invented pages.
+
+Quality Assurance
+
+Verify that the route / renders the complete section order. Verify that all navigation anchors except the documented #emergency target existing sections. Verify the Hero can move forward and backward, releases scroll after scene 03 and does not trap mobile scrolling. Verify all service, system, financing and booking CTAs reach #book or the intended anchor. Verify the system pager, Why accordion, review carousel, count-up and form states. Verify layout at desktop, tablet and mobile widths. Verify remote assets have alt text where meaningful, decorative Hero layers are empty-alt, and keyboard users can operate menu, accordion, pager, carousel and form controls.
+
+Explicit Constraints / Avoidances
+
+Do not redesign the site into a different visual direction. Do not replace the local-service narrative with generic SaaS or ecommerce patterns. Do not describe the Hero as merely “smooth animation”; implement its scene order, scroll lock, staged layers and timing. Do not present external Readdy form delivery as a local backend. Do not claim actual appointment inventory, CRM persistence, payment processing or authenticated user accounts. Do not create independent routes that are not in the source. Do not hard-code inaccessible interaction states. Do not omit the Austin/local proof, same-day promise, financing and Comfort Club content.
+
+============================================================
+3. 分模块 Prompt（13 段）
+============================================================
+
+SEC-01 — Fixed HVAC Navigation
+
+Create a fixed two-row HVAC service navigation for “Summit Home Services.” Use a white 56px utility row with a blue snowflake-style mark, the brand name in Sora, the subtitle “HEATING · COOLING · AIR QUALITY,” desktop trust proof, a 4.9 review metric and a tel link for (512) 555-0187. Add a deep navy 52px desktop navigation row with Services, Systems, How it works, Reviews, Financing and Service Area links, then place a “24/7 Emergency” label and an ember-red “Book Service” button on the right. Add a compact mobile menu below the large breakpoint. Apply a subtle shadow after the page scrolls beyond 40px, smooth-scroll hash links with a header-height offset, and show a white active underline for the section currently in view. Use #0B1B3B, #2C55B8 and #C8322A, Inter for utility text and Sora for the wordmark.
+
+SEC-02 — Three-Scene HVAC Hero
+
+Build a full-screen HVAC Hero for “Summit Home Services” with three desktop scenes: same-day repair, new system and year-round care. Each scene must have an Austin, TX pill, a small uppercase eyebrow, a large two-line Sora headline with a blue accent phrase, a concise explanatory paragraph, an ember-red booking CTA, a phone CTA and compact trust points. Use a residential or HVAC background plus independent right-side vehicle/equipment and technician image layers. Add a lower-left scene indicator and a lower-right “SCROLL” cue. On desktop, lock document scrolling at the Hero start, intercept wheel and paging input, transition between scenes with the sequence technician out, vehicle out, old background fade, new scene enter, then release normal scrolling after the third scene. Use staged timing around 300ms technician exit, 850ms vehicle exit, 500ms background swap, 850ms vehicle entrance and a 350ms to 450ms technician entrance with cubic-bezier easing. On screens below 1024px, remove scroll locking and show only the first scene as a normal mobile section with copy above the vehicle and technician composition.
+
+SEC-03 — Trust Metric Bar
+
+Create a white HVAC trust bar with thin slate borders and four proof metrics on desktop, two columns on mobile. Show “4.9 / 2,400+ Google Reviews,” “20+ yrs / Serving Austin,” “24/7 / Emergency Support,” and “Austin & Surrounding / Proudly Local.” Use small rounded blue icon tiles, heavy Sora metrics and muted Inter descriptions. Reveal each item once as it enters the viewport with a short upward fade and an 80ms stagger.
+
+SEC-04 — Service Need Cards
+
+Create a three-card HVAC service selector titled “Three ways we bring the comfort back.” Use the categories Repair, Replace and Maintain. Each rounded-2xl white card should have a premium landscape HVAC image, a compact badge, a small uppercase category label, a practical title, a short description, three benefit bullets and a “Book now” arrow link to the booking section. Use subtle slate borders, a blue hover border and a 1.05 image scale on hover. Stack the cards on mobile and keep the copy direct and homeowner-oriented.
+
+SEC-05 — Same-Day Service Proof Band
+
+Create a deep blue same-day HVAC service proof section. Use a two-column desktop layout with a left copy block titled “Same-day means same-day” and a right portrait photo of a uniformed technician beside a stocked service van. Add three proof points: 24/7 Call Support, Real Arrival Windows and Stocked Service Vehicles. Overlay the image with a white availability card showing “AVAILABLE TODAY,” a LIVE label, arrival rows for North Austin, Downtown, Round Rock and Cedar Park, a count-up of 12 technicians available now and overlapping technician avatars. Add a desktop floating “AVG. ARRIVAL / 38 min” stat. Use subtle grid and radial background textures, ember-red status accents and one-time viewport reveal motion. Treat the live values as marketing display data unless a real dispatch backend is provided.
+
+SEC-06 — Why Homeowners Choose Us Accordion
+
+Create a white HVAC values section titled “What good home service actually feels like.” Use a split layout with a left story block, a compact rating and credential card, and a right accordion with four principles: “Upfront, before we start,” “Repair when repair makes sense,” “Your home stays your home,” and “One team from call to completion.” Open the first item initially. On hover or click, expand the selected row, add a 3px blue left rail, increase the title and icon tile size, reveal its description and proof detail, and collapse the other rows. Use white and #FAFBFC surfaces, slate borders, Sora headings and one-time reveal motion.
+
+SEC-07 — System Upgrade Card Pager
+
+Create an HVAC system-upgrade section titled “Better comfort starts with the right system.” On the left, show synchronized copy states for Smart control, Indoor comfort and Outdoor performance, each with a number, label and description. On desktop, show three tall portrait image cards offset horizontally like a layered stack; hovering a card after a short 200ms delay activates it, increases shadow, slightly zooms the image and updates the left copy. On mobile, show one image at a time with previous/next circular controls and a “01 / 03” indicator. Use a white background, blue accent, dark image caption gradient and clear links for system upgrades and financing.
+
+SEC-08 — Four-Step Process
+
+Create a slate-50 HVAC process section titled “Four steps from hot to happy.” Use four white cards labeled “Book online or call,” “Meet your tech,” “Upfront quote” and “Comfort restored.” On desktop, draw a thin horizontal progress line behind the cards with ember-red active fill and nodes. When the section reaches about 35% viewport intersection, activate cards in sequence after 220ms and then every 120ms. Active cards rise about 6px, use a subtle ember border/shadow and color the large step number ember-red; hovering an active card adds a stronger lift and shadow. Stack the cards on small screens.
+
+SEC-09 — Review Carousel
+
+Create a two-column HVAC review section titled “Neighbors talking about Summit.” Show five ember stars, “4.9 / 5” and “2,400+ verified Google reviews” on the left. On the right, render a rounded slate-50 quote card with a large faint quote mark and one testimonial at a time, including customer name, Austin neighborhood and Texas. Include four testimonial states, auto-advance every five seconds, and add clickable pagination pills with a blue active state. Cross-fade testimonials over about 700ms and keep inactive panels non-interactive.
+
+SEC-10 — Financing and Comfort Club
+
+Create a two-card HVAC affordability section on a slate-50 background. The first white card should promote “0% APR for 24 months on approved credit,” mention flexible plans starting under $89/month, list soft credit check, about 60-second approval and no prepayment penalty, and include a blue “Check Rates” CTA. The second deep navy card should promote a “$19/mo Comfort Club” with four compact stats: 2x tune-ups yearly, 15% off repairs, $0 overtime fees and priority booking access, plus a white “Join Comfort Club” CTA. Add a subtle blue radial glow to the dark card. Treat the offer as informational unless a real financing provider is connected.
+
+SEC-11 — Service Area Map
+
+Create a white HVAC service-area section titled “Proudly serving Greater Austin.” Add a concise local paragraph about family ownership and local dispatchers, then show rounded location pills for Austin, Round Rock, Cedar Park, Pflugerville, Leander, Georgetown, Lakeway, Bee Cave, Buda, Kyle, Manor and Hutto with small blue map-pin icons. Place a 440px-high rounded Google Maps embed for Austin, Texas on the right on desktop and stack it below the copy on mobile. Lazy-load the map and keep the city list as static marketing content unless a real serviceability system is provided.
+
+SEC-12 — Booking CTA and Lead Form
+
+Create a deep navy HVAC booking section with a blue and ember radial wash. On the left, show an “AVAILABLE TODAY” pill, the headline “Let’s get your comfort back,” a promise that a local dispatcher will confirm within 15 minutes, a phone number, an email address and an Austin street address. On the right, place a white rounded-2xl lead form with fields for first name, last name, email, phone, service address, service needed, preferred time and optional details. Use two columns on desktop and one column on mobile. Add a hidden honeypot named website_alt, an ember “Book Service” submit button, a loading state, a success message and an error message. If a form backend is supplied, POST URL-encoded values to it; otherwise keep submission as an explicit mock and do not claim real scheduling.
+
+SEC-13 — Footer
+
+Create a deep navy HVAC footer for “Summit Home Services.” Include a blue snowflake-style mark, the statement “Family-owned HVAC serving Austin since 2003,” social icon buttons and three link columns titled Services, Company and Contact. Show HVAC service links, company links, the phone, email, Austin address and 24/7 availability. Add a divider and a legal row with the current year, TACLA #48120, “Licensed & Insured,” Privacy, Terms and Accessibility. Use muted white text, blue hover states and responsive stacking. Keep placeholder destinations explicit until real URLs are supplied.

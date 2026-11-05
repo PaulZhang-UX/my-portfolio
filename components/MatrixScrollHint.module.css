@@ -1,0 +1,47 @@
+.hint {
+  position: absolute;
+  z-index: 42;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--matrix-ink-color);
+  font-family: var(--font-hacker-zh), sans-serif;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.chevron {
+  font-size: 11px;
+  line-height: 1;
+  animation: hint-bob 1.8s ease-in-out infinite;
+}
+
+.hint.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(6px);
+}
+
+@keyframes hint-bob {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(4px); opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevron {
+    animation: none;
+  }
+  .hint {
+    transition: opacity 200ms ease;
+  }
+}

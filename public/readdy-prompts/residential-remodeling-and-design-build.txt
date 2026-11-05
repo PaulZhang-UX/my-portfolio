@@ -1,0 +1,302 @@
+Residential Remodeling & Design-Build — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/7dabfe77-b738-4536-b87c-583d4a2d32dc/14182921
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a warm, editorial residential design-build website for a studio named Atelier Ridge. The visual language should feel quiet, architectural, tactile, and highly considered. Use a restrained palette of white (#FFFFFF), warm beige surfaces (#E7E0D6 and #EDE6DC), deep brown-black ink (#1D1A17), secondary ink (#5A544C), and dark charcoal sections (#1A1A1A). Avoid saturated brand colors, heavy shadows, glossy gradients, and generic SaaS styling.
+
+Use Inter for body text, navigation, forms, metadata, and uppercase eyebrow labels. Use Cormorant Garamond for display headings and the editorial wordmark, with a refined serif contrast and generous whitespace. Eyebrow labels should be small, uppercase, semi-bold, and visibly tracked. Keep headings large, calm, and tightly composed rather than loud.
+
+Build a 1200px content system inside a 1440px page canvas. Use generous vertical spacing, thin hairline borders, strict image ratios, and a mixture of two-column, three-column, and twelve-column layouts. Use 16:9 images for hero/detail storytelling and 4:3 images for project cards and editorial frames. Let selected images bleed to the viewport edge while keeping text aligned to a disciplined content grid.
+
+Use understated controls: text links, thin bordered buttons, and arrow links with a small horizontal arrow movement on hover. Use a fixed navigation bar that is transparent over the home hero and becomes white with a subtle bottom border after scrolling. Use a dark, spacious footer with the studio wordmark and concise navigation.
+
+The motion language should be slow, soft, and spatial: opacity and small vertical reveals, editorial image slides, a pointer-driven before/after image mask, and scroll-driven image framing. Use cubic-bezier(.22,1,.36,1) for major entrances, keep hover scaling subtle, pause continuous testimonial motion on hover, and honor prefers-reduced-motion by making content immediately visible and removing nonessential transforms.
+
+Use authentic residential interiors, natural materials, custom joinery, stone, hardware, and construction details as the image direction. Favor warm natural light, low saturation, honest textures, and magazine-quality architectural composition. Preserve the reading order and image ratios on mobile, replacing complex desktop pinned scenes with simple stacked content when necessary.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Reconstruct a complete responsive editorial website for “Atelier Ridge”, a residential remodeling and design-build studio serving Los Angeles, Pasadena, Ojai, and nearby California clients. The site should present an integrated team for design, interior architecture, construction, and project management.
+
+This is a front-end template with static project/service content. Do not add a database, CMS, authentication, payment flow, or backend application logic. The contact form may submit to a configurable external endpoint, but the UI must work with mocked success and error states when the endpoint is unavailable.
+
+The public information architecture contains Home, Projects, Project Detail, Services, Service Detail, Process, Studio, Contact, and a Not Found page. An optional /transition-test route may exist as an internal motion QA page, but it must not appear in the public navigation.
+
+Create a warm, quiet, architectural, editorial visual direction. The experience should feel like a high-end residential architecture and interiors journal combined with a credible design-build studio. Use large calm serif headlines, concise sans-serif information, generous whitespace, thin hairline rules, warm neutral surfaces, and carefully cropped residential photography.
+
+Do not use a SaaS dashboard aesthetic, loud gradients, saturated accent colors, glassmorphism, heavy shadows, excessive rounded cards, decorative particles, or generic stock-photo business imagery. The visual hierarchy must give priority to space, material, proportion, craftsmanship, and clear project information.
+
+Use Inter for body copy, navigation, form labels, metadata, and uppercase eyebrow labels. Use Cormorant Garamond for display headings, large editorial statements, and the Atelier Ridge wordmark. Use an uppercase 11–12px semi-bold eyebrow with approximately 0.16em letter spacing. Use large serif display type with compact line-height and restrained negative tracking.
+
+Use these core colors:
+- white background: #FFFFFF
+- warm beige surface: #E7E0D6
+- secondary warm surface: #EDE6DC
+- primary ink: #1D1A17
+- secondary ink: #5A544C
+- dark sections: #1A1A1A
+- light footer surface where needed: #F4EEE6
+- hairline border: rgba(29,26,23,0.18)
+
+Use a 1200px content width inside a 1440px page canvas. Use 12-column desktop grids where appropriate, generous section spacing, and disciplined horizontal alignment. Use 16:9 full-width storytelling images and 4:3 project/detail images. Keep image containers object-cover and preserve the intended ratio at every breakpoint.
+
+Use text links, thin bordered buttons, and arrow links. Arrow links have an approximately 8px gap and move the arrow about 4px to the right on hover over 300ms. Use subtle borders instead of heavy shadows. The navigation is fixed at the top, the home navigation starts transparent over the hero, and it becomes white with a bottom hairline after scrolling beyond roughly 40px.
+
+Implement these routes:
+1. / — Home
+2. /projects — Selected Work index
+3. /projects/:slug — Project detail
+4. /services — Capabilities index
+5. /services/:slug — Service detail
+6. /process — Design-Build Process
+7. /studio — Studio
+8. /contact — Start a Project contact form
+9. * — Not Found
+10. /transition-test — optional internal transition QA route, excluded from public navigation
+
+Use a fixed SiteNav, route-level opacity transition, scroll-to-top on pathname change, shared SiteFooter, and a reusable StartProjectCTA on normal pages. Invalid project/service paths should preserve the global frame where the source behavior does so, while the Not Found page may be a deliberately minimal standalone page.
+
+Build the Home page in this exact order:
+1. Full-viewport Hero
+2. Selected Projects
+3. Materials & Making
+4. What We Do / Services
+5. Our Process
+6. Studio
+7. Client Perspective testimonials
+8. Final Start a Project CTA
+9. SiteFooter
+
+Hero:
+- Use a full 100svh interior image with a before/after image interaction.
+- Keep the “after” image as the base layer and reveal the “before” image through a pointer-driven radial mask.
+- Place a dark bottom-only gradient over the image for text contrast.
+- Anchor the editorial headline near the bottom with two lines: “Thoughtful spaces that” and “elevate everyday living”.
+- Use a large Cormorant Garamond display heading, a concise supporting paragraph, a primary “Get Started” link/button to /contact, and a secondary “View Services” arrow link to /services.
+- Animate the two headline lines from opposite horizontal directions with a soft opacity entrance. Keep the image slightly scaled at first and ease it back to its natural scale.
+
+Selected Projects:
+- Feature three projects: Ridge House, Oakline Kitchen, and Stonewell Bath.
+- On desktop, each project occupies a 180vh scroll track with a 100svh sticky stage. Start with a full-bleed image. As the user scrolls, ease the image into a centered 4:3 editorial frame with generous side margins. Fade the project metadata and description in during the later part of the scroll.
+- Show project number, title, type, location, year, description, and a “View Project” arrow link. Keep the image and text visually balanced around the final frame.
+- On mobile, replace the pinned scroll scene with three normal stacked project cards containing metadata, a 4:3 image, description, and link.
+
+Materials & Making:
+- Use a desktop two-column bleed layout with image on the left and text on the right; stack eyebrow, 4:3 image, and text on mobile.
+- Use the eyebrow “03 — Materials & Making”, the heading “Craft is where design becomes tangible.”, copy about custom joinery, stone, hardware, and material decisions, and a “Studio Details” arrow link.
+
+What We Do:
+- Use the opposite desktop image/text orientation from Materials.
+- Use the eyebrow “04 — What We Do”, the heading “One integrated team from early design through construction.”, a list of four service links, and a “View All Services” arrow link.
+- Populate the list with Whole Home Remodeling, Kitchens, Bathrooms, and Additions.
+
+Our Process:
+- Use the eyebrow “05 — Our Process”, the heading “From the first conversation to the final walkthrough, one team stays accountable throughout.”, a supporting image, and five bordered process rows.
+- The rows are: 01 Discover — Site visit, brief and feasibility; 02 Design — Concept, plan and material direction; 03 Plan — Documentation, permitting and pricing; 04 Build — Construction managed by same team; 05 Complete — Handover, punch list and aftercare.
+- Include a “Full Process” arrow link.
+
+Studio:
+- Use the opposite bleed orientation from Process.
+- Use the eyebrow “06 — Studio”, the heading “A single team for design, architecture, construction and management.”, concise studio copy, and an “About the Studio” arrow link.
+
+Client Perspective:
+- Use a warm light surface and a horizontally moving row of testimonial cards.
+- Duplicate the testimonial data to create a continuous loop. Use approximately 45s linear infinite motion and pause it on pointer hover.
+- Keep cards white, bordered, editorial, and readable on mobile.
+
+Final CTA and footer:
+- Use a full-width dusk interior image with a dark horizontal gradient.
+- Show the eyebrow “Start a Project”, the headline “Have a home in mind? Let’s talk about what it could become.”, and an arrow link to /contact.
+- End with a dark SiteFooter containing the Atelier Ridge wordmark, descriptor, Studio links, Services links, copyright, and “Los Angeles · Ojai · By Appointment”.
+
+Build /projects with a PageHeader containing the breadcrumb Home / Projects, eyebrow “Selected Work”, title “Projects, resolved quietly.”, and a concise introductory paragraph.
+
+Below it, render the project data in a responsive 1/2/3-column grid. Each project card uses a 4:3 image, small number/category metadata, serif project title, location, year, and an arrow-up-right detail link. On hover, scale the image subtly to about 1.02 over roughly 700ms. Follow the grid with the shared StartProjectCTA and SiteFooter.
+
+Build /projects/:slug with this exact section order:
+1. Breadcrumb and project header with “Selected Work — [number]”, title, Type, Location, and Year.
+2. Full-width 16:9 hero image.
+3. Overview section with two-column editorial copy.
+4. Full-width 16:9 secondary image.
+5. Two-column Challenge and Approach section.
+6. Detail image grid using 4:3 images when multiple images exist.
+7. Materials & Craft bleed section with desktop and mobile variants.
+8. Next Project navigation.
+9. Shared StartProjectCTA.
+10. SiteFooter.
+
+Use the static project data for Ridge House, Oakline Kitchen, and Stonewell Bath. Preserve each project’s title, project type, location, year, overview, challenge, approach, descriptions, secondary image, detail images, and material image. Keep the page editorial and image-led, with no dashboard-like metadata panel.
+
+Build /services with a PageHeader using breadcrumb Home / Services, eyebrow “Capabilities”, title “What we do.”, and a concise introduction.
+
+Follow it with a desktop bleed section titled “What We Do”: use an editorial image on one side and the heading “Four core capabilities, one integrated team.” plus four linked services on the other. On mobile, stack the eyebrow, 4:3 image, and text.
+
+List these services: Whole Home Remodeling, Kitchens, Bathrooms, and Additions. Add a Related Work row with three project cards, then the shared StartProjectCTA and SiteFooter.
+
+Build /services/:slug with this exact order:
+1. Breadcrumb, “Service — [number]” eyebrow, title, and positioning statement.
+2. Full-width 16:9 service image.
+3. Two-column “What we do” list and “Our approach” copy.
+4. Full-width 16:9 secondary image.
+5. “Relevant process” showing Discover, Design, Plan, Build, and Complete as five desktop columns or a mobile stack.
+6. Related Projects when related project data exists.
+7. Shared StartProjectCTA.
+8. SiteFooter.
+
+Use static service content for Whole Home Remodeling, Kitchens, Bathrooms, and Additions. Invalid service slugs should show a clear not-found state while preserving the site frame.
+
+Build /process with a PageHeader using eyebrow “Design-Build Process”, title “One team, one accountable partner.”, a concise intro, and breadcrumb Home / Process.
+
+Add a full-width 16:9 design review image, then five bordered structured rows in a 12-column desktop grid: Discover, Design, Plan, Build, Complete. Each row needs its number, title, and short description. Add a full-width ridge-house hallway image with the supporting statement “The same team that draws the detail also resolves it on site…” followed by the shared StartProjectCTA and SiteFooter.
+
+Build /studio with a PageHeader using eyebrow “Studio”, title “A design + build studio, quietly integrated.”, intro, and breadcrumb Home / Studio.
+
+Add a Philosophy bleed section with the heading “We design homes we would want to live in.” and copy describing an architectural, warm, quietly detailed design-build model with one accountable team.
+
+Add a four-item Capabilities grid: 01 Design, 02 Interior Architecture, 03 Construction, 04 Project Management.
+
+Add a dark #1A1A1A “Approach & Values” section with three columns: Restraint, Craft, Accountability. Follow it with the quote “The house feels resolved — like it was always meant to be this way.” and the label “Private Residence — Whole Home Renovation”. End with the shared StartProjectCTA and SiteFooter.
+
+Build /contact with a PageHeader using eyebrow “Start a Project”, title “Tell us about your home.”, intro, and breadcrumb Home / Contact.
+
+Use a desktop 12-column layout with the form spanning 8 columns and a Studio contact sidebar spanning 4 columns. The form fields are:
+- Name, required
+- Email, required
+- Phone, optional
+- Project Location, optional
+- Project Type, required: Whole Home, Kitchen, Bathroom, Addition, Other
+- Estimated Investment, optional: $150k–$350k, $350k–$750k, $750k–$1.5M, $1.5M+
+- Desired Timeline, optional: 0–3 months, 3–6 months, 6–12 months, 12+ months
+- Tell us about your home, optional textarea with a 500-character maximum
+
+Include a hidden honeypot field named website_alt. Submit as x-www-form-urlencoded to a configurable external form endpoint. Model idle, submitting, success, and error states. On success replace the form with “Thank you — we’ll be in touch.” and state that the studio will reply within two business days. On error show a concise retry message. Use native required validation and the textarea length cap; do not invent a complex client-side validation framework.
+
+Show this sidebar information: Atelier Ridge, 1420 Fair Oaks Ave, Pasadena, California; studio@atelierridge.com; +1 (626) 555-0142; Monday–Friday 9:00–18:00 PT; By appointment.
+
+Implement motion as behavior with explicit triggers and states:
+- Route changes: fade the new route from opacity 0 to 1 over about 380ms using cubic-bezier(.22,1,.36,1); scroll to top on pathname changes.
+- Home navigation: start transparent over the hero, become white with a bottom hairline after scrollY exceeds about 40px, and hide/reveal according to the home scroll regions. Mobile navigation opens a vertical panel and closes when the pathname changes.
+- Hero before/after: the after image is always visible; on pointer enter activate a radial mask on the before image, track pointer position with requestAnimationFrame smoothing, use a radius up to about 300px with a solid core around 220px and a feathered edge, and deactivate on pointer leave. Ignore touch interaction.
+- Hero entrance: ease the image from scale 1.01 to 1 over about 1.2s. Enter the two headline lines from opposite horizontal directions, with the first line delayed about 120ms and the second about 320ms.
+- Selected Projects desktop: use a 180vh track and a sticky 100svh stage. From scroll progress about .12 to .70 shrink the full-bleed image into a centered 4:3 frame; from about .52 to .76 fade in the project text. Smooth scroll state with a roughly 130ms response and clean up requestAnimationFrame listeners.
+- Bleed sections: trigger when about 30% of the section intersects the viewport; slide the image into place over about 1000ms and reveal text over about 800ms with a roughly 200ms delay. Use a simpler stacked mobile variant.
+- Generic reveal: use a one-shot IntersectionObserver around threshold .18, root margin near bottom -5%, duration around 800ms, and a 16px upward offset.
+- Testimonial marquee: move duplicated testimonial cards continuously at approximately 45s linear infinite; pause on pointer hover.
+- Project grid hover: scale images only slightly, approximately 1.02 over 700ms.
+- Reduced motion: when prefers-reduced-motion is enabled, remove transforms and transitions and make all content visible immediately.
+
+At desktop widths use the wide editorial grid, fixed navigation links, two-column bleed sections, pinned project scenes, three-column project grids, and 8/4-column contact layout. At tablet widths reduce gutters and preserve the main hierarchy. At mobile widths use a menu button and vertical navigation panel, stack all bleed sections, replace pinned Selected Projects with normal cards, use one-column grids, preserve 4:3 and 16:9 image ratios, and keep form fields full width. Do not force the desktop scroll choreography onto small touch screens.
+
+Use React, TypeScript, Vite, React Router, and Tailwind CSS or equivalent CSS tokens. Keep project and service content in static data modules. Create reusable SiteNav, SiteFooter, PageHeader, Reveal, BleedSection, StartProjectCTA, project card, and detail layout components. Use semantic headings, links, buttons, labels, fieldsets, alt text, keyboard focus states, and an accessible mobile navigation button.
+
+Do not add a database or backend. Keep the contact endpoint configurable through a single constant. Ensure invalid dynamic routes are handled. Preload only the key home hero/project images if useful; do not block the page on every remote image. Respect external font and icon loading failures with sensible fallbacks.
+
+Before considering the reconstruction complete, verify:
+- Every public route resolves and every project/service slug has a clear fallback.
+- The home section order matches the specified order exactly.
+- The transparent-to-solid navigation state is correct.
+- Hero pointer reveal works with a mouse and does not break touch layouts.
+- Desktop Selected Projects shrink into centered 4:3 frames and mobile uses normal cards.
+- Bleed sections have correct desktop orientation and mobile stacking.
+- Project/service detail image ratios and metadata are preserved.
+- Contact fields, required states, textarea limit, honeypot, submit state, success state, and error state work.
+- prefers-reduced-motion removes nonessential motion.
+- Keyboard focus, semantic labels, image alt text, contrast, and mobile overflow are checked.
+- External remote image/font/icon failures do not collapse the layout.
+
+Do not redesign the concept, replace the warm editorial direction, invent unrelated pages, add a CMS, create a database, add authentication, add payment behavior, or turn the site into a generic real-estate marketplace. Do not treat /transition-test as a public marketing page. Do not replace the before/after hero, pinned editorial project framing, bleed sections, or testimonial marquee with generic “smooth animations”. Preserve their triggers, states, timing, and responsive fallbacks. Use real static project/service content and clearly mark any asset that is unavailable rather than inventing a different visual system.
+
+============================================================
+3. 分模块 Prompt（14 段）
+============================================================
+
+GLOBAL-01 — Site Navigation and Page Frame
+
+Create a fixed editorial navigation system for a residential design-build studio called Atelier Ridge. On desktop, place a restrained wordmark at the left, navigation links for Projects, Services, Process, and Studio in the main row, and a clear “Start a Project” CTA at the right. Use Inter for navigation text and Cormorant Garamond for the wordmark, with “Ridge” set in a refined italic style.
+
+On the Home hero, make the navigation transparent over the image. After the user scrolls more than approximately 40px, transition it to a white background with a subtle bottom hairline. On mobile, replace the horizontal links with an accessible menu button and a vertical full-width or near-full-width menu panel. Close the panel when navigation changes. Keep the motion restrained and use a cubic-bezier(.22,1,.36,1) entrance.
+
+Create a dark #1A1A1A footer with the Atelier Ridge wordmark, a short design-build descriptor, Studio links, Services links, copyright, and “Los Angeles · Ojai · By Appointment”. Use generous spacing, light text, thin separators, and a four-column desktop layout that stacks cleanly on mobile.
+
+GLOBAL-02 — Page Header and CTA Frame
+
+Create a reusable editorial Page Header for a residential architecture and design-build website. Begin with a small uppercase eyebrow, a simple breadcrumb such as “Home / Projects”, a large Cormorant Garamond heading, and an introductory paragraph limited to a readable width of about 640px. Use generous top and bottom padding, warm white surfaces, and a thin hairline where a separator is needed.
+
+Create a reusable full-width Start a Project CTA using a dusk residential interior image, a dark horizontal gradient for contrast, the eyebrow “Start a Project”, and the headline “Have a home in mind? Let’s talk about what it could become.” Add a clear arrow link to the contact page. Keep the CTA spacious, calm, and editorial rather than sales-heavy.
+
+HOME-01 — Before / After Hero Reveal
+
+Create a full-viewport residential interior hero for Atelier Ridge. Use an “after” renovation image as the permanent base layer and place a matching “before” image above it. On desktop pointer interaction, reveal the before image through a radial mask centered around the cursor. Smooth the cursor position with requestAnimationFrame; use a radius that grows from 0 to approximately 300px, with a solid core around 220px and a feathered outer edge. Activate on pointer enter, update on pointer move, deactivate on pointer leave, and ignore touch input.
+
+Add a dark bottom-only gradient from transparent to approximately 70% black. Anchor the content near the bottom: put “Thoughtful spaces that” on one side and “elevate everyday living” on the other in a large Cormorant Garamond display style. Add concise supporting copy, a “Get Started” CTA to the contact page, and a “View Services” arrow link. Animate the two headline lines from opposite horizontal directions with soft opacity; slightly scale the image from 1.01 to 1 over about 1.2 seconds on entry.
+
+HOME-02 — Sticky Selected Projects
+
+Create a “Selected Projects” editorial showcase for three residential renovation projects: Ridge House, Oakline Kitchen, and Stonewell Bath. On desktop, give each project a 180vh scroll track with a 100svh sticky viewport stage. Begin with the project image filling the stage. As scroll progress moves approximately from .12 to .70, ease the image into a centered 4:3 editorial frame with large side margins and a maximum width near 1120px. During progress approximately .52 to .76, fade in project metadata and description around the frame.
+
+For each project display a small “Selected Work — 001/002/003” label, project title, type, location, year, concise description, and a “View Project” arrow link. Smooth scroll state with a response around 130ms and clean up animation listeners. On mobile, replace the pinned choreography with simple stacked cards using a 4:3 image, metadata, description, and link. Keep the typography and background quiet, spacious, and magazine-like.
+
+HOME-03 — Editorial Bleed Section
+
+Create a reusable editorial bleed section for a residential design-build website. On desktop, split the viewport into two equal visual halves: one side contains an edge-to-edge residential image and the other contains a small uppercase eyebrow, a large serif heading, supporting copy, optional links or a structured list, and an arrow link. Alternate the image side between sections to create a calm rhythm.
+
+When about 30% of the section enters the viewport, slide the image into position over approximately 1000ms using cubic-bezier(.22,1,.36,1). Reveal the text with an approximately 800ms opacity and upward translation, delayed by about 200ms. On mobile, stack the eyebrow, a 4:3 image, and the text in a single column and remove the desktop off-canvas image movement.
+
+HOME-04 — Client Perspective Marquee
+
+Create a “Client Perspective” section on a warm light background. Render a horizontal row of refined white testimonial cards with thin borders and generous padding. Use concise residential renovation testimonials and a small project/client label. Duplicate the data to make a seamless continuous marquee that moves linearly over approximately 45 seconds, and pause the motion when the pointer enters the testimonial area. On mobile, make each card roughly 86vw wide so one card is readable while the next card is partially visible. Avoid avatars, star ratings, and loud testimonial widgets.
+
+PROJECT-01 — Projects Index Grid
+
+Create a Projects index page for a residential design-build studio. Start with a generous editorial page header containing the breadcrumb “Home / Projects”, the uppercase eyebrow “Selected Work”, the serif title “Projects, resolved quietly.”, and a concise introduction. Below it, render a responsive project grid with one column on mobile, two on tablet, and three on desktop.
+
+Each card should use a 4:3 residential image, small project number and category metadata, a large but restrained serif title, location, year, and an arrow-up-right link. On hover, scale only the image to about 1.02 over 700ms. End with a spacious Start a Project CTA and dark studio footer.
+
+PROJECT-02 — Project Detail Story
+
+Create an editorial project detail page for a residential renovation case study. Use this order: breadcrumb and project header with a small “Selected Work — [number]” label; project title; Type, Location, and Year metadata; a full-width 16:9 hero image; a two-column Overview; a full-width 16:9 secondary image; two-column Challenge and Approach copy; a detail image grid using 4:3 images; a Materials & Craft bleed section; a Next Project link; a Start a Project CTA; and the studio footer.
+
+Keep the case study spacious and image-led. Use warm white surfaces, deep brown-black text, Cormorant Garamond headings, Inter metadata, thin rules, and restrained reveal motion. Preserve the selected project’s actual title, type, location, year, overview, challenge, approach, material story, and image sequence. On mobile, stack all editorial columns without changing the narrative order.
+
+SERVICE-01 — Services Index
+
+Create a Capabilities index page for an integrated residential design-build studio. Use an editorial page header with the eyebrow “Capabilities” and the title “What we do.” Follow it with a two-column bleed section titled “What We Do”, using a residential image on one side and the heading “Four core capabilities, one integrated team.” with linked service rows on the other.
+
+List four linked capabilities: Whole Home Remodeling, Kitchens, Bathrooms, and Additions. Add a Related Work row with three compact project cards, then a spacious Start a Project CTA and footer. Use warm neutral surfaces, serif headings, thin dividers, and subtle arrow movement on links. Stack the bleed section and related projects on mobile.
+
+SERVICE-02 — Service Detail
+
+Create a service detail page for one residential design-build capability. Begin with a breadcrumb, a small “Service — [number]” eyebrow, the service title, and a positioning statement. Add a full-width 16:9 service image. Then create a two-column editorial section with a “What we do” list on one side and “Our approach” copy on the other, followed by a full-width 16:9 secondary image.
+
+Add a “Relevant process” section with five stages: Discover, Design, Plan, Build, and Complete. Use five columns on desktop and a clear vertical stack on mobile. If related projects exist, show them below. End with the shared Start a Project CTA and footer. Keep the page restrained, tactile, and consistent with a warm architectural studio rather than a generic services landing page.
+
+PROCESS-01 — Design-Build Process
+
+Create a Design-Build Process page for Atelier Ridge. Use an editorial page header with the eyebrow “Design-Build Process” and the title “One team, one accountable partner.” Add a full-width 16:9 design review image.
+
+Present five clearly bordered process rows in this exact order: 01 Discover — Site visit, brief and feasibility; 02 Design — Concept, plan and material direction; 03 Plan — Documentation, permitting and pricing; 04 Build — Construction managed by same team; 05 Complete — Handover, punch list and aftercare. Use a disciplined desktop grid and stack the rows on mobile. Follow with a full-width hallway image and a small statement that the same team drawing the detail also resolves it on site. End with the Start a Project CTA and footer.
+
+STUDIO-01 — Studio and Values
+
+Create a Studio page for a quietly integrated residential design-build practice. Start with an editorial header using the eyebrow “Studio” and the title “A design + build studio, quietly integrated.” Add a Philosophy bleed section with the heading “We design homes we would want to live in.” and copy about a warm, architectural, quietly detailed design-build model with one accountable team.
+
+Add a capabilities grid with four items: 01 Design, 02 Interior Architecture, 03 Construction, and 04 Project Management. Follow it with a dark #1A1A1A “Approach & Values” section containing three columns: Restraint, Craft, and Accountability. Include the quote “The house feels resolved — like it was always meant to be this way.” with the label “Private Residence — Whole Home Renovation”. End with the shared CTA and footer. Keep the page spacious and sincere, with no team headshot wall or corporate culture clichés.
+
+CONTACT-01 — Start a Project Form
+
+Create a “Start a Project” contact page for a residential design-build studio. Use a generous page header with the eyebrow “Start a Project” and the title “Tell us about your home.” On desktop, use a 12-column layout with an 8-column inquiry form and a 4-column studio information sidebar; stack them on mobile.
+
+The form must contain: required Name; required Email; optional Phone; optional Project Location; required Project Type select with Whole Home, Kitchen, Bathroom, Addition, and Other; optional Estimated Investment select with $150k–$350k, $350k–$750k, $750k–$1.5M, and $1.5M+; optional Desired Timeline select with 0–3 months, 3–6 months, 6–12 months, and 12+ months; and an optional “Tell us about your home” textarea capped at 500 characters. Add a hidden honeypot field named website_alt.
+
+Submit as x-www-form-urlencoded to a configurable external endpoint. Model idle, submitting, success, and error states. Use “Sending…” during submission. On success replace the form with “Thank you — we’ll be in touch.” and a note that the studio will reply within two business days. On error show a concise retry message. Use native required validation and a simple character limit, not a large validation framework.
+
+In the sidebar show: Atelier Ridge, 1420 Fair Oaks Ave, Pasadena, California; studio@atelierridge.com; +1 (626) 555-0142; Monday–Friday 9:00–18:00 PT; By appointment. Style everything with warm white surfaces, Inter form text, Cormorant headings, thin borders, and generous editorial spacing.
+
+QA-01 — Transition Test Stage
+
+Create an internal motion QA route, not a public marketing page. Use a 300vh scroll track with a 100svh sticky stage. Begin with visual asset A04 filling the viewport. During the first middle phase, shrink A04 into a centered 4:3 editorial frame. During the final phase, let visual asset A09 rise from below and cover the viewport. Add a small technical HUD showing normalized progress, shrink progress, and rise progress. Keep the route isolated from the public navigation and label it clearly as a transition test.

@@ -1,0 +1,487 @@
+Alpine Retreat — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/be20c2ad-24ea-4944-a38f-0095df10f5d8/13819231
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a single-page luxury alpine hospitality website for a contemporary mountain retreat called Alpine Retreat. The brand should feel quiet, architectural, cinematic, and highly editorial rather than sporty, rustic, or generic hotel marketing.
+
+Visual identity:
+- Build a high-altitude palette around warm snow white, mist white, glacier grey, natural stone, restrained alpine pine, and cinematic graphite.
+- Use warm snow as the main light surface, deep graphite for full-bleed mountain scenes, muted pine as a subtle primary, and glacier grey as a cool mineral accent.
+- Avoid bright greens, saturated oranges, glossy gold, and generic outdoor-adventure styling.
+
+Typography:
+- Use Fraunces at light weights for large editorial headings, hero wordmarks, and accommodation names.
+- Use Inter for body copy, metadata, navigation, and uppercase eyebrow labels.
+- Set body text around 15px with 1.6 line-height and a light weight.
+- Use uppercase eyebrow labels around 11px with approximately 0.24em letter spacing.
+- Keep headings light, narrow, and calm, with generous whitespace around them.
+
+Layout:
+- Use a max content width near 1280px with 24px mobile and 40px desktop side padding.
+- Use asymmetrical 12-column layouts for architecture, wellness, dining, and booking content.
+- Alternate warm light sections with full-bleed graphite scenes.
+- Use large rectangular image crops with overflow hidden, object-cover, and a mixture of object-top and object-center positioning.
+- Use restrained borders, thin rules, rectangular outline buttons, and only modest radii on forms and controls.
+
+Image direction:
+- Show monumental snow-covered peaks, alpine mist, dark pine forest, timber and glass architecture, quarried stone, cedar, wool, linen, open fire, thermal water, seasonal food, and quiet interiors.
+- Daylight images should use snow white, mineral grey, muted pine, and soft blue. Dusk images should use deep indigo, graphite, timber brown, and warm amber window light.
+- Keep people small within the landscape when present. Favor architectural and editorial hospitality photography over smiling stock photography.
+
+Motion direction:
+- Make scrolling the primary narrative control.
+- Use a 260vh sticky hero where the mountain scene parallax shifts, the initial copy fades, a mist layer covers the image, and an ALPINE RETREAT wordmark appears through a background-clipped image treatment.
+- Use soft scroll reveals for ordinary sections.
+- Use a full-screen crossfade scene selector for Experiences.
+- Use a pinned 400vh accommodation sequence where panels reveal by scrubbed clip-path.
+- Use a bottom-up sticky takeover for the booking section.
+- Keep motion slow, controlled, and cinematic. Prefer scrubbed transitions, power3.out reveals, long image crossfades, and subtle parallax over bouncy effects.
+
+Responsive behavior:
+- Collapse 12-column layouts to one column on small screens.
+- Hide desktop navigation links and show a mobile menu.
+- Keep full-bleed imagery and the same section order on mobile.
+- Allow the Experiences tab row to scroll horizontally without showing a scrollbar.
+- Stack the booking form and footer content vertically while preserving generous touch spacing.
+- Respect reduced-motion preferences wherever possible.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Project Definition
+
+Reconstruct a complete front-end website for Alpine Retreat, a contemporary high-altitude mountain hospitality retreat. The site should feel like a cinematic architectural travel journal: quiet luxury, warm snow, mist, stone, timber, glass, alpine pine, glacier grey, and slow editorial motion.
+
+Use a single-page home route at /. Use a generic catch-all not-found route for every other path. Do not create separate routes for The Place, Experiences, Stay, Restore, Taste, or Book Your Stay. Those are sections on the same page connected by hash anchors.
+
+The page is front-end only. Do not invent a database, room inventory system, payment system, CRM, concierge API, or reservation backend. The reservation form should have the same local success behavior described below unless a real integration is explicitly provided later.
+
+Global Visual Direction
+
+Design the website as an immersive mountain arrival. Start with a bright high-altitude landscape and a small timber-and-glass retreat nested below monumental snow peaks. Move through architecture, outdoor experiences, accommodations, wellness, seasonal dining, and finally a dusk booking scene.
+
+The visual rhythm must alternate:
+- light editorial sections using warm snow and mist white surfaces;
+- full-bleed dark graphite scenes with white text and subtle black gradients;
+- precise thin rules, uppercase eyebrow labels, soft low-contrast typography, and large atmospheric imagery.
+
+Avoid rustic chalet clichés, saturated green outdoor-sport colors, glossy gold luxury styling, generic smiling hotel stock photography, heavy card grids, and fast bouncy animation.
+
+Design System
+
+Use the following token system:
+- background-50: oklch(0.965 0.004 120), approximately warm snow #F3F4F0.
+- background-100: oklch(0.930 0.004 150), approximately mist white #E7EBE8.
+- background-950: oklch(0.135 0.008 160), a deep cinematic graphite.
+- foreground-950: oklch(0.220 0.008 158), approximately graphite #202624.
+- foreground-500: oklch(0.660 0.007 80), approximately natural stone #9D9B94.
+- primary-500: oklch(0.440 0.030 155), approximately muted alpine pine #465851.
+- accent-500: oklch(0.750 0.012 220), approximately glacier grey #AAB8BC.
+- secondary-500: oklch(0.660 0.007 80), approximately natural stone #9D9B94.
+
+Use the complete 50–950 shades from the supplied token system for borders, overlays, gradients, muted text, and alpha variants. Use warm snow and mist white for light sections, graphite and foreground-50 for dark sections, and alpine pine only as a restrained accent.
+
+Typography:
+- Use Fraunces at light weights for all display headings, the hero wordmark, and accommodation names.
+- Use Inter for body text, labels, metadata, and navigation.
+- Set body text around 15px, line-height 1.6, font-weight 300.
+- Use an eyebrow label around 11px, uppercase, font-weight 500, and letter spacing around 0.24em.
+- Use light headings around 30px on mobile and 42px on desktop; use around 52px for accommodation titles.
+- The hero wordmark should use a responsive size close to clamp(64px, 19vw, 340px), line-height 0.86, and a tight editorial letter spacing.
+
+Layout and Global Shell
+
+Use a max-width near 1280px for normal section content. Use 24px horizontal padding on mobile and 40px on desktop. Use asymmetrical twelve-column grids from the md breakpoint upward.
+
+Create a fixed top navigation:
+- left: a small outlined circular landscape icon and the uppercase Alpine Retreat wordmark;
+- center on desktop: The Place, Experiences, Stay, Restore, Taste;
+- right on desktop: an outlined Reserve link pointing to #book;
+- mobile: replace desktop links with a menu icon; open a vertical translucent panel containing the same links and Reserve.
+
+When window scrollY is greater than 80, change the nav from transparent to a semi-transparent warm-snow background with backdrop blur, a subtle bottom border, and dark text. Before that threshold, use white text and a subtle top contrast.
+
+Website Information Architecture
+
+Render these sections in exactly this order:
+1. Hero, id top.
+2. The Place, id place.
+3. Experiences, id experiences.
+4. Stay, id stay. The visible section numbering begins at 04 in the source; do not invent a visible 03 section.
+5. Restore, id restore.
+6. Taste & Seasons, id taste.
+7. Book Your Stay, id book.
+
+Page-by-Page Structure
+
+Section 00: Hero
+
+Make the Hero section 260vh tall with a sticky full-screen inner stage and a minimum height of 720px.
+
+Use a remote or supplied landscape image showing monumental snow-covered alpine peaks under clear morning light, drifting mist, dark pine forest, and a small contemporary timber-and-glass retreat below the mountains. Use cover cropping and center positioning.
+
+Place a muted background video over the image. The video should be a mountain hotel / alpine retreat background scene. Keep it muted, playsInline, and preload it. The static image must remain the visual fallback.
+
+Initial stage:
+- bottom-left: Alpine Retreat in a light Fraunces display face;
+- supporting text: A quiet mountain hideaway above the clouds — where stillness, light, and alpine air shape every stay.;
+- a small rule and The Alps — 2,148 m;
+- bottom-right: Scroll to enter with a down arrow.
+
+Centered scroll reveal:
+- add a full-viewport warm-snow overlay that begins transparent;
+- add a large text-transparent wordmark with ALPINE on one line and RETREAT on the next;
+- reveal the landscape through the letters using background-clip text and the same hero image as the background;
+- add the caption Above the ordinary — Est. MMXXV between two small rules below the wordmark.
+
+Hero scroll behavior:
+- the hero background moves yPercent 8 over the entire hero scroll interval with scrub;
+- the initial stage fades to opacity 0 and y -20 between 0% and 20% of the hero scroll;
+- the mist overlay fades from 0 to 1 between 10% and 55%;
+- the wordmark moves from opacity 0, scale 0.94, letterSpacing 0.06em to opacity 1, scale 1, letterSpacing -0.03em between 18% and 55%;
+- the caption moves from opacity 0, y 12 to visible between 50% and 70%;
+- the sticky hero softly fades to opacity 0.6 between 80% and the end of the hero section.
+
+Video behavior:
+- listen for canplay and start playback only once;
+- reveal the video over 1400ms after playback begins;
+- when the remaining duration is about 0.55 seconds, fade the video out over 500ms;
+- pause on ended and leave the static image visible;
+- if reduced motion is enabled, do not start the video effect.
+
+Section 01: The Place
+
+Use a light warm-snow section with large vertical padding. Add the eyebrow 01 — The Place with a 32px horizontal rule.
+
+Use a twelve-column layout:
+- left seven columns: A house that listens to the mountain.;
+- right five columns: Set on a granite shelf above the tree line, Alpine Retreat is drawn from three honest materials — smoked larch, quarried stone, and glass tall enough to hold the weather. Inside, the light is slow. Outside, the world falls away.
+
+Below, create an asymmetrical image layout:
+- left seven-column image: contemporary alpine architecture exterior with smoked larch, quarried stone, tall glass, snow slope, and pine trees; mobile height about 520px, desktop height about 640px;
+- right five-column stack: a smaller alpine lodge interior image, mobile height about 280px, desktop height about 310px; then three separated metadata rows.
+
+Metadata rows:
+- Materials — Smoked larch · quarried granite · float glass
+- Architecture — Designed with Studio Vals · completed 2024
+- Setting — 48 hectares of protected alpine forest
+
+Animate all place-reveal elements from opacity 0, y 40 to opacity 1, y 0 with 1.1 seconds, power3.out, when their trigger reaches top 85%.
+
+Section 02: Experiences
+
+Create a full-screen, minimum 720px, deep graphite media stage. Show only one background image at a time and crossfade between five experience images:
+- SKI — First tracks across untouched north-facing powder.
+- HIKE — Open trails through high meadows and quiet ridgelines.
+- SOAK — Open-air thermal pools set into the mountainside.
+- DINE — Fire-driven tasting menus rooted in the season.
+- REST — Long mornings, longer silences, wool and firelight.
+
+Use landscape editorial photography with the current experience as a small subject in a large alpine environment. Add subtle top and bottom black gradients only for text legibility.
+
+At the top-left show 02 / Experiences. At the bottom show:
+- the current supporting sentence;
+- a thin horizontal rule;
+- a horizontal tab row containing all five labels;
+- active text in white with a one-pixel underline; inactive text at reduced opacity;
+- desktop-only right index 01 / 05.
+
+Interaction:
+- hover, focus, or click a tab to select it;
+- active image opacity 1, inactive opacity 0 with 800ms ease-out;
+- active image scale 1.03 and inactive image scale 1.08, transitioning over 7000ms ease-out;
+- remount the current caption so it fades from opacity 0 and y 6 to visible over 0.7 seconds;
+- on narrow screens allow the tab row to scroll horizontally and hide its scrollbar.
+
+Section 04: Stay
+
+Create a 400vh section with a one-viewport sticky inner stage. The section contains three full-screen accommodation panels:
+
+1. Ridge Suite — From CHF 1,450 / night — 2 Guests — 68 m² — Mountain View — Floor-to-ceiling glass and quiet spaces suspended above the valley.
+2. Forest Cabin — From CHF 1,180 / night — 2 Guests — 52 m² — Private Cabin — A secluded timber retreat wrapped in pine forest, firelight, and alpine stillness.
+3. Summit Residence — From CHF 2,760 / night — 4 Guests — 124 m² — Panoramic View — An expansive private residence with uninterrupted views across the ridgelines.
+
+Each panel uses a full-bleed image, dark bottom gradient, light top gradient, and a lower information area. Show 04 — Stay, the panel number 01 / 03, the accommodation title, description, Detail, Rate, and a Reserve NAME outline button linking to #book.
+
+Panel behavior:
+- panel 1 is visible initially;
+- panels 2 and 3 start with clipPath inset(100% 0% 0% 0%);
+- reveal each later panel to inset(0% 0% 0% 0%) using ScrollTrigger scrub;
+- panel i transitions across viewport-height intervals centered around its sequence position;
+- pin .stay-pin from top top for stays.length times the viewport height;
+- show vertical indicators on the right with numbers and bars;
+- update the active indicator through ScrollTrigger onToggle.
+
+Section 05: Restore
+
+Use a light warm-snow wellness section with the eyebrow 05 — Restore, the heading Quiet is a treatment., and the supporting sentence Thermal waters, glacial pools, cedar steam — a slower rhythm, shaped by the mountain.
+
+Create an asymmetrical image grid:
+- left eight-column large image: long indoor thermal pool, stone, misty snow forest, one small swimmer; mobile about 420px high, desktop about 560px;
+- right four-column stack: cedar sauna detail and still thermal water detail, each about 200px mobile and 270px desktop.
+
+Add a three-column rule-separated information row:
+- Thermal — 38°C mineral pools sourced from the ridge spring.
+- Ritual — 90-minute Nordic cycle — heat, cold, silence.
+- Studio — Sunrise breathwork above the tree line.
+
+Use the same 1.1-second power3.out reveal from opacity 0, y 40 at top 85%.
+
+Section 06: Taste & Seasons
+
+Use a mist-white background section with the eyebrow 06 — Taste & Seasons, the heading Cooked over honest fire., and this supporting copy: Our kitchen follows the mountain calendar. Every plate begins within forty kilometres — from the forest floor, the pasture, the smokehouse.
+
+Create four season states:
+- Winter — Firelight, root cellars, and the long slow burn of the mountain kitchen at rest. Dish: Fire · Root · Game.
+- Spring — The first thaw. Wild herbs return to the pass and the kitchen lightens its hand. Dish: Melt · Herb · Fresh cheese.
+- Summer — High meadow air, open-fire cooking, and produce carried up from the valley gardens. Dish: Alpine berry · Trout · Meadow.
+- Autumn — Harvest smoke drifts from the cellar. Mushrooms, larch, and the last long light of the year. Dish: Larch · Mushroom · Smoke.
+
+Use a twelve-column layout:
+- left seven columns: one portrait-oriented main dining image per season;
+- right five columns: Select season buttons, the current copy, On the pass label and current dish, followed by a landscape dish image.
+
+Crossfade main image and dish image with 700ms opacity transitions. When the season changes, remount the text block and animate a 0.55-second fade from opacity 0 and y 6. Use active foreground-950 filled buttons and inactive thin-border buttons.
+
+Finish with four columns:
+- The Fire Room — Nine-course tasting menu, nightly
+- The Larder — All-day counter, wood-fired breads
+- The Cellar — 260 low-intervention wines
+- Private — Chef's table for six, by request
+
+Section 07: Book Your Stay
+
+Create an 180vh section with a one-viewport sticky inner stage and a dusk exterior image of the retreat with warm interior lights, snow, mist, pine forest, and deep indigo sky. Add a dark top-to-bottom overlay from approximately black 45% through 55% to 80%.
+
+Animate the entire inner stage from yPercent 100 to yPercent 0 with a ScrollTrigger scrub from top bottom to top top. Add the eyebrow 07 — Book Your Stay and the heading:
+Arrive slowly.
+Stay longer than intended.
+
+Use a twelve-column layout:
+- left five columns: reservation copy, Concierge reservations@alpineretreat.co, Direct +41 81 000 000, Address Passhöhe 2148 — CH-7524 Engadin, Switzerland;
+- right seven columns: a translucent graphite reservation form with a thin light border, blur, and an inset highlight.
+
+Reservation form fields:
+- hidden company_alt honeypot;
+- Full name, required;
+- Email, required email;
+- Arrival, required date;
+- Departure, required date;
+- Guests select with 1 guest, 2 guests, 3 guests, 4 guests; default 2 guests;
+- Retreat select with Ridge Suite, Forest Cabin, Summit Residence; default Ridge Suite;
+- Notes textarea with two rows and maximum length 500.
+
+Use underlined transparent fields with light placeholder text. Use a compact light background Request Reservation button. Include the statement By submitting, you agree to be contacted by our reservations team. No marketing, no third parties.
+
+Form behavior:
+- prevent the default submit;
+- set local status to success;
+- reset the form;
+- return status to idle after 4500ms;
+- show Received. Our concierge will be in touch within 24 hours. while successful;
+- do not make a network request and do not claim that the form writes to a database.
+
+Finish with a footer inside the sticky booking scene:
+- Alpine Retreat icon and wordmark;
+- Journal, Press, Careers, Privacy placeholder links;
+- © MMXXV Alpine Retreat — Made in the Alps.
+
+Global Motion and Reveal System
+
+Add a global AlpineMicroMotion layer:
+- skip when prefers-reduced-motion is enabled;
+- use IntersectionObserver with threshold 0.15 and rootMargin 0px 0px -40px 0px;
+- observe section h2, h3, p, figure, img, eyebrow, blockquote, and data-reveal elements;
+- exclude elements inside the hero sticky stage so they do not conflict with GSAP;
+- apply alpine-reveal with opacity 0 and translateY 18px;
+- when an element enters, add is-in with opacity 1 and no transform;
+- use 900ms cubic-bezier(.2,.75,.25,1), and stagger transition delay by up to 240ms.
+
+Add a gentle 2.4-second infinite alpineBob animation to the Hero down arrow: translateY 0 and opacity 0.8 at the endpoints, translateY 4px and opacity 1 at the midpoint.
+
+Add a fixed Canvas snow layer:
+- skip it when reduced motion is enabled;
+- cap devicePixelRatio at 2;
+- create 80 flakes;
+- each flake has random position, radius 0.8 to 2.6px, speed 0.4 to 1.4, horizontal drift -0.25 to 0.25, and opacity 0.3 to 0.7;
+- draw pale snow circles with requestAnimationFrame;
+- resize the canvas on window resize;
+- fade canvas opacity from 1 to 0 as window.scrollY reaches 0.72 viewport heights;
+- keep it pointer-events-none and above the page content but below interactive controls where appropriate.
+
+Responsive Design
+
+Use the Tailwind md breakpoint as the main responsive boundary.
+
+Desktop:
+- show center navigation and Reserve;
+- use twelve-column layouts;
+- maintain full-screen Experiences and Stay scenes;
+- show Stay indicators and desktop indices;
+- use two-column booking fields.
+
+Mobile:
+- hide desktop navigation and show the menu button;
+- make the menu a full-width translucent vertical panel;
+- collapse twelve-column layouts to one column;
+- keep Hero, Experiences, Stay, and Book scenes full-screen or sticky;
+- let the Experiences tab row scroll horizontally without visible scrollbar;
+- stack booking fields, booking copy, and footer;
+- preserve large image crops, readable headings, and touch-sized controls.
+
+Technical Requirements
+
+- Use React and TypeScript with components equivalent to Nav, Hero, ThePlace, Experiences, Stay, Restore, TasteSeasons, BookYourStay, AlpineEffects, and AlpineMicroMotion.
+- Use GSAP 3 with ScrollTrigger for scrubbed scroll narratives, reveals, pinned accommodation panels, and the booking takeover.
+- Use a normal HTML canvas for the snow effect.
+- Use CSS custom properties and Tailwind color aliases for the OKLCH token scales.
+- Keep external images and video as configurable assets.
+- Keep route surface limited to / and a generic fallback.
+- Add meaningful alt text, keyboard support for buttons and tabs, aria-selected for Experiences tabs, and an accessible menu label.
+- Preserve reduced-motion behavior and avoid making the page unusable when remote video is unavailable.
+- Do not modify the source archive or invent backend capabilities.
+
+Quality Assurance
+
+- Confirm / renders all seven sections in the exact order.
+- Confirm nav links reach top, place, experiences, stay, restore, taste, and book.
+- Confirm nav style switches after scrollY exceeds 80.
+- Confirm mobile menu opens, closes after link selection, and displays Reserve.
+- Confirm Hero static image remains visible before, during, and after video playback.
+- Confirm Hero scroll ranges produce stage fade, mist overlay, clipped wordmark reveal, caption reveal, and final fade.
+- Confirm The Place, Restore, Taste, and global reveal layers enter once without layout jumps.
+- Confirm Experiences tabs work on mouseenter, focus, click, and mobile horizontal scrolling.
+- Confirm Stay pins, panel clipPath transitions, and active indicators correspond to the three accommodation panels.
+- Confirm each Taste season changes both images and text.
+- Confirm Book takeover enters from below and the reservation form shows local success then resets.
+- Confirm reduced-motion behavior disables snow and video effects and minimizes CSS motion.
+- Test desktop, mobile, high-DPI, reduced-height, reduced-motion, and remote-asset failure cases.
+
+Explicit Constraints and Avoidances
+
+- Do not convert the site into a generic hotel hero plus card grid.
+- Do not remove the 260vh Hero, masked wordmark, video fallback, snow Canvas, full-screen Experiences, pinned Stay sequence, or 180vh booking takeover.
+- Do not add a real reservation backend, payment flow, room availability API, or CRM.
+- Do not claim that data-readdy-form submits to Readdy; the current source only updates local success state.
+- Do not treat remote generated image and video availability as guaranteed.
+- Do not replace scroll-scrubbed behavior with unrelated autoplay animations.
+- Do not add a visible section 03 when the final source does not contain one.
+- Do not describe unverified browser appearance as a source fact.
+
+============================================================
+3. 分模块 Prompt（10 段）
+============================================================
+
+S01 — Alpine Navigation Shell
+
+Create a fixed top navigation for Alpine Retreat. On the left, show a small outlined circular landscape icon and the uppercase wordmark Alpine Retreat. On desktop, center the links The Place, Experiences, Stay, Restore, and Taste. On the right, show an outlined Reserve button linking to the booking section.
+
+At the top of the page keep the navigation transparent, use light text, and add a subtle dark gradient behind it only for legibility. When window scrollY exceeds 80, transition the header to a translucent warm-snow background with backdrop blur, a thin bottom border, and dark text. Update the icon and wordmark colors with the same state.
+
+Below the md breakpoint, hide the desktop links and Reserve control. Show a menu button that toggles a translucent, blurred, vertically stacked mobile panel containing the same anchor links and a centered Reserve button. Close the panel when any mobile link is selected. Use uppercase Inter eyebrow labels with wide letter spacing and restrained rectangular borders.
+
+S02 — Hero Mountain Arrival
+
+Build a 260vh cinematic Hero for Alpine Retreat. Keep a full-screen sticky stage with a static editorial image of monumental snow-covered alpine peaks, dark pine forest, drifting mist, and a small contemporary timber-and-glass retreat. Use object-cover and centered positioning.
+
+Place a muted playsInline background video over the static image. Start playback once on canplay, fade the video in over 1400ms after playback begins, fade it out over 500ms when it is within about 0.55 seconds of ending, and pause it on ended. The static image must remain a reliable fallback.
+
+At the bottom of the initial state show Alpine Retreat, the copy A quiet mountain hideaway above the clouds — where stillness, light, and alpine air shape every stay., the location The Alps — 2,148 m, and Scroll to enter with a down arrow.
+
+As the user scrolls through the sticky section, scrub a subtle background yPercent 8 parallax, fade the initial stage to opacity 0 and y -20 between 0% and 20%, fade a warm-snow overlay from 0 to 1 between 10% and 55%, and reveal a huge centered ALPINE / RETREAT wordmark through a background-clipped copy of the landscape image between 18% and 55%. Animate the wordmark from opacity 0, scale 0.94, letter spacing 0.06em to opacity 1, scale 1, letter spacing -0.03em. Reveal Above the ordinary — Est. MMXXV between 50% and 70%, then reduce the whole sticky stage to opacity 0.6 near the end of the Hero.
+
+S03 — The Place
+
+Create a light warm-snow architecture section for Alpine Retreat with a 32px horizontal rule and the eyebrow 01 — The Place. Use a twelve-column editorial layout with the heading A house that listens to the mountain. on the left and this copy on the right: Set on a granite shelf above the tree line, Alpine Retreat is drawn from three honest materials — smoked larch, quarried stone, and glass tall enough to hold the weather. Inside, the light is slow. Outside, the world falls away.
+
+Below the introduction, create an asymmetric image grid. Use a large seven-column portrait-oriented image of the smoked-larch and stone retreat on a snowy slope. Beside it, stack a smaller landscape interior image of natural oak, raw stone, linen, wool, and panoramic mountain light, then three thin-border metadata rows:
+- Materials — Smoked larch · quarried granite · float glass
+- Architecture — Designed with Studio Vals · completed 2024
+- Setting — 48 hectares of protected alpine forest
+
+Use overflow-hidden rectangular crops with object-cover and object-top. Animate each place-reveal element from opacity 0 and y 40 to opacity 1 and y 0 with 1.1 seconds and power3.out when it reaches top 85%. Collapse the grid to one column on mobile.
+
+S04 — Experiences Scene Selector
+
+Create a full-screen, minimum 720px, dark alpine experience gallery. Show one full-bleed landscape image at a time with subtle top and bottom black gradients for text legibility. Provide five selectable experiences:
+- SKI — First tracks across untouched north-facing powder.
+- HIKE — Open trails through high meadows and quiet ridgelines.
+- SOAK — Open-air thermal pools set into the mountainside.
+- DINE — Fire-driven tasting menus rooted in the season.
+- REST — Long mornings, longer silences, wool and firelight.
+
+Place 02 / Experiences in the upper-left. At the bottom, show the active caption, a thin rule, and a horizontal tab row. Use white active text with a one-pixel underline and lower-opacity inactive labels. Show a desktop-only two-digit index such as 01 / 05.
+
+On mouseenter, focus, or click, change the active item. Crossfade images over 800ms ease-out. Keep the active image at scale 1.03 and inactive images at scale 1.08, with a 7000ms ease-out transform transition. Remount the caption and animate it from opacity 0 and y 6 to visible over 0.7 seconds. Allow the tab row to scroll horizontally on narrow screens and hide its scrollbar.
+
+S05 — Pinned Stay Panels
+
+Create a 400vh accommodation sequence with one sticky full-screen stage and three full-bleed panels:
+1. Ridge Suite — From CHF 1,450 / night — 2 Guests — 68 m² — Mountain View — Floor-to-ceiling glass and quiet spaces suspended above the valley.
+2. Forest Cabin — From CHF 1,180 / night — 2 Guests — 52 m² — Private Cabin — A secluded timber retreat wrapped in pine forest, firelight, and alpine stillness.
+3. Summit Residence — From CHF 2,760 / night — 4 Guests — 124 m² — Panoramic View — An expansive private residence with uninterrupted views across the ridgelines.
+
+For every panel show 04 — Stay, a sequence index such as 01 / 03, the accommodation name in light Fraunces, the description, Detail, Rate, and an outline button reading Reserve NAME that links to #book. Use bottom black gradients for readability and a subtle top gradient for navigation.
+
+Keep panel one visible initially. Start panels two and three with clip-path inset(100% 0% 0% 0%) and reveal them to inset(0% 0% 0% 0%) with ScrollTrigger scrubbed across viewport-height intervals. Pin the inner stage from top top for three viewport heights. Add right-side vertical indicators with numbers and horizontal bars, and update the active indicator with ScrollTrigger onToggle.
+
+S06 — Restore Wellness
+
+Create a light wellness section for Alpine Retreat with the eyebrow 05 — Restore, the heading Quiet is a treatment., and the supporting line Thermal waters, glacial pools, cedar steam — a slower rhythm, shaped by the mountain.
+
+Use an asymmetric twelve-column image layout. Place a large eight-column image of a quiet stone thermal pool with misty snow forest and a small swimmer. Beside it, stack two four-column images: a contemporary cedar sauna interior with amber light and a close-up of still thermal water against natural stone.
+
+Below, add a rule-separated three-column information row:
+- Thermal — 38°C mineral pools sourced from the ridge spring.
+- Ritual — 90-minute Nordic cycle — heat, cold, silence.
+- Studio — Sunrise breathwork above the tree line.
+
+Use rectangular object-cover crops and animate restore-reveal elements from opacity 0 and y 40 into place with 1.1 seconds, power3.out, and a top 85% trigger. Collapse to one column on mobile.
+
+S07 — Taste and Seasons
+
+Create a seasonal dining section for Alpine Retreat on a mist-white surface. Use the eyebrow 06 — Taste & Seasons, the heading Cooked over honest fire., and the supporting copy Our kitchen follows the mountain calendar. Every plate begins within forty kilometres — from the forest floor, the pasture, the smokehouse.
+
+Provide four selectable season states:
+- Winter — Firelight, root cellars, and the long slow burn of the mountain kitchen at rest. Dish: Fire · Root · Game.
+- Spring — The first thaw. Wild herbs return to the pass and the kitchen lightens its hand. Dish: Melt · Herb · Fresh cheese.
+- Summer — High meadow air, open-fire cooking, and produce carried up from the valley gardens. Dish: Alpine berry · Trout · Meadow.
+- Autumn — Harvest smoke drifts from the cellar. Mushrooms, larch, and the last long light of the year. Dish: Larch · Mushroom · Smoke.
+
+Use a twelve-column layout with a large portrait dining image on the left and season controls, current copy, On the pass label, current dish, and a landscape plated-dish image on the right. Crossfade both image sets over 700ms. On selection, remount the copy block and animate from opacity 0 and y 6 using a 0.55-second ease. Active season buttons use a filled dark foreground style; inactive buttons use thin borders.
+
+Finish with four rule-separated facts: The Fire Room — Nine-course tasting menu, nightly; The Larder — All-day counter, wood-fired breads; The Cellar — 260 low-intervention wines; Private — Chef's table for six, by request.
+
+S08 — Book Your Stay
+
+Create an 180vh booking section with a sticky full-screen dusk image of Alpine Retreat: timber and stone lodge, warm amber windows, snow, mist, pine forest, and deep indigo sky. Add a dark overlay from approximately black 45% through 55% to 80%.
+
+Use a ScrollTrigger scrub to move the full inner scene from yPercent 100 to yPercent 0 as the section enters. Show the eyebrow 07 — Book Your Stay and the heading Arrive slowly. Stay longer than intended.
+
+Use a twelve-column layout. On the left, show: Reservations open twelve months in advance. Our concierge confirms within twenty-four hours, with private transfer available on request. Then show Concierge reservations@alpineretreat.co, Direct +41 81 000 000, and Address Passhöhe 2148 — CH-7524 Engadin, Switzerland.
+
+On the right, create a dark translucent, blurred form panel with a thin light border. Include a hidden company_alt honeypot, required Full name and Email fields, required Arrival and Departure date fields, a Guests select with 1–4 guests defaulting to 2 guests, a Retreat select with Ridge Suite, Forest Cabin, and Summit Residence defaulting to Ridge Suite, and a Notes textarea capped at 500 characters.
+
+Use underlined transparent fields and a light Request Reservation button. On submit, prevent default navigation, reset the form, set a local success state, show Received. Our concierge will be in touch within 24 hours., and return to idle after 4500ms. Do not make a network request, database write, payment call, or availability lookup.
+
+Finish the sticky scene with a footer containing Alpine Retreat, Journal, Press, Careers, Privacy, and © MMXXV Alpine Retreat — Made in the Alps.
+
+S09 — Global Scroll Reveal
+
+Add a global, restrained scroll-reveal layer for Alpine Retreat. Skip it when prefers-reduced-motion is enabled. Use an IntersectionObserver with threshold 0.15 and rootMargin 0px 0px -40px 0px. Observe section headings, paragraphs, figures, images, eyebrow labels, blockquotes, and elements marked data-reveal.
+
+Add an alpine-reveal class with opacity 0 and translateY(18px), then add is-in when an element enters the viewport. The visible state should have opacity 1 and no transform, using a 900ms cubic-bezier(.2,.75,.25,1) transition. Add a small per-entry stagger delay capped at 240ms. Skip elements inside the pinned Hero stage so they do not conflict with the GSAP scrub timelines. Use a MutationObserver to scan newly mounted elements.
+
+Add a separate 2.4-second infinite alpineBob animation to the Hero down arrow, moving it down by 4px at the midpoint and gently changing opacity from 0.8 to 1.
+
+S10 — Snow Canvas and Fallback
+
+Create a fixed pointer-events-none Canvas snow overlay for Alpine Retreat. Skip the effect when prefers-reduced-motion is enabled. Cap devicePixelRatio at 2, create 80 randomly positioned flakes, and give each flake a radius between 0.8px and 2.6px, a downward speed between 0.4 and 1.4, horizontal drift between -0.25 and 0.25, and opacity between 0.3 and 0.7. Draw pale snow circles in a requestAnimationFrame loop and recycle them when they leave the viewport. Resize the backing canvas and reset its transform on window resize.
+
+Fade the snow canvas from opacity 1 to 0 as window scrollY reaches approximately 0.72 viewport heights. Keep the canvas above the page background but non-interactive.
+
+For all unknown routes, provide a simple generic not-found page with a large faint 404 in the background, the message This page has not been generated, and the current pathname. Do not invent additional Alpine Retreat routes.

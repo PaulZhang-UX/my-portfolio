@@ -1,0 +1,199 @@
+.hero {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: #8a939b;
+  background: #fff;
+  font-family: var(--font-hacker-en), ui-monospace, SFMono-Regular, Menlo, monospace;
+  isolation: isolate;
+}
+
+.choice {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 580px;
+}
+
+.titleBlock {
+  position: absolute;
+  z-index: 4;
+  top: clamp(72px, 12.5vh, 124px);
+  left: 50%;
+  width: min(90vw, 680px);
+  text-align: center;
+  translate: -50% 0;
+}
+
+.titleBlock h1 {
+  margin: 0;
+  color: #9aa3aa;
+  font-size: clamp(17px, 1.55vw, 24px);
+  font-weight: 500;
+  letter-spacing: clamp(0.24em, 0.52vw, 0.42em);
+  line-height: 1.2;
+}
+
+.titleBlock > span {
+  display: block;
+  margin-top: 13px;
+  color: #b8bec3;
+  font-family: var(--font-hacker-zh), sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+}
+
+.scene {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.sceneLoading {
+  width: min(900px, 100vw);
+  height: min(64vh, 640px);
+  min-height: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.loader {
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgba(154, 163, 170, 0.25);
+  border-top-color: #9aa3aa;
+  border-radius: 50%;
+  animation: scene-spin 900ms linear infinite;
+}
+
+.loadingText {
+  color: #9aa3aa;
+  font-family: var(--font-hacker-zh), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+}
+
+.progressTrack {
+  position: relative;
+  width: min(260px, 60vw);
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(154, 163, 170, 0.16);
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d71720, #1762dc);
+  animation: scene-progress 1.3s ease-in-out infinite;
+}
+
+@keyframes scene-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scene-progress {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+.hoverPrompt {
+  position: absolute;
+  z-index: 5;
+  bottom: clamp(45px, 9vh, 90px);
+  left: 50%;
+  min-height: 18px;
+  color: #9aa3aa;
+  font-family: var(--font-hacker-zh), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  opacity: 0;
+  text-align: center;
+  translate: -50% 5px;
+  transition: color 220ms ease, opacity 220ms ease, translate 220ms ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hoverPrompt.visible {
+  opacity: 0.82;
+  translate: -50% 0;
+}
+
+.redPrompt {
+  color: #bd1f25;
+}
+
+.bluePrompt {
+  color: #1762dc;
+}
+
+@media (max-width: 720px) {
+  .choice {
+    min-height: 540px;
+  }
+
+  .titleBlock {
+    top: 10.5vh;
+  }
+
+  .titleBlock h1 {
+    font-size: clamp(15px, 4.6vw, 20px);
+    letter-spacing: 0.18em;
+  }
+
+  .titleBlock > span {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+
+  .scene {
+    top: 17.5%;
+  }
+
+  .sceneLoading {
+    width: 100vw;
+    height: min(58vh, 540px);
+    min-height: 360px;
+  }
+
+  .hoverPrompt {
+    bottom: 7vh;
+    max-width: 88vw;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    white-space: normal;
+  }
+}
+
+@media (max-height: 680px) {
+  .titleBlock {
+    top: 55px;
+  }
+
+  .scene {
+    top: 13%;
+  }
+
+  .hoverPrompt {
+    bottom: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hoverPrompt {
+    transition: none;
+  }
+}

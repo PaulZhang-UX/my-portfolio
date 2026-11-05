@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local development artifacts
+/dev-server-*.log
+/dev-server-local.log
+/.tmp-*
+/tmp-*.png
+/optimized-*.bin
+/.project3-*
+
+# build outputs & local junk (not for git)
+/.next-broken-*/
+/out-stale-*/
+/release-pages*/
+/.qa_clean_profile*/
+/backups/
+/tmp/
+/experiments/
+/.workbuddy/
+/public/videos/ui-trace/workflow.mp4

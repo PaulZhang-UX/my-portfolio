@@ -1,0 +1,237 @@
+Outdoor Gear Store — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/e02ced6d-98bc-4ba1-a643-ca5b440d11d8/14096862
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a premium quiet-technical outdoor gear website for a brand called NORTHVALE. Use a dark charcoal narrative shell, warm off-white and white commerce surfaces, and a restrained burnt-orange primary action color. The visual language should feel field-tested, editorial, alpine, durable, and calm rather than glossy, loud, or promotional.
+
+Use Inter as the primary sans-serif for navigation, product information, controls, and most headings. Use a limited italic editorial serif similar to Fraunces only for poetic hero or field-note phrases. Use uppercase micro-labels with generous letter spacing around 0.20em to 0.24em. Keep headings light to regular weight, with compact line-height and generous surrounding space.
+
+Build the layout around cinematic full-bleed outdoor photography, wide horizontal margins, large image-led sections, and a restrained 2-column mobile / 4-column desktop product grid. Use neutral thin borders, very limited shadows, low-radius or square surfaces, and strong alignment. Product imagery should be contained in light neutral containers; editorial and hero imagery should use object-cover with deliberate crops.
+
+Use muted alpine, forest, stone, charcoal, sand, clay, moss, and terracotta tones. Primary buttons and important action states may use warm burnt orange. Avoid loud gradients, glossy product-card effects, oversized rounded cards, heavy drop shadows, generic stock-adventure imagery, and dense promotional badges.
+
+Animations should be slow and tactile: subtle image scale on hover, decode-before-display image crossfades, short page-enter fades, smooth drawer transitions, and a restrained pointer-driven weather-glass effect in the main hero. Respect prefers-reduced-motion and keep content readable and stable while imagery loads.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Project Definition
+
+Reconstruct a complete responsive front-end website for NORTHVALE, a quiet technical outdoor gear brand. The site sells field-tested outerwear, tops, bottoms, trail footwear, packs, and accessories, while presenting material stories, field notes, routes, and brand philosophy. This is a front-end template with static product and editorial data. Do not invent a backend, database, account system, payment integration, or CMS.
+
+Global Visual Direction
+
+Create an editorial alpine outdoor aesthetic that feels calm, durable, technical, and field-tested. Combine a dark charcoal brand narrative shell with white and warm off-white commerce surfaces. Use muted forest, stone, moss, sand, clay, slate, and charcoal tones, with restrained burnt orange for primary actions. The interface should feel premium through typography, image scale, spacing, and material storytelling rather than gradients, heavy shadows, sale badges, or dense cards.
+
+Use cinematic outdoor photography: alpine ridges, wet rock, quiet trails, technical fabric, seams, packs, weather, and muted natural light. Avoid glossy fashion campaigns, neon sports colors, generic stock-adventure poses, loud sale labels, and decorative clutter.
+
+Design System
+
+Use Inter as the primary sans-serif. Use a limited italic editorial serif similar to Fraunces for poetic hero phrases and field-note accents. Use uppercase micro-labels with approximately 0.20em to 0.24em tracking. Prefer light to regular heading weights and compact line-height.
+
+Use these verified visual directions:
+- Dark narrative background around #1B1B1B.
+- Footer dark around #111211.
+- Light technical surface around #F1F1EE.
+- White commerce sections.
+- Warm orange primary action around #C26E1F.
+- Product swatches include Charcoal #2A2A2A, Slate #4A5359, Moss #3D4A3A, Sand #C9B48F, Clay #B0623A, Black #1B1B1B, and Terracotta #B5533A.
+
+Use 72px mobile and 80px desktop header heights. Use 20px mobile and 40px desktop horizontal page padding in standard sections, with a commerce grid max width around 1600px. Use 2 product columns on mobile and 4 on large desktop. Keep borders thin and neutral, corner radii restrained, and shadows minimal.
+
+Use subtle motion: 220ms page enter with opacity and a 4px upward movement using cubic-bezier(.22,1,.36,1); around 900ms product image hover scale; around 1400ms category image hover scale; around 300ms menu and drawer transitions; decode-before-display image crossfades; and reduced-motion behavior that removes continuous effects.
+
+Website Information Architecture
+
+Implement these routes:
+- / — home
+- /shop — all products with URL-driven filters
+- /shop/:slug — category landing and product grid
+- /product/:slug — product detail
+- /cart — full bag page
+- /checkout — placeholder page stating that secure checkout is coming soon
+- /technology — material and construction stories
+- /our-story — brand philosophy and field testing
+- /journal — editorial listing
+- /journal/:slug — editorial detail
+- /contact — contact form and support information
+- * — not found
+
+Do not implement /account as a real page unless explicitly requested. The original header contains an account icon, but the source route is missing and the click currently reaches the not-found page.
+
+Global Application Shell
+
+Create an application shell with a fixed NORTHVALE header, route transitions, a footer, a client-side cart provider, a cart drawer, and scroll restoration. The header has two variants:
+- overlay: transparent over Home, Technology, Our Story, and Journal detail until the user scrolls more than roughly 40px, then dark translucent background with backdrop blur and a bottom border;
+- solid: dark/solid header for Shop, category, product, cart, checkout, Journal listing, and Contact.
+
+Use an uppercase NORTHVALE wordmark with approximately 0.24em letter spacing. On desktop show Shop, Technology, Our Story, Journal, and Contact. Show search linking to /shop, an account icon linking to /account, and a bag button that opens the cart drawer and displays item count. On mobile provide a menu button with the same links and bag count. Close the mobile menu when the pathname changes.
+
+The footer uses a dark surface. Include a short brand description, a monthly Field Notes email form, and four link groups: Shop, Explore, Support, and Social. The newsletter form has a required email, a hidden honeypot field, loading/success/error states, and the success message “Thanks — you're on the list.”. Treat external form posting as an integration placeholder, not an internal backend.
+
+Page-by-Page Structure
+
+Home Page
+
+Build the Home page in this exact order: Hero, Categories, Featured Products, Technology, Brand Story, Final CTA, Footer.
+
+Hero:
+- Show “AW26 — Field Collection”, “Built for the quiet distance.”, “Field-tested outerwear, footwear and packs — engineered for the long trail ahead.”, CTA “Shop Outerwear” to /shop/outerwear, coordinate “N 46.5° / E 8.2°”, and a desktop “Scroll” cue.
+- Use a full-screen alpine background image with dark overlays and spacious readable copy.
+- Add a WeatherGlass WebGL2 canvas overlay when supported. Simulate rain, fog, and refraction over the hero image.
+- Pointer movement reveals a fading mask along the pointer path; pointerleave lets the surface re-fog. Use visibility-aware rendering and dispatch a ready event after the first successful render.
+- Under reduced motion, keep the hero readable but freeze continuous time progression.
+- Use a one-time first-entry loader with an image preload and a failsafe.
+
+Categories:
+- Show the label “Shop by Category”, title “Three categories. One system.”, CTA “View all products” to /shop, and cards Outerwear, Footwear, Packs linking to their category routes.
+- Use three equal full-bleed cards around 68vh on desktop. On mobile use approximately 80vw horizontal snap cards around 58vh with 12px gaps.
+- Add bottom gradients, category descriptors, arrows, and subtle image scale around 1.03 over approximately 1400ms.
+
+Featured Products:
+- Show “Featured — AW26”, “Season essentials.”, and “Shop all essentials” to /shop.
+- Render Women Basecamp Fleece 200, Basecamp Fleece 200, Traverse Trail Shoe, and Summit 32L Pack.
+- Use a 2-column mobile / 4-column large responsive grid with contained product images, category/name/price, and colorway dots. Swatch clicks change the image without navigating.
+
+Technology:
+- Show “Material Story”, “Performance engineered into every fiber.”, and “Three material systems, developed across four seasons of alpine, coastal and desert testing.”.
+- Present three visual systems: “01 Weather Protection”, “02 Engineered Construction”, and “03 Breathable Performance”.
+- Home uses three equal image columns, around 68vh desktop and 38vh mobile, with captions.
+
+Brand Story:
+- Use a dark split section with roughly two-thirds image and one-third text on desktop; stack on mobile.
+- Show “Field Story — No. 04”, “Two hundred kilometers of quiet weather along the Alta Via.”, supporting copy, and a link to /journal/alta-via-two-hundred.
+
+Final CTA:
+- Use a full-width mountain valley image with dark gradient, about 620px desktop and 420px mobile.
+- Show “Outside is waiting.” and “Shop all gear” linking to /shop.
+
+Shop Page
+
+Use a solid header, title “Field-tested essentials, quietly organized.”, a product count, and category filters All, Outerwear, Tops, Bottoms, Footwear, Packs, Accessories. Store category and audience state in URL search parameters. Audience options are All, Men, and Women; Men includes men and unisex, Women includes women and unisex. Add a New Arrivals toggle using collection=new and show the first four items. Sort footwear before other products while preserving source order inside groups. Use a responsive “More” filter control when categories do not fit. Use a white commerce surface with a 2-column mobile / 4-column desktop ProductCard grid.
+
+Category Page
+
+For /shop/:slug validate six categories and redirect invalid values to /shop. Use a solid header, a dark image hero, breadcrumb “Shop / Category”, a category title ending with a period, a short category-specific intro, product count, “View all shop”, and the white product grid. The source intros are:
+- Outerwear: “Weather-first shells and technical jackets, built for shoulder-season alpine.”
+- Tops: “Quiet midlayers and next-to-skin pieces, engineered for long days outside.”
+- Bottoms: “Trail pants and softshell layers, cut for real movement.”
+- Footwear: “Trail shoes and fast-hike footwear, built for wet rock and long miles.”
+- Packs: “Technical daypacks and alpine carry, disciplined enough to disappear on your back.”
+- Accessories: “The small things you actually end up wearing.”
+
+Product Detail
+
+Use a solid header and breadcrumb Shop / category / product name. Build a desktop 7/5 gallery-to-purchase split and stacked mobile layout. Show the selected colorway image, name, price, descriptor, color swatches, size buttons, quantity stepper, and “Add to Bag · $total”. Selecting a colorway changes the main image and resets active gallery image. Include “Free shipping over $150 · 30-day returns · Lifetime repair program.”, product story, material/details, technology tags, optional secondary image, and related products. Do not create payment behavior.
+
+Cart and Checkout
+
+Use a client-only cart persisted to localStorage under nv_cart_v1. Identify a variant by product slug, color, and size. Adding the same variant merges quantity and opens the drawer. Quantity cannot go below one; remove deletes an item.
+
+The CartDrawer is a fixed right panel with a black translucent backdrop, about 300ms transition, body scroll lock, items, controls, remove, subtotal, “View bag”, and “Checkout”. It is full width on mobile and about 420px on desktop.
+
+The /cart page uses a white surface, empty state, desktop 8/4 content-to-summary layout, free shipping at subtotal >= 150 and $12 otherwise, total, “Continue to checkout”, and “Continue shopping”.
+
+The /checkout page is a dark placeholder with “Secure checkout coming soon.”, a Back to bag link, and a Keep shopping link. Do not add fake payment fields.
+
+Technology Page
+
+Use an overlay header, a large material hero, “Material Story”, and “Performance engineered into every fiber.”. Follow with three alternating image/text chapters: Weather Protection, Engineered Construction, Breathable Performance. Explain each system with concise copy, use dark/light alternating surfaces, and stack on mobile.
+
+Our Story Page
+
+Use an overlay header and hero with “Our Story”, “Fewer things. Made carefully. Tested outside.”, and an introduction. Follow with:
+1. Why we exist — “A quieter kind of outdoor brand.”
+2. Material philosophy — “Three beliefs we won't compromise.” with Weather Protection, Breathability, Construction, and a Technology link.
+3. Field tested — “Outside longer than most catalogs.”
+4. Closing CTA — “Built once. Used for years.” linking to /shop.
+
+Journal Listing and Detail
+
+Use the listing title “Field notes, material stories and routes worth taking.” and filters All, Field Notes, Gear, Materials, Routes, and People. Show a featured story on All and the remaining static stories in a clean 3:2 editorial grid. The source contains eight static stories. Detail pages use an overlay header, lead image around 440px mobile and 680px desktop, title/meta overlay, excerpt, body, an available gallery region, related gear using the first three products, and related stories when relationships exist.
+
+Contact Page
+
+Use a dark shell and solid header. Show “Talk to us — a real person answers.”, hello@northvale.co, Bergen Norway, and Monday–Friday 09:00–17:00 CET. Include required Name, Email, Subject, and Message fields plus optional Order number, a hidden honeypot website_alt, loading/success/error states, and “Thanks — we'll be in touch shortly.”. Treat the external POST as a placeholder integration.
+
+Interaction and Technical Requirements
+
+Implement overlay header scroll state, mobile menu close-on-pathname-change, body scroll lock for the drawer, SmartImage preload/decode/crossfade/fallback, one-time HeroLoader, WeatherGlass pointer-path mask and refog, page-enter transition, PUSH/POP scroll restoration, native accessible controls, alt text, keyboard focus, and reduced-motion behavior.
+
+Use React, TypeScript, React Router, Tailwind CSS, and semantic HTML. Keep product and story data static and typed. Do not add a database, authentication, account dashboard, payment processor, inventory API, CMS, fake reviews, or fake order confirmation. If WebGL2 is unavailable, use a readable static hero fallback and document the limitation.
+
+Quality Assurance
+
+Verify every route, exact Home order, category links, featured product slugs, product filters, audience logic, swatch state, cart merge/localStorage behavior, totals, drawer close, menu close, invalid redirects, form states, image fallback, reduced motion, and the /account not-found limitation. Check narrow, medium, and wide layouts. Check that remote image failure does not collapse layout and that the WebGL canvas does not block text or controls. Preserve source-confirmed labels, route boundaries, interactions, and data relationships.
+
+============================================================
+3. 分模块 Prompt（16 段）
+============================================================
+
+S01 — Global Header
+
+Build a fixed NORTHVALE header for a quiet technical outdoor brand. Use a 72px mobile height and 80px desktop height, an uppercase wordmark with approximately 0.24em letter spacing, understated links for Shop, Technology, Our Story, Journal, and Contact, plus search, account, and bag utilities. Support a transparent overlay variant that becomes dark translucent with backdrop blur after scrollY exceeds 40, and a solid dark variant for commerce and support pages. On mobile replace links with a full-width menu panel, keep the bag count visible, and close the panel after pathname changes. Link the account icon to /account as a placeholder and connect the bag button to a live cart drawer.
+
+S02 — Global Footer
+
+Create a dark NORTHVALE footer with a short outdoor-brand description and a Field Notes newsletter block that says “New releases and quiet drops — no noise, once a month.”. Add a required email field, hidden honeypot, loading/success/error states, and “Thanks — you're on the list.”. Include Shop, Explore, Support, and Social link groups, a copyright row, and legal links. Keep it editorial and low-noise, use thin borders rather than cards, and stack cleanly on mobile. Treat submission as an external integration placeholder, not a built-in backend.
+
+S03 — Home Hero and WeatherGlass
+
+Create a full-screen NORTHVALE AW26 field collection hero using a muted alpine photograph and a dark readable overlay. Show “AW26 — Field Collection”, the headline “Built for the quiet distance.” with a restrained italic serif accent, “Field-tested outerwear, footwear and packs — engineered for the long trail ahead.”, CTA “Shop Outerwear” linking to /shop/outerwear, coordinate “N 46.5° / E 8.2°”, and a subtle desktop “Scroll” cue. Add a WeatherGlass layer that simulates rain, fog, and refraction over the image: pointer movement reveals a fading mask along the path, pointerleave allows re-fogging, and rendering pauses when the hero is not visible. Use a static image fallback when WebGL2 is unavailable and respect reduced-motion preferences.
+
+S04 — Home Category Cards
+
+Build a NORTHVALE “Shop by Category” section with “Three categories. One system.” and a “View all products” link. Display full-bleed cards named Outerwear, Footwear, and Packs, linking to /shop/outerwear, /shop/footwear, and /shop/packs. Use three equal columns at approximately 68vh on desktop and an 80vw horizontal snap-scrolling track around 58vh on mobile. Add a dark bottom gradient, concise descriptor, arrow, and slow 1.03 image scale on hover. Keep it cinematic and free of shadows.
+
+S05 — Featured Products
+
+Create a NORTHVALE seasonal product section with “Featured — AW26”, “Season essentials.”, and “Shop all essentials” linking to /shop. Render Women Basecamp Fleece 200, Basecamp Fleece 200, Traverse Trail Shoe, and Summit 32L Pack. Use 2 columns on mobile and 4 on large screens, contained product imagery, category/name/price, and colorway dots. Card clicks open the product route; swatch clicks change the displayed image without opening the card.
+
+S06 — Material Story
+
+Create a NORTHVALE Material Story system with the title “Performance engineered into every fiber.” and supporting line “Three material systems, developed across four seasons of alpine, coastal and desert testing.”. Present “01 Weather Protection”, “02 Engineered Construction”, and “03 Breathable Performance”. On the home page use three equal image columns with captions; on the Technology page use alternating image/text splits with explanatory copy and relevant shop links. Use technical fabric, seams, rain, and construction imagery, alternating dark and light surfaces, and stack on mobile.
+
+S07 — Brand Story Split
+
+Build a dark editorial NORTHVALE split section. Place a large field image on roughly two-thirds of the desktop width and a text panel on the remaining third; stack on mobile. Show “Field Story — No. 04”, “Two hundred kilometers of quiet weather along the Alta Via.”, a concise field-testing paragraph, and a link to /journal/alta-via-two-hundred. Use generous space before the final commercial CTA.
+
+S08 — Final CTA
+
+Create a full-width NORTHVALE closing CTA using a muted mountain valley photograph, dark readability gradient, and headline “Outside is waiting.”. Add one clear “Shop all gear” button linking to /shop. Use approximately 620px height on desktop and 420px on mobile. Keep the composition calm and image-led, with no extra badges.
+
+S09 — Shop and Category Browser
+
+Build a NORTHVALE product browser with a solid dark header and white commerce surface. On /shop show “Field-tested essentials, quietly organized.”, product count, category filters All, Outerwear, Tops, Bottoms, Footwear, Packs, Accessories, audience filters All, Men, Women, and a New Arrivals toggle. Store filter state in URL search parameters; Men includes men and unisex, Women includes women and unisex, and New Arrivals shows the first four items. Collapse overflowing filters into a “More” control. On /shop/:slug add a dark image hero with “Shop / Category”, category title, category intro, count, “View all shop”, and the product grid. Redirect unknown slugs to /shop.
+
+S10 — ProductCard
+
+Create a reusable NORTHVALE ProductCard with a neutral light image container and an object-contain product packshot. Below it show a small category label, product name, price, and circular colorway dots; optionally show a tiny index. Clicking the card opens /product/:slug. Clicking a swatch stops navigation, updates active colorway, and swaps the image. Use a restrained hover image scale around 1.04 over approximately 900ms, clear focus states, and no heavy shadow.
+
+S11 — Product Detail
+
+Build a responsive NORTHVALE product detail page with a solid header, breadcrumb “Shop / category / product name”, a desktop 7/5 gallery-to-purchase split, and stacked mobile layout. Show selected colorway image, product name, price, descriptor, color swatches, size buttons, quantity stepper, and “Add to Bag · $total”. Selecting a colorway changes the primary image and resets the gallery index. Show “Free shipping over $150 · 30-day returns · Lifetime repair program.” followed by product story, material/details, technology tags, and related products. Use a client-only cart and do not claim inventory or payment processing.
+
+S12 — Cart Drawer and Bag
+
+Create a client-only NORTHVALE cart system using localStorage key nv_cart_v1. Identify each item by product slug, color, and size; adding the same variant merges quantity. Build a fixed right-side drawer with black translucent backdrop, 300ms slide transition, body scroll lock, item rows, quantity controls, remove, subtotal, “View bag”, and “Checkout”. Make it full width on mobile and about 420px on desktop. Build /cart as a white page with an empty state, an 8/4 item-to-summary layout, free shipping for subtotal at least 150 and a $12 fee otherwise, total, “Continue to checkout”, and “Continue shopping”. Keep /checkout as “Secure checkout coming soon.”.
+
+S13 — Technology Page
+
+Create a NORTHVALE Technology page with an overlay header, a large material-focused hero, label “Material Story”, and title “Performance engineered into every fiber.”. Follow with alternating image/text chapters “01 Weather Protection”, “02 Engineered Construction”, and “03 Breathable Performance”. Explain each material system with concise editorial copy, use dark and light alternating surfaces, link to relevant shop filters where appropriate, and stack cleanly on mobile.
+
+S14 — Our Story Page
+
+Build a NORTHVALE Our Story page with an overlay header, large hero label “Our Story”, title “Fewer things. Made carefully. Tested outside.”, and introduction. Add alternating chapters for “Why we exist” with “A quieter kind of outdoor brand.”, “Material philosophy” with “Three beliefs we won't compromise.” and Weather Protection, Breathability, Construction, and “Field tested” with “Outside longer than most catalogs.”. Finish with “Built once. Used for years.” linking to /shop. Preserve source mobile ordering and use calm field imagery.
+
+S15 — Journal
+
+Create a NORTHVALE Journal with title “Field notes, material stories and routes worth taking.” and filters All, Field Notes, Gear, Materials, Routes, and People. Feature the first story on All, then render the remaining static stories in a clean 3:2 editorial grid with subtle hover scale and no heavy card background. Create /journal/:slug detail pages with an overlay header, large lead image, title and metadata over the image, excerpt and body paragraphs, an available gallery region, related gear using the first three products, and related stories when relationships exist. Preserve the quiet field-report tone and static source relationships.
+
+S16 — Contact
+
+Build a dark NORTHVALE Contact page with a solid header, label “Contact”, headline “Talk to us — a real person answers.”, product/help copy, hello@northvale.co, Bergen Norway, and Monday–Friday 09:00–17:00 CET. Add Name, Email, Subject, optional Order number, and Message fields. Use native required validation, hidden honeypot, loading/success/error states, and “Thanks — we'll be in touch shortly.”. Keep the form minimal and responsive; treat submission as an external placeholder rather than a project-owned backend.

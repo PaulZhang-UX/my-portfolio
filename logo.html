@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>ZhangYong Logo</title>
+
+  <!-- 免费高对比衬线字体，用作字形骨架 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Rajdhani:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --matrix-white: #e8ffe9;
+      --matrix-green: #b7ffc1;
+      --matrix-glow: #59ff75;
+      --matrix-background: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(20, 64, 29, 0.18),
+          transparent 52%
+        ),
+        var(--matrix-background);
+    }
+
+    .brand {
+      display: block;
+      width: min(92vw, 1100px);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .brand svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .wordmark {
+      animation: signal-flicker 8s infinite;
+    }
+
+    .main-letter {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 174px;
+      font-weight: 600;
+
+      fill: var(--matrix-white);
+      stroke: var(--matrix-green);
+      stroke-width: 0.65px;
+      paint-order: stroke fill;
+
+      /* 让字形更接近电影标题中的高瘦比例 */
+      letter-spacing: -2px;
+    }
+
+    .micro-label {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 11px;
+
+      fill: var(--matrix-green);
+    }
+
+    .signal-line {
+      fill: none;
+      stroke: var(--matrix-green);
+      stroke-width: 2.5;
+      stroke-linecap: square;
+      opacity: 0.94;
+    }
+
+    .signal-line--thin {
+      stroke-width: 1.4;
+      opacity: 0.75;
+    }
+
+    .signal-node {
+      fill: var(--matrix-white);
+    }
+
+    .brand:hover .wordmark {
+      animation:
+        signal-glitch 420ms steps(2, end),
+        signal-flicker 8s infinite;
+    }
+
+    @keyframes signal-flicker {
+      0%,
+      92%,
+      94%,
+      100% {
+        opacity: 1;
+      }
+
+      93% {
+        opacity: 0.86;
+      }
+
+      95% {
+        opacity: 0.94;
+      }
+    }
+
+    @keyframes signal-glitch {
+      0%,
+      100% {
+        transform: translate(0);
+      }
+
+      25% {
+        transform: translate(2px, -1px);
+      }
+
+      50% {
+        transform: translate(-2px, 1px);
+      }
+
+      75% {
+        transform: translate(1px, 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wordmark,
+      .brand:hover .wordmark {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="brand" href="/" aria-label="ZhangYong 首页">
+    <svg
+      viewBox="0 0 1180 250"
+      role="img"
+      aria-labelledby="logo-title logo-description"
+    >
+      <title id="logo-title">ZhangYong</title>
+
+      <desc id="logo-description">
+        Matrix inspired custom ZhangYong wordmark
+      </desc>
+
+      <defs>
+        <!-- 绿色柔光 -->
+        <filter
+          id="matrix-glow"
+          x="-30%"
+          y="-50%"
+          width="160%"
+          height="200%"
+        >
+          <feGaussianBlur
+            in="SourceGraphic"
+            stdDeviation="1.1"
+            result="small-blur"
+          />
+
+          <feGaussianBlur
+            in="SourceGraphic"
+            stdDeviation="5"
+            result="large-blur"
+          />
+
+          <feColorMatrix
+            in="large-blur"
+            type="matrix"
+            values="
+              0 0 0 0 0.20
+              0 0 0 0 1.00
+              0 0 0 0 0.35
+              0 0 0 0.30 0
+            "
+            result="green-glow"
+          />
+
+          <feMerge>
+            <feMergeNode in="green-glow" />
+            <feMergeNode in="small-blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <!-- 给部分字形制造轻微水平断裂 -->
+        <mask id="signal-cuts">
+          <rect width="1180" height="250" fill="white" />
+
+          <rect
+            x="55"
+            y="105"
+            width="1070"
+            height="2.4"
+            fill="black"
+          />
+
+          <rect
+            x="390"
+            y="154"
+            width="180"
+            height="2"
+            fill="black"
+          />
+
+          <rect
+            x="760"
+            y="126"
+            width="120"
+            height="1.8"
+            fill="black"
+          />
+        </mask>
+      </defs>
+
+      <g class="wordmark" filter="url(#matrix-glow)">
+        <!-- 上方微型身份文字 -->
+        <text
+          class="micro-label"
+          x="590"
+          y="36"
+          text-anchor="middle"
+        >
+          DESIGNER
+        </text>
+
+        <path
+          class="signal-line signal-line--thin"
+          d="M425 43 H525"
+        />
+
+        <path
+          class="signal-line signal-line--thin"
+          d="M655 43 H755"
+        />
+
+        <!-- 主字标：每个字符单独控制位置和宽度 -->
+        <g mask="url(#signal-cuts)">
+          <text
+            class="main-letter"
+            x="34"
+            y="190"
+            textLength="120"
+            lengthAdjust="spacingAndGlyphs"
+          >Z</text>
+
+          <text
+            class="main-letter"
+            x="145"
+            y="190"
+            textLength="125"
+            lengthAdjust="spacingAndGlyphs"
+          >H</text>
+
+          <text
+            class="main-letter"
+            x="260"
+            y="190"
+            textLength="125"
+            lengthAdjust="spacingAndGlyphs"
+          >A</text>
+
+          <text
+            class="main-letter"
+            x="375"
+            y="190"
+            textLength="125"
+            lengthAdjust="spacingAndGlyphs"
+          >N</text>
+
+          <text
+            class="main-letter"
+            x="490"
+            y="190"
+            textLength="130"
+            lengthAdjust="spacingAndGlyphs"
+          >G</text>
+
+          <text
+            class="main-letter"
+            x="610"
+            y="190"
+            textLength="118"
+            lengthAdjust="spacingAndGlyphs"
+          >Y</text>
+
+          <text
+            class="main-letter"
+            x="718"
+            y="190"
+            textLength="130"
+            lengthAdjust="spacingAndGlyphs"
+          >O</text>
+
+          <text
+            class="main-letter"
+            x="838"
+            y="190"
+            textLength="125"
+            lengthAdjust="spacingAndGlyphs"
+          >N</text>
+
+          <text
+            class="main-letter"
+            x="953"
+            y="190"
+            textLength="132"
+            lengthAdjust="spacingAndGlyphs"
+          >G</text>
+        </g>
+
+        <!-- 横向延伸结构 -->
+        <path class="signal-line" d="M74 96 H198" />
+        <path class="signal-line" d="M205 116 H330" />
+        <path class="signal-line" d="M316 97 H465" />
+        <path class="signal-line" d="M472 119 H613" />
+        <path class="signal-line" d="M620 97 H765" />
+        <path class="signal-line" d="M771 119 H920" />
+        <path class="signal-line" d="M928 98 H1090" />
+
+        <!-- 局部节点和短线 -->
+        <circle class="signal-node" cx="198" cy="96" r="2.7" />
+        <circle class="signal-node" cx="613" cy="119" r="2.7" />
+        <circle class="signal-node" cx="920" cy="119" r="2.7" />
+
+        <path
+          class="signal-line signal-line--thin"
+          d="M40 215 H315"
+        />
+
+        <path
+          class="signal-line signal-line--thin"
+          d="M860 215 H1120"
+        />
+      </g>
+    </svg>
+  </a>
+</body>
+</html>

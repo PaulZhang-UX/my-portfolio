@@ -1,0 +1,513 @@
+Warm Veterinary Clinic — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/ae47dfd7-4355-4bd2-920d-0647c7de8b99/13966192
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a warm, modern neighborhood veterinary clinic design system for a brand called Alder Veterinary Clinic.
+
+Brand character:
+- Calm, caring, unhurried, trustworthy, community-oriented, and editorial rather than corporate.
+- Communicate low-stress veterinary care for pets and the people who love them.
+- The visual language should feel like a thoughtful local clinic with strong medical standards, not like a generic animal hospital or a cold medical dashboard.
+
+Color system:
+- Use white #FFFFFF as the primary surface.
+- Use warm cream #FFF9F2 for alternating sections, cards, and the footer.
+- Use butter yellow #F2D16B for hero backgrounds, approach sections, closing CTAs, badges, and numbered markers.
+- Use soft yellow #F8E4A8, pale peach #FBEBD6, and pale cream #FFF3E4 for large, quiet organic background blobs.
+- Use deep cocoa brown #5C3A21 for headings, logos, icons, and primary buttons.
+- Use darker cocoa #3E2614 for button hover states.
+- Use near-black warm ink #1F1B17 for body text and muted brown #8A7467 for secondary labels.
+- Use warm beige borders such as #EDE5DA and #F1EBE3.
+- Keep contrast readable and avoid introducing clinical blue, neon green, or harsh black unless required for accessibility.
+
+Typography:
+- Use Fraunces as the expressive display serif for all major headings, editorial statements, numbers, and brand moments.
+- Use DM Sans for navigation, body copy, labels, forms, buttons, and supporting information.
+- Use large, confident headlines with tight line-height around 0.98–1.05.
+- Use uppercase eyebrow labels at 12–13px with semibold weight and generous letter spacing around 0.14–0.18em.
+- Use 15–18px body copy with comfortable relaxed line-height.
+
+Layout and surfaces:
+- Build within a centered content container around 1320px wide with 20px mobile padding and 48px desktop padding.
+- Use generous vertical rhythm, usually 96px on mobile and 128px on desktop for major sections.
+- Prefer 12-column editorial grids on desktop and clean single-column stacks on mobile.
+- Use large 28–36px corner radii for cards and image containers.
+- Use full pill buttons around 52–54px tall.
+- Alternate white and warm cream backgrounds; reserve butter yellow for high-emphasis narrative moments.
+
+Component language:
+- Primary buttons are cocoa pill buttons with white text, a right arrow icon, and a gentle lift on hover.
+- Secondary actions are underlined or arrowed cocoa text links.
+- Cards use quiet warm backgrounds, low-contrast borders, large corners, and restrained hover lifts.
+- Form fields use cream backgrounds, rounded pill shapes, cocoa-tinted borders, and a calm focus ring.
+- Use paw, heart, calendar, time, phone, location, and medical utility icons with a consistent thin/solid icon language.
+
+Image direction:
+- Use bright editorial photography of veterinarians, dogs, cats, owners, and warm modern clinic spaces.
+- Prefer natural daylight, warm ivory walls, subtle olive or sage accents, authentic human-animal interaction, and calm clinical moments.
+- Avoid dark dramatic lighting, generic stock-photo poses, glossy hospital aesthetics, and overly saturated colors.
+- Crop images with object-cover and use a small family of asymmetric organic border-radius shapes instead of only rectangles.
+
+Motion language:
+- Use cubic-bezier(.22, 1, .36, 1) for soft, responsive easing.
+- Keep micro-interactions around 200–380ms.
+- Use 600–650ms transitions for Hero image swaps and organic shape changes.
+- Use 320ms accordion transitions with a subtle upward settle.
+- Let decorative blobs rotate or drift very slowly over 32–55 seconds.
+- Respect prefers-reduced-motion and disable custom motion where appropriate.
+
+Responsive behavior:
+- Keep the editorial hierarchy intact across desktop, tablet, and mobile.
+- Collapse desktop grids into a single stack on mobile.
+- Use a desktop navigation with anchor links and a mobile menu panel.
+- Keep image crops expressive but prevent faces, pets, and important clinical details from being cut off.
+- Hide or simplify large decorative blobs on narrow screens.
+- Ensure forms remain one column and touch targets stay at least about 44–54px high.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Reconstruct a complete responsive veterinary clinic marketing website called Alder Veterinary Clinic, using the following requirements as implementation truth.
+
+Project Definition
+
+Build a warm, modern neighborhood veterinary clinic website for pets and the people who love them. The site should communicate calm, low-stress, thoughtful medical care, clear communication, and a modern general-practice offering. It must feel editorial and human, not like a cold hospital dashboard or a generic pet store.
+
+Use React, TypeScript, Vite, React Router, and Tailwind CSS or an equivalent component system. Implement a real multi-page route structure with shared navigation, footer, route transitions, anchor navigation, responsive layouts, and accessible form controls.
+
+Global Visual Direction
+
+- Use a warm editorial visual direction with white, cream, butter yellow, and deep cocoa brown.
+- Primary surfaces: white #FFFFFF and warm cream #FFF9F2.
+- High-emphasis sections: butter yellow #F2D16B.
+- Deep cocoa brand color: #5C3A21; dark hover cocoa: #3E2614.
+- Body ink: #1F1B17; muted brown: #8A7467; warm borders: #EDE5DA.
+- Use large organic blobs in #F8E4A8, #FBEBD6, and #FFF3E4 as quiet background decoration.
+- Use Fraunces for display headings and DM Sans for body/UI copy.
+- Keep the tone calm, specific, trustworthy, and unhurried.
+- Use bright natural editorial photography of veterinarians, dogs, cats, owners, and warm clinic spaces. Do not use dark dramatic lighting or generic corporate stock imagery.
+
+Design System
+
+- Center all content in a 1320px maximum-width container.
+- Use 20px horizontal padding on mobile and 48px horizontal padding on medium/desktop screens.
+- Use 96px to 128px vertical padding for major sections.
+- Use 12-column desktop grids, two-column tablet patterns where appropriate, and single-column mobile stacks.
+- Use 28px, 32px, or 36px radius values for large cards and image containers.
+- Use full-pill primary buttons around 52–54px high, with right-arrow icons.
+- Primary buttons use cocoa background and white text; hover to #3E2614 and lift slightly.
+- Secondary links use cocoa text with an underline or arrow; arrow icons move about 5px right on hover.
+- Cards have quiet warm backgrounds, low-contrast borders, large radii, and restrained lift on hover.
+- Use organic asymmetric border-radius shapes for selected images. Keep the family of shapes consistent across the site.
+- Use a 200–380ms soft easing for micro interactions and a 600–650ms soft easing for Hero image/shape changes.
+- Honor prefers-reduced-motion for CSS and JavaScript motion.
+
+Website Information Architecture
+
+Implement these routes:
+
+1. `/` — Home.
+2. `/services` — Services overview.
+3. `/services/:slug` — Dynamic service detail page. Support the slugs `wellness-care`, `dental-care`, `diagnostics`, `surgery`, and `urgent-care`.
+4. `/about` — Clinic approach, team, environment, and care standards.
+5. `/book` — Appointment request form.
+6. `*` — A friendly 404 page with a link back to Home.
+
+The shared shell must contain a sticky 72px header, route-aware navigation, a footer, a light page-enter transition, manual scroll restoration on route changes, and a desktop-only paw cursor system. The desktop navigation links to Home anchors: Services, Our Approach, Team, and Visit Us. The header also contains a primary “Book an Appointment” button. On mobile, replace the links with a menu button and a vertical menu panel.
+
+Page-by-Page Structure
+
+HOME PAGE `/`
+
+Render the following sections in this exact order:
+
+1. Hero
+2. Trust Strip
+3. Services Index
+4. Care Philosophy
+5. Your Visit
+6. Team Preview
+7. Owner Stories
+8. Visit Us
+9. FAQ
+10. Final CTA
+11. Footer
+
+Home Hero
+
+Purpose: establish the clinic’s emotional promise and give immediate booking/service actions.
+
+Layout:
+- Use a butter-yellow full-width section with two large background organic blobs.
+- Use a desktop 12-column grid with text on the left and an expressive image area on the right.
+- Use a mobile single-column stack with text first and image second.
+- Use a large display heading: “Care that feels good for both of you.”
+- Add the eyebrow “Modern veterinary care”.
+- Add supporting copy: “Thoughtful, modern veterinary care for pets and the people who love them.”
+- Add primary CTA “Book an Appointment” linking to `/book`.
+- Add secondary text action “Explore our services” linking to `/services`.
+- Use three remote editorial image states: a pet owner with dog and veterinarian, a veterinarian listening to a golden retriever heartbeat, and a veterinarian comforting a cat with the owner nearby.
+- Crop images with large asymmetric organic shapes and place a pale yellow offset organic frame behind them.
+
+Hero interaction:
+- On fine pointer devices at viewport widths of at least 1024px, start at state 0 at the top of the Home page and temporarily own wheel/touch/key input.
+- Accumulate wheel delta; use a threshold of approximately 55. After crossing the threshold, transition one state forward or backward.
+- Lock consecutive state transitions for approximately 650ms.
+- Use opacity and scale transitions around 600–650ms with cubic-bezier(.22,1,.36,1).
+- Update the image organic shape and the offset frame shape together.
+- Render three progress bars under the CTAs; the active bar expands to about 30px and inactive bars are about 10px.
+- Render a desktop-only “Scroll” mouse cue while not at the final state.
+- At the final state, a downward wheel gesture must release the lock and allow native page scrolling immediately.
+- At the first state, an upward gesture is a no-op and must not trap the page.
+- Support touch swipes and ArrowDown, PageDown, Space, ArrowUp, and PageUp while the Hero lock is active.
+- If the page is loaded with a hash or an existing scroll offset, do not trap the Hero and initialize its visual state to the final image.
+- When a navbar anchor tween begins, release the Hero lock so the two scroll systems never compete.
+- On narrow or coarse-pointer devices, keep normal native page scrolling and do not activate the Hero lock.
+
+Trust Strip
+
+Purpose: provide a compact confidence band directly under the Hero.
+
+Content: General Practice, Same-Day Visits, Fear-Free Approach, Open 6 Days.
+
+Layout and style:
+- Use a white background with a bottom warm-beige border.
+- Center items on narrow screens and distribute them across the container on desktop.
+- Separate desktop items with tiny circular warm-beige dots.
+- Use compact 13–14px DM Sans text.
+
+Services Index
+
+Purpose: preview core veterinary offerings and lead users to service detail pages.
+
+Content:
+- Eyebrow: “Our Services”.
+- Heading: “Modern care, organized around your pet’s life.”
+- Show four cards in a responsive grid: Wellness & Preventive Care, Dental Care, Diagnostics & Treatment, Surgery & Recovery.
+- Each card has an index, image, title, summary, and “Learn more” action.
+- Add a separate “View All Services” link to `/services`.
+
+Layout and behavior:
+- Use two columns on small/medium screens and a flexible card layout where the image is 46% wide on desktop card rows.
+- Use cream or soft-yellow card backgrounds, low-contrast borders, and 32px corners.
+- On hover or focus, mark a card active, slightly enlarge the image to about 1.045, change the image organic shape, raise opacity, slightly shift the title, and nudge the arrow.
+- Keep the active shape stable per service rather than random.
+
+Care Philosophy
+
+Purpose: explain the low-stress care philosophy in a visually memorable yellow section.
+
+Content:
+- Eyebrow: “Our Approach”.
+- Heading split over three lines: “Less stress. More understanding. Better care.”
+- Copy: explain that the team reads the pet’s body language, the owner’s questions, and the pace that feels right.
+- Use a wide editorial image of a veterinarian touching a black cat while the owner watches.
+
+Layout and scroll behavior:
+- Use a butter-yellow background, two slow decorative blobs, and a desktop two-column layout.
+- Place copy on the left and a 16:11 organic image on the right.
+- As the section enters the viewport, use requestAnimationFrame scroll-linked interpolation to morph the image border radius from a highly asymmetric starting radius toward `63% 37% 47% 53% / 58% 42% 55% 45%`.
+- Interpolate image scale from about 1.12 to 1.0 and opacity from about 0.65 to 1.
+- Use a long scroll range of roughly 0.95 viewport to 0.9 section height and ease the first 80% quickly with a gentle final settle.
+- Disable this custom motion under prefers-reduced-motion.
+
+Your Visit
+
+Purpose: make the visit process feel simple and predictable.
+
+Content:
+- Eyebrow: “Your Visit”.
+- Heading: “What to expect, from the moment you book.”
+- Three numbered cards:
+  01 Book your visit — request a time online or by phone; confirmation within one business day.
+  02 Meet your care team — a quiet exam room, unhurried time, and a clinician who listens.
+  03 Leave with a clear plan — findings in plain language and a written plan to take home.
+
+Layout and behavior:
+- Use three equal cards on desktop and a vertical stack on mobile.
+- Use white background, warm cream cards, 32px corners, a large Fraunces number, and a yellow circular icon badge.
+- Use IntersectionObserver with threshold about 0.2. When the grid enters view, reveal cards with a 460ms soft-rise animation and 100ms stagger.
+- Card hover lifts by about 3px; the number shifts slightly and the icon rotates a few degrees.
+
+Team Preview
+
+Purpose: introduce the human care team and lead to the About page.
+
+Content:
+- Eyebrow: “Our Team”.
+- Heading: “The people who will care for your pet.”
+- Link: “Meet the Team” to `/about`.
+- Show three team portraits with names, credentials, and specialties:
+  Dr. Maren Ellis — DVM, Fear-Free Certified — Preventive care & senior wellness.
+  Dr. Theo Nakamura — DVM, MS Surgery — Soft tissue surgery & dentistry.
+  Dr. Priya Rao — DVM, IVAS Acupuncture — Chronic conditions & pain management.
+
+Layout: cream background, one column mobile, two columns tablet, three columns desktop. Use 4:5 portrait crops with 36px organic-rounded corners.
+
+Owner Stories
+
+Purpose: add social proof through calm, personal testimonials.
+
+Content:
+- Eyebrow: “Owner Stories”.
+- Use three testimonial stories with portrait image, quote, owner name, and pet detail.
+- Initial story is Elena K. / Milo / rescue mix.
+- Include stories from Marcus B. / Nori / senior lab and Sana L. / Poppy / tuxedo cat.
+
+Layout and behavior:
+- Use a white section with a two-column layout: portrait on the left and large Fraunces blockquote on the right.
+- Use an organic portrait crop around 4:5.
+- Automatically advance to the next story every 6500ms and loop.
+- Render three pill indicators below the quote. Active indicator is about 40px wide; inactive indicators are about 8px.
+- Clicking an indicator changes the story immediately.
+- Changing the story replaces the image and quote keyed by the story name.
+
+Visit Us
+
+Purpose: provide location information and a direct booking path.
+
+Layout:
+- Use a white section containing a large bordered rounded module.
+- Use a two-column desktop split: bright clinic exterior image on the left and information on the right; stack on mobile.
+- Eyebrow: “Visit Us”.
+- Heading: “Come by, we’d love to meet your pet.”
+- Show address: 1428 Linden Avenue, Suite 200, Portland, OR 97214.
+- Show hours: Mon–Fri 8:00–18:30, Saturday 9:00–15:00, Sunday Closed.
+- Show phone: (503) 555-0142.
+- Show getting-here note: Street parking on Linden Ave. Bus lines 14 & 20 stop one block east.
+- Add “Book an Appointment” linking to `/book`.
+- Use location, time, phone, and bus icons in cocoa tones.
+
+FAQ
+
+Purpose: answer key questions before the user books.
+
+Content:
+- Eyebrow: “FAQ”.
+- Heading: “Answers, before you book.”
+- Use these five questions: new patients, treated pets, what to bring, same-day appointments, and emergencies.
+
+Behavior:
+- Use an accordion with one open index at a time.
+- The first item is open on initial render.
+- Clicking the open item closes it; clicking a closed item opens it and closes the previous item.
+- Use 320ms grid-row/opacity/translateY transitions and rotate the plus/minus icon 180 degrees when open.
+
+Final CTA
+
+Purpose: close the Home page with a warm invitation and two direct actions.
+
+Layout:
+- Use a butter-yellow section with slow background blobs.
+- Use a two-column desktop layout with a warm owner-and-cat image on the left and copy on the right.
+- Heading: “Ready for a better vet visit?”
+- Supporting copy: “We’re welcoming new patients this month.”
+- Primary button: “Book an Appointment” to `/book`.
+- Secondary outline button: “Call the Clinic” using `tel:+15035550142`.
+
+SERVICES PAGE `/services`
+
+Top section:
+- Use a butter-yellow intro with eyebrow “Services”.
+- Heading: “Care for every stage of your pet’s life.”
+- Supporting text: “A modern general practice with the diagnostics, dentistry and surgical care most pets need — under one warm, unhurried roof.”
+
+Service groups:
+- Render five alternating bordered modules in this exact order: Preventive Care, Diagnostics, Dental, Surgery, Illness & Urgent Care.
+- Each module contains a warm editorial image, number and icon, title, intro, four mini item cards, and a “Learn more” link to its detail route.
+- Alternate image/text order on desktop; keep image above text on mobile.
+- Use the organic shape family `shape-1` through `shape-5` in sequence.
+- Finish with a butter-yellow CTA module: “Not sure which visit is right?” and a Book an Appointment button.
+
+SERVICE DETAIL PAGE `/services/:slug`
+
+Use one data-driven template for all five services.
+
+Structure:
+1. Back to All Services link.
+2. Two-column intro with service index/group, large title, short description, and 4:3 hero image.
+3. Border-top section “What this visit covers” with a checked list.
+4. Border-top section “When to book” with explanatory text.
+5. Border-top section “What to expect” with explanatory text.
+6. Border-top “Related services” grid with liftable cards.
+7. Butter-yellow closing CTA: “Book a [service] visit.”
+
+Use the service data for all copy, covered items, booking guidance, expectations, related service links, and image choice. If an unknown slug is entered, fall back to the first service content rather than crashing, while preserving the dynamic route shell.
+
+ABOUT PAGE `/about`
+
+Render these sections in order:
+
+1. Compact intro: eyebrow “Our Approach”, heading “A neighborhood clinic built around the relationship.”, supporting copy.
+2. Philosophy: warm cream background, heading “Care that reads the room.”, two white cards “A design problem, not a pet problem” and “Observe first, treat second”.
+3. Doctors & Team: three team portraits and credentials.
+4. Clinic Environment: heading “A calmer place to be a pet.” with one wide exam-room image and one portrait waiting-area image.
+5. Care Standards: four numbered cards — Fear-Free trained, AAHA-aligned protocols, Modern anesthesia, Clear communication.
+6. Yellow closing CTA: “Come meet the team.” with a booking button.
+
+BOOK PAGE `/book`
+
+Top intro:
+- Eyebrow “Book a Visit”.
+- Heading “Let’s find a good time for you and your pet.”
+- Supporting copy explaining that the team will confirm within one business day.
+
+Form layout:
+- Use a cream section with an 8-column main form and 4-column sidebar on desktop; single column on mobile.
+- Form card is white with 32px radius and a light cocoa border.
+- Required fields: Owner Name, Email, Phone, Pet Name, Pet Type, Reason for Visit, Preferred Date, Preferred Time.
+- Pet Type options: Dog, Cat, Rabbit, Small companion, Other.
+- Reason options: Wellness exam, Vaccination, Dental care, Sick / urgent visit, Surgery consult, Other.
+- Preferred Time options: Morning (8:00–11:30), Midday (11:30–14:00), Afternoon (14:00–17:00), Late (17:00–18:30).
+- Optional Message textarea with maxLength 500.
+- Include hidden honeypot text input named `website_alt`.
+- Submit button text is “Request Appointment”; while submitting display “Sending…”.
+
+Submission behavior:
+- Prevent default form submission.
+- If `website_alt` contains a value, clear the form and show the success state without sending a request.
+- Otherwise POST URL-encoded form data to `https://readdy.ai/api/form/dakgvqkov550s8tco7g0` with `Content-Type: application/x-www-form-urlencoded`.
+- Parse the response as JSON when possible.
+- Treat the submission as successful only when the response is OK, parsed code is `OK`, and the message does not contain “spam”.
+- On success, clear the form and show a yellow success card with “Thanks — your request is in.” and a button to request another visit.
+- On failure, show the returned message or “Something went wrong. Please try again or call us.”
+- On network failure, show “Network error. Please try again or call us.”
+
+Sidebar:
+- Use a yellow “Prefer to call?” card with phone, hours, and address.
+- Add an “Emergency?” white card mentioning Rose City Veterinary Emergency at (503) 555-0199.
+
+GLOBAL INTERACTION AND ACCESSIBILITY REQUIREMENTS
+
+- Use semantic headings, labels, buttons, links, alt text, and aria-expanded for the FAQ.
+- Ensure keyboard users can operate the Hero state controls through Arrow/Page keys, the FAQ, the mobile menu, indicators, and form controls.
+- Use `prefers-reduced-motion` to disable custom animation and Hero input trapping.
+- Keep the document scrollbar present during Hero lock; do not change body overflow or cause viewport-width shifts.
+- When navbar anchor scrolling starts, release Hero ownership, mark the document as anchor-navigating, and temporarily suppress hover-driven motion until scrolling settles.
+- Use manual scroll restoration: new routes without hashes go to top; hash routes scroll to the target after content mounts.
+- Use native smooth scrolling where available, with a stable-frame completion detector and a safety timeout.
+- Keep the desktop paw cursor limited to fine-pointer devices; preserve text cursors for editable form controls and clear paw prints on route changes.
+
+TECHNICAL REQUIREMENTS
+
+- Keep page data in a small typed local data module equivalent to `src/mocks/site.ts`.
+- Keep shared shell components separate from page-specific sections.
+- Load external fonts and icon libraries with graceful system fallbacks.
+- Use remote image URLs or replace them with supplied assets; do not silently replace the editorial image direction with unrelated imagery.
+- Do not introduce a backend, database, account system, payment flow, calendar inventory, or live appointment availability unless explicitly requested later.
+- Do not convert the static marketing statistics/content into claims of verified medical performance.
+
+QUALITY ASSURANCE
+
+- Verify all six route classes: Home, Services, Service Detail for each valid slug, About, Book, and NotFound.
+- Verify the exact Home section order and all CTA destinations.
+- Verify the Hero desktop state machine, its release at the final state, its hash/scroll bypass, and reduced-motion fallback.
+- Verify FAQ initial open state, single-open behavior, and keyboard semantics.
+- Verify the Owner Stories 6500ms loop and manual indicator navigation.
+- Verify the form honeypot, required fields, submit/loading/success/error states, endpoint request format, and safe network-error fallback.
+- Verify mobile menu, mobile grid collapse, image crops, and tap targets.
+- Verify no layout shift from the sticky header, remote fonts, or Hero interaction.
+
+Explicit Constraints / Avoidances
+
+- Do not redesign the visual direction into a blue medical theme.
+- Do not replace the large display serif with a generic sans-serif.
+- Do not use uniform rectangular image crops everywhere.
+- Do not simplify the Hero to “add a smooth animation”; implement the explicit three-state input-controlled behavior.
+- Do not claim that appointments are truly booked or that a time slot is reserved; the current source only submits a request to an external form endpoint.
+- Do not invent additional service pages, staff, credentials, ratings, or medical claims.
+- Do not add a map, patient portal, payment, or live scheduling system unless requested separately.
+
+============================================================
+3. 分模块 Prompt（15 段）
+============================================================
+
+HOME-01 — Hero State Gallery
+
+Create a warm veterinary clinic hero section with a full-width butter-yellow background, two oversized pale organic blobs, and a responsive two-column desktop layout. Place a left content block with the eyebrow “Modern veterinary care”, the large Fraunces headline “Care that feels good for both of you.”, a short supporting sentence, a dark cocoa pill button labeled “Book an Appointment”, and an underlined arrow link labeled “Explore our services”. Place a large editorial veterinary image on the right, cropped inside an asymmetric organic shape, with a slightly offset pale-yellow organic frame behind it.
+
+Implement three image states: a pet owner with a dog and veterinarian, a veterinarian listening to a golden retriever heartbeat, and a veterinarian comforting a cat with an owner nearby. On desktop fine-pointer devices, use a three-state input-controlled sequence: accumulate wheel delta until approximately 55, transition one state, lock subsequent state changes for approximately 650ms, and animate opacity, scale, image border radius, and frame border radius over 600–650ms with cubic-bezier(.22,1,.36,1). Provide ArrowDown, PageDown, Space, ArrowUp, and PageUp support. At the final state, a downward wheel gesture must release control and allow native page scrolling. Do not enable the lock on narrow/coarse-pointer devices, hash landings, nonzero initial scroll positions, or reduced-motion preferences. Show three progress bars and a desktop-only animated Scroll cue; hide them on mobile.
+
+HOME-02 — Trust Strip
+
+Add a compact trust strip directly below the veterinary hero. Use a white background with a warm beige bottom border. Display the labels “General Practice”, “Same-Day Visits”, “Fear-Free Approach”, and “Open 6 Days” in small DM Sans text. Center and wrap the items on mobile; distribute them across a wide container on desktop and place tiny warm-beige circular separators between desktop items. Keep the strip quiet and informational.
+
+HOME-03 — Services Index Cards
+
+Create a responsive “Our Services” section for a warm veterinary clinic. Use the heading “Modern care, organized around your pet’s life.” and show four linked service cards: Wellness & Preventive Care, Dental Care, Diagnostics & Treatment, and Surgery & Recovery. Each card should include a portrait or editorial veterinary image, an index number, title, short description, and a “Learn more” arrow action.
+
+Use a two-column card grid with 32px corners, warm cream or pale-yellow card backgrounds, low-contrast borders, and asymmetric organic image crops. On hover or keyboard focus, activate the card: slightly enlarge the image to about 1.045, raise its opacity, transition to a service-specific organic border radius, move the title a fraction to the right, and nudge the arrow upward/right. Add a “View All Services” text link below the grid. Stack image above text on mobile.
+
+HOME-04 — Care Philosophy Scroll Morph
+
+Build a butter-yellow veterinary philosophy section with a large left text block and a wide right editorial image. Use the eyebrow “Our Approach”, the three-line Fraunces heading “Less stress. More understanding. Better care.”, and a paragraph explaining that the clinic reads the pet’s body language, the owner’s questions, and the pace that feels right.
+
+Place the image in a 16:11 container with an asymmetric organic border radius. As the section enters the viewport, drive a requestAnimationFrame scroll-linked morph: interpolate the image radius from a tighter, highly asymmetric starting shape toward `63% 37% 47% 53% / 58% 42% 55% 45%`, interpolate scale from 1.12 to 1, and opacity from 0.65 to 1. Use a long viewport-based travel range and a soft ease-out with a gentle tail. Disable this custom motion for prefers-reduced-motion and keep the final organic shape visible.
+
+HOME-05 — Your Visit Steps
+
+Create a three-step veterinary visit section with the eyebrow “Your Visit” and the heading “What to expect, from the moment you book.”. Use three warm cream cards on a white background: “01 Book your visit”, “02 Meet your care team”, and “03 Leave with a clear plan”. Give each card a large Fraunces number, a butter-yellow circular icon badge, a short title, and a plain-language description.
+
+Reveal the cards once the grid enters the viewport using a 460ms soft upward entrance with a 100ms stagger. On hover, lift each card about 3px, shift the number slightly, and rotate the icon a few degrees. Stack the cards vertically on mobile and keep the interaction subtle.
+
+HOME-06 — Team Preview
+
+Create a warm cream team preview section for a veterinary clinic. Add the eyebrow “Our Team”, the heading “The people who will care for your pet.”, and a right-aligned text link “Meet the Team” leading to an About page. Display three editorial veterinarian portraits in 4:5 containers with large 36px rounded organic corners. Under each image show the doctor’s name in Fraunces, credential in muted brown, and specialty in warm ink. Use one column on mobile, two on tablet, and three on desktop.
+
+HOME-07 — Owner Stories Carousel
+
+Build an owner testimonial carousel for a veterinary clinic. Use a white section with the eyebrow “Owner Stories”, a 4:5 organic portrait on the left, and a large Fraunces quote on the right. Provide three stories with a pet owner name and pet detail. Start with a story from Elena K. about Milo, a rescue mix; include two additional stories from Marcus B. about Nori, a senior lab, and Sana L. about Poppy, a tuxedo cat.
+
+Automatically advance through the three stories every 6500ms and loop back to the first. Render three pill indicators under the quote; the active pill is about 40px wide and inactive pills are small circles. Clicking an indicator changes the image, quote, owner, and detail immediately. Stack image and quote on mobile.
+
+HOME-08 — Visit Us Contact Module
+
+Create a “Visit Us” contact module for a neighborhood veterinary clinic. Place it inside a white rounded bordered container with a two-column desktop layout: a bright editorial clinic exterior image on the left and information on the right. Use the heading “Come by, we'd love to meet your pet.” and show address, opening hours, phone number, and a “Getting Here” note with location, clock, phone, and bus icons. Add a cocoa pill button labeled “Book an Appointment”. Stack the image above the information on mobile and keep the image bright, natural, and welcoming.
+
+HOME-09 — FAQ Accordion
+
+Create a calm FAQ accordion section with a warm cream background. Use the left column for the eyebrow “FAQ” and the heading “Answers, before you book.”. Use the right column for five rounded white question panels about new patients, treated pets, what to bring, same-day appointments, and emergencies.
+
+Open the first question by default. Allow only one panel to be open at a time; clicking the open question closes it, and clicking another question opens that one. Animate the panel from grid rows 0fr to 1fr with opacity and a subtle upward settle over about 320ms. Switch the icon from plus to minus and rotate the icon container 180 degrees in the open state. Use accessible buttons with aria-expanded.
+
+HOME-10 — Final CTA
+
+Create a closing veterinary clinic CTA on a butter-yellow background with two quiet organic blobs. Use a two-column desktop layout with a bright editorial image of an owner holding a cat on the left and the heading “Ready for a better vet visit?” on the right. Add the sentence “We're welcoming new patients this month.”, a dark cocoa pill button “Book an Appointment”, and a light translucent outlined pill button “Call the Clinic” with a phone icon. Stack the content on mobile and use the same soft lift and arrow motion as the rest of the design system.
+
+SERVICES-01 — Services Overview
+
+Build a complete veterinary services overview page. Start with a butter-yellow intro containing the eyebrow “Services”, the heading “Care for every stage of your pet's life.”, and supporting copy about a modern general practice under one warm roof.
+
+Below it, render five large rounded bordered modules in this order: Preventive Care, Diagnostics, Dental, Surgery, and Illness & Urgent Care. Each module needs an editorial image, a numbered icon label, a large title, an intro sentence, four small service item cards, and a “Learn more” arrow link. Alternate image and text sides on desktop, but stack image above text on mobile. Use a family of asymmetric organic image shapes and a restrained 1.03 image zoom on hover. Finish with a butter-yellow CTA saying “Not sure which visit is right?” and a Book an Appointment button.
+
+SERVICES-02 — Service Detail Template
+
+Create a data-driven veterinary service detail page template for a dynamic slug. Start with a “Back to All Services” link, then use a two-column intro with the service index/group, a large Fraunces title, a short description, and a 4:3 editorial image.
+
+Follow with three full-width sections separated by warm beige top borders: “What this visit covers” with a checked list, “When to book” with explanatory text, and “What to expect” with explanatory text. Add a “Related services” grid of warm cream cards that lift slightly on hover. Finish with a butter-yellow CTA that dynamically says “Book a [service] visit.” Use service data for content, related links, and imagery; support Wellness & Preventive Care, Dental Care, Diagnostics & Treatment, Surgery & Recovery, and Illness & Urgent Care.
+
+ABOUT-01 — Clinic Approach and Team
+
+Create an About page for a warm neighborhood veterinary clinic. Begin with a compact white intro using the eyebrow “Our Approach”, the heading “A neighborhood clinic built around the relationship.”, and a short paragraph about respecting each pet’s pace.
+
+Add a warm cream philosophy section titled “Care that reads the room.” with two white rounded cards: “A design problem, not a pet problem” and “Observe first, treat second”. Add a white Doctors & Team section with three 4:5 veterinarian portraits and credentials. Add a cream Clinic Environment gallery titled “A calmer place to be a pet.” with one wide exam-room image and one portrait waiting-area image. Add a white Care Standards grid with four numbered cards: Fear-Free trained, AAHA-aligned protocols, Modern anesthesia, and Clear communication. Finish with a butter-yellow section titled “Come meet the team.” and a cocoa booking button. Use slow organic background blobs and the same Fraunces/DM Sans system throughout.
+
+BOOK-01 — Appointment Request Form
+
+Create a warm veterinary appointment request page. Use a compact white intro with the eyebrow “Book a Visit”, the heading “Let's find a good time for you and your pet.”, and copy promising confirmation within one business day.
+
+On a warm cream background, place a large white rounded form card beside a yellow contact card on desktop, and stack them on mobile. The form fields are Owner Name, Email, Phone, Pet Name, Pet Type, Reason for Visit, Preferred Date, Preferred Time, and an optional Message textarea. Use rounded 54px-high cream inputs with cocoa-tinted borders. Pet Type options are Dog, Cat, Rabbit, Small companion, and Other. Reason options are Wellness exam, Vaccination, Dental care, Sick / urgent visit, Surgery consult, and Other. Time options are Morning, Midday, Afternoon, and Late.
+
+Include a hidden text honeypot named website_alt. On submit, prevent the default action, serialize data as application/x-www-form-urlencoded, and POST it to the configured appointment request endpoint. Show “Sending…” while pending. If the honeypot is filled, show success without sending. Treat a response as successful only when it is OK, its parsed code is OK, and its message does not include spam. Show a yellow success card with “Thanks — your request is in.”, a retry button, and clear network/error messages. The sidebar must show phone, opening hours, address, and a separate emergency note.
+
+SHELL-01 — Navigation, Cursor, Footer, and 404
+
+Create a shared site shell for a warm veterinary clinic called Alder Vet. Use a sticky 72px white header with a cocoa paw logo and wordmark, desktop anchor links labeled Services, Our Approach, Team, and Visit Us, and a cocoa pill button labeled “Book an Appointment”. On mobile, hide the desktop links and show a menu button that expands a white vertical panel with the same links and booking button.
+
+Implement anchor scrolling with a 720ms native smooth scroll and a stable-frame completion detector. During anchor navigation, release any Hero input lock, temporarily suppress hover motion, and update the active nav item with a scrollspy. Add a warm cream footer with the clinic description, Explore links, address, phone, hours, and placeholder Instagram, Facebook, Privacy, and Terms links.
+
+On fine-pointer devices, render a custom cocoa paw cursor that follows the pointer, shrinks on interactive targets, preserves text cursors in form fields, and leaves alternating paw prints roughly every 34px that fade after about 1100ms. Clear prints on route change and disable the system under reduced motion or coarse pointers. Add a friendly 404 page with the message “This page wandered off.” and a cocoa button back to Home.

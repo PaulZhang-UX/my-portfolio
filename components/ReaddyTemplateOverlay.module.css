@@ -1,0 +1,377 @@
+.overlay {
+  /* Magazine / light defaults. Values mirror app/globals.css + ProjectsSection
+     so the dialog reads as part of the portfolio rather than of the project. */
+  --rd-ink: #1d1d1f;
+  --rd-secondary: #6e6e73;
+  --rd-micro: #86868b;
+  --rd-line: rgba(0, 0, 0, 0.1);
+  --rd-surface: #ffffff;
+  --rd-muted: #f5f5f5;
+  --rd-btn-bg: #1d1d1f;
+  --rd-btn-fg: #ffffff;
+  --rd-scrim: rgba(255, 255, 255, 0.84);
+
+  position: fixed;
+  z-index: 900;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: var(--rd-scrim);
+  backdrop-filter: blur(10px) saturate(1.05);
+  color: var(--rd-ink);
+  font-family: var(--font-apple), 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  overscroll-behavior: contain;
+  /* The portfolio hides its custom cursor; restore the native one for the dialog. */
+  cursor: auto;
+}
+
+.overlay * {
+  cursor: auto;
+}
+
+:global(.dark) .overlay {
+  --rd-ink: #f5f5f7;
+  --rd-secondary: #a1a1a6;
+  --rd-micro: #8e8e93;
+  --rd-line: rgba(255, 255, 255, 0.15);
+  --rd-surface: #0b0b0d;
+  --rd-muted: #1c1c1e;
+  --rd-btn-bg: #f5f5f7;
+  --rd-btn-fg: #0b0b0d;
+  --rd-scrim: rgba(11, 11, 13, 0.84);
+}
+
+:global(.hermes) .overlay {
+  --rd-ink: var(--matrix-ink-color, #22c55e);
+  --rd-secondary: rgb(var(--matrix-ink-rgb, 34 197 94) / 0.72);
+  --rd-micro: rgb(var(--matrix-ink-rgb, 34 197 94) / 0.6);
+  --rd-line: rgb(var(--matrix-ink-rgb, 34 197 94) / 0.28);
+  --rd-surface: #020202;
+  --rd-muted: rgba(34, 197, 94, 0.06);
+  --rd-btn-bg: var(--matrix-button-fill, #22c55e);
+  --rd-btn-fg: var(--matrix-button-contrast, #000000);
+  --rd-scrim: rgba(2, 2, 2, 0.88);
+  font-family: var(--font-hacker-zh), 'PingFang SC', sans-serif;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(92vw, 660px);
+  max-height: min(86vh, 880px);
+  overflow: hidden;
+  border: 1px solid var(--rd-line);
+  border-radius: 18px;
+  background: var(--rd-surface);
+  box-shadow: 0 28px 90px rgba(29, 29, 31, 0.16), 0 2px 8px rgba(29, 29, 31, 0.08);
+  animation: readdy-overlay-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 26px 30px 22px;
+  border-bottom: 1px solid var(--rd-line);
+}
+
+.headText {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--rd-ink);
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+  color: var(--rd-micro);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--rd-line);
+  border-radius: 50%;
+  color: var(--rd-ink);
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.close:hover,
+.close:focus-visible {
+  border-color: var(--rd-ink);
+  background: var(--rd-muted);
+}
+
+.body {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 26px 30px 30px;
+  overscroll-behavior: contain;
+}
+
+.body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--rd-ink) 18%, transparent);
+  background-clip: content-box;
+}
+
+.block + .block {
+  margin-top: 26px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rd-line);
+}
+
+.label {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--rd-micro);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.blockHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.blockHead .ghost {
+  margin-left: auto;
+}
+
+.urlRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 14px;
+}
+
+.url {
+  min-width: 0;
+  color: var(--rd-secondary);
+  font-size: 13px;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+a.url:hover {
+  color: var(--rd-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 20px;
+  border: 1px solid var(--rd-btn-bg);
+  border-radius: 999px;
+  color: var(--rd-btn-fg);
+  background: var(--rd-btn-bg);
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.primary:hover {
+  opacity: 0.86;
+  transform: translateY(-1px);
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--rd-line);
+  border-radius: 999px;
+  color: var(--rd-ink);
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.ghost:hover,
+.ghost:focus-visible {
+  border-color: var(--rd-ink);
+  background: var(--rd-muted);
+}
+
+.ghost:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ghost:disabled:hover {
+  border-color: var(--rd-line);
+  background: transparent;
+}
+
+/* 第一段也要和上方「复制全部」那一行拉开距离：
+   原来只写了 .prompt + .prompt，第一段没有上边距，两个按钮会挤在一起。 */
+.prompt {
+  margin-top: 34px;
+}
+
+.prompt + .prompt {
+  margin-top: 28px;
+}
+
+.promptHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.promptIndex {
+  flex: 0 0 auto;
+  color: var(--rd-micro);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.promptTitle {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--rd-ink);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.promptBody {
+  margin: 12px 0 0;
+  padding: 16px 18px;
+  border-radius: 10px;
+  color: var(--rd-ink);
+  background: var(--rd-muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.empty {
+  margin: 14px 0 0;
+  color: var(--rd-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* 局部展示的收尾提示：告诉访客只看了前几段，完整内容在「复制全部」里。 */
+.more {
+  margin: 24px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--rd-line);
+  color: var(--rd-secondary);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+@keyframes readdy-overlay-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .overlay {
+    padding: 12px;
+  }
+
+  .card {
+    width: 100%;
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  .head {
+    padding: 20px 20px 18px;
+  }
+
+  .body {
+    padding: 20px 20px 24px;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .urlRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+
+  .close,
+  .ghost,
+  .primary,
+  .url {
+    transition: none;
+  }
+}

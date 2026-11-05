@@ -1,18 +1,28 @@
 'use client';
 
 let audioCtx: AudioContext | null = null;
+let audioFeedbackEnabled = true;
+let duckRestoreTimer: ReturnType<typeof setTimeout> | null = null;
+let duckFadeTimer: ReturnType<typeof setInterval> | null = null;
+
+export function setAudioFeedbackEnabled(enabled: boolean) {
+  audioFeedbackEnabled = enabled;
+}
 
 function getAudioContext(): AudioContext | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined' || !audioFeedbackEnabled) return null;
   try {
     if (!audioCtx) {
-      audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const AudioContextConstructor =
+        window.AudioContext ||
+        (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      audioCtx = new AudioContextConstructor();
     }
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
     return audioCtx;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -26,20 +36,31 @@ function duckMusic(duration: number) {
   const audio = document.querySelector('audio');
   if (!audio) return;
 
-  audio.volume = 0.12; // 更彻底地避让
+  if (duckRestoreTimer) clearTimeout(duckRestoreTimer);
+  if (duckFadeTimer) clearInterval(duckFadeTimer);
 
-  setTimeout(() => {
-    let vol = 0.12;
-    const fadeTimer = setInterval(() => {
-      vol += 0.15;
-      if (vol >= 1.0) {
-        audio.volume = 1.0;
-        clearInterval(fadeTimer);
+  const baseVolume = Number(audio.dataset.baseVolume ?? audio.volume ?? 0.22);
+  const duckedVolume = Math.min(0.08, baseVolume);
+  audio.volume = duckedVolume;
+
+  duckRestoreTimer = setTimeout(() => {
+    let vol = duckedVolume;
+    duckFadeTimer = setInterval(() => {
+      vol += Math.max(0.015, baseVolume / 8);
+      if (vol >= baseVolume) {
+        audio.volume = baseVolume;
+        if (duckFadeTimer) clearInterval(duckFadeTimer);
+        duckFadeTimer = null;
       } else {
-        audio.volume = Math.min(1.0, vol);
+        audio.volume = Math.min(baseVolume, vol);
       }
     }, 45);
   }, duration * 1000);
+}
+
+export function duckBackgroundMusic(duration: number) {
+  if (!audioFeedbackEnabled) return;
+  duckMusic(duration);
 }
 
 /**

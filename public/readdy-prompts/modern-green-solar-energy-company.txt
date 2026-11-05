@@ -1,0 +1,287 @@
+Modern Green Solar Energy Company — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/c29fa704-fec6-4111-a9ea-1115c92df55d/14107172
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a modern green solar energy company website for a brand called Sunfield. Use a light cool-gray background, white content surfaces, deep near-black text, vivid solar green for primary actions and positive energy signals, and solar yellow for a small number of highlights, sun accents, and attention blocks. The visual direction should feel clean, architectural, reliable, data-informed, and calm rather than rustic, overly eco-themed, or corporate-heavy.
+
+Use Inter for body copy and navigation, and a modern display sans similar to Instrument Sans for headings and large statistics. Use medium uppercase eyebrow labels with visible tracking. Use a 1440px content container with roughly 20px mobile, 40px tablet, 72px desktop, and 88px extra-wide horizontal padding. Use 12-column layouts, generous vertical spacing, rounded-2xl image containers, rounded 10px to 12px controls, thin cool-gray dividers, and clear 2-column or 3-column content grids.
+
+Use realistic architectural photography showing black rooftop solar integrated into homes, offices, hospitality properties, and modern buildings. Pair large images with concise content, process steps, ROI numbers, energy impact metrics, financing choices, and a clear estimate form. Avoid generic green leaves, neon eco gradients, isolated panel product renders, and dense dashboard styling.
+
+Use slow purposeful motion: a scroll-scrubbed solar community video hero, dynamic day-to-night text contrast, occasional subtle solar glints, intersection-triggered count-up statistics, staggered benefit reveals, a small project card tilt on pointer movement, and restrained route fades. Respect prefers-reduced-motion, keep the hero readable when video fails, and never hide essential actions behind hover.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Project Definition
+
+Reconstruct a complete responsive front-end marketing website for Sunfield, a modern green solar energy company. Sunfield designs solar, storage, and energy management systems for homes, businesses, hospitality properties, and other real places. The site is a static front-end template with local content and image URLs. Do not invent a database, live energy calculator, account system, CRM, payment system, or backend quote engine.
+
+Global Visual Direction
+
+Make the site feel clean, architectural, modern, reliable, data-informed, and calm. Use a cool light-gray background, white surfaces, near-black ink text, vivid solar green for primary actions and positive energy signals, and solar yellow for carefully limited highlights. Use realistic modern architecture and rooftop solar photography, not generic environmental stock images.
+
+Use Inter for body and navigation, and a modern display sans similar to Instrument Sans for headings and large statistics. Use uppercase eyebrow labels around 12px with tracking. Use a 1440px content shell, approximately 20px mobile, 40px tablet, 72px desktop, and 88px extra-wide horizontal padding. Use 12-column grids, generous vertical spacing, rounded-2xl image containers, rounded 10px to 12px controls, and thin cool-gray dividers.
+
+Design System
+
+Use:
+- solar green #03D959 for primary buttons, positive signals, active progress, check icons, and brand mark;
+- solar yellow #FFC905 for sun icons, glints, project accent block, financing highlight, and day/night cue;
+- ink #111111 for headings and controls;
+- muted #5F6368 for supporting text;
+- background #F5F7FA;
+- surface #FFFFFF;
+- divider #E8EDF2;
+- footer surface around #EDF1F5.
+
+Buttons should be clear green rounded controls with dark text, around 48px to 52px high on major actions. Use soft rounded image containers and modest hover transitions. Avoid heavy shadows, neon gradients, leaves, excessive eco clichés, and dense analytics dashboards.
+
+Application Shell and Routing
+
+Implement these routes:
+- / — Home
+- /residential — Residential Solar
+- /commercial — Commercial Solar
+- /applications — Applications
+- * — Not Found
+
+Only render the full marketing Nav on /. Subpages use their own sticky header with a Back button and a green uppercase page label. Every subpage ends with the shared Sunfield Footer. Use a lightweight page fade on subpage mount, scroll the page to the top on mount, and honor reduced-motion.
+
+Home Page Order
+
+Build the Home page in this exact order:
+1. Hero
+2. Solutions
+3. Benefits
+4. Savings & ROI
+5. Installation / Process
+6. Projects
+7. Financing
+8. Energy Impact
+9. Get Your Solar Estimate
+10. Footer
+
+Home Hero
+
+Create an outer hero section approximately 560vh tall and a sticky inner stage approximately 100vh tall. Use a remote solar-community timelapse video as a muted, playsInline, preloaded, object-cover background with a static poster fallback. Do not treat it as a normal autoplay hero.
+
+Place centered copy inside the stage:
+- headline: “Clean energy for the way communities live.”
+- supporting text: “Solar solutions for homes and businesses — bright by day, reliable by night.”
+- primary CTA: “Get My Estimate”, scrolling smoothly to #estimate
+- secondary CTA: “Explore Solutions”, scrolling smoothly to #solutions
+
+Map the portion of the hero that has scrolled into view to a normalized target progress. Continuously chase the target video time with requestAnimationFrame. When target time is ahead, use a dynamic playbackRate clamped between approximately 1 and 12 to catch up; when target time is behind, pause and seek backwards in steps no larger than about 0.5 seconds per frame. Pause when the current time is within about 0.05 seconds of the target. Prime the first decoded frame from loadedmetadata and loadeddata/canplay events.
+
+Change the title and supporting copy from dark text to light text as progress moves into the later portion of the video. Use a green emphasis on “Clean energy”, a dynamic text shadow during the light phase, and a bottom progress cue with sun icon, horizontal progress bar, and moon icon. Trigger an occasional solar glint after about 1100ms and then at random 4000–7000ms intervals at one of seven predefined points; the glint lasts about 1600ms.
+
+The global Nav listens to a custom hero-progress event. While the hero is not scrolled, change the nav to a translucent black/white mode after progress passes about 0.35, make the logo and links readable against the dark video, and show the day/night state. When scrolled past 40px, use a near-white translucent background, backdrop blur, border, and dark text.
+
+Solutions
+
+Use a light-gray section with eyebrow “Solutions”, heading “Two paths. One clean future.”, and supporting copy explaining that Sunfield designs for single homes through property portfolios. Show two responsive image cards:
+- Residential — “Solar for the home you live in.” — custom systems for single-family and multi-family homes — button label “Explore residential” to /residential.
+- Commercial — “Solar for the places you build.” — scalable systems for offices, retail, hospitality, warehousing, and mixed-use — button label “Explore commercial” to /commercial.
+
+Use 4/3 image cards with rounded corners, subtle scale around 1.02 over approximately 700ms, green link hover, and keyboard focus rings. Before navigation save the current home scrollY and the solutions section to sessionStorage.
+
+Benefits
+
+Use a white section with heading “Why the smart move is the sun.”. Show four numbered benefits with thin divider lines and a hover line that expands from zero width:
+1. Lower monthly energy costs. Offset the majority of the bill and lock in predictable rates.
+2. Independence from the grid. Generate, store, and use power with outage and peak-rate resilience.
+3. Long-term property value. Solar properties can resell at a measurable premium.
+4. Cleaner air, quieter impact. Lifetime systems offset CO2 and quietly work in the background.
+
+Use an IntersectionObserver at roughly 0.15 threshold. On entry, each item should animate from opacity 0 and translateY 12px to visible, with a 90ms stagger and approximately 700ms transition. A small hover translate and top-line reveal may be used.
+
+Savings and ROI
+
+Create a light-gray section with eyebrow “Savings & ROI” and heading “The math is quiet. The savings are not.”. Show a large count-up anchor value of $1,840 labeled “Estimated annual savings” and qualifying text for an average residential customer with a 6.4 kW system. Below it show:
+- 7.2 yr — Estimated payback period
+- 89% — Electricity offset from solar
+- $46k — Projected 25-year lifetime savings
+
+Start the count-up when the section reaches approximately 0.35 IntersectionObserver threshold. Use a 1600ms ease-out cubic count-up and preserve the source numerical framing as marketing content, not a verified estimate calculator.
+
+Installation / Process
+
+Create a white section with eyebrow “Installation”, heading “Four steps. Nothing more.”, and calm process copy. Pair text with a rounded vertical installation detail image and the caption “Typical installation — 1–3 days” plus “Design → Permit / Install → Activate”.
+
+Show four top-bordered steps in desktop columns and a stacked mobile layout:
+1. Site Assessment — evaluate roof, shading, orientation, and energy use.
+2. System Design — custom layout, production estimates, financing model, permitting.
+3. Installation — certified crews, usually one to three days, minimal disruption.
+4. Activation — interconnection, monitoring, and walk-through.
+
+Projects
+
+Use a light-gray section with eyebrow “Projects”, heading “Real roofs. Real numbers.”, and supporting copy about homes, offices, and mixed-use properties. Preserve the asymmetric source composition:
+- large left Canyon Residence image and label “Residential · 12.8 kW”;
+- large yellow interactive accent card saying “Built around real places.” and “Residential · Commercial · Hospitality”, linking to /applications;
+- right column North Loop Offices, “Commercial · 94 kW”;
+- right column Linden Home, “Residential · 8.4 kW”;
+- full-width Harbor View Resort, “Hospitality · 312 kW”.
+
+On the yellow accent card, calculate pointer-relative perspective rotateX and rotateY, add a small translateY -4px and dynamic shadow while the pointer moves, and reset transform/shadow on pointerleave. Skip pointer tilt on hover-none devices. Use focus-visible ring and active scale feedback.
+
+Financing
+
+Create a white section with eyebrow “Financing”, heading “Three ways in. All designed to save.”, and a yellow callout “$0 down options available”. Show three bordered rounded cards:
+- Cash Purchase — Maximum long-term return. Own the system outright and capture incentives.
+- Solar Loan — Fixed monthly payments, often lower than the utility bill. Full ownership.
+- Lease / PPA — No upfront cost. Pay for clean electricity below the grid rate.
+
+Each card contains a meta label, title, copy, and “See details” arrow. Add a three-column incentive note row for Federal Tax Credit, State & Utility Incentives, and Commercial Depreciation. Do not turn these cards into interactive financial calculators.
+
+Energy Impact
+
+Create a light-gray section with eyebrow “Energy Impact” and heading “A small change on the roof. A measurable change in the atmosphere.”. Use three count-up metrics:
+- 14.2 tons — Average CO2 avoided annually per residential system.
+- 18,900 kWh — Clean electricity generated each year by an average commercial installation.
+- 25 yrs — Backed system performance horizon, with monitoring included.
+
+Use IntersectionObserver threshold approximately 0.3. Start the count-ups with durations around 1000ms, 1100ms, and 900ms and delays 0ms, 120ms, and 240ms. Reveal metric blocks from opacity 0 and translateY 12px with approximately 700ms transitions. Add the statement “Over 42,000 systems installed. Every one of them still generating quietly, every sunny day.” and a three-column badge row: A+ BBB rating, NABCEP Certified installers, 4.9 Customer rating.
+
+Get Your Solar Estimate
+
+Create a white section with eyebrow “Get Your Solar Estimate”, heading “See what solar could save you.”, and text saying the no-pressure custom estimate takes under 60 seconds and a specialist follows up within one business day.
+
+Build a two-step form:
+
+Step 1 — Your property:
+- Property Type: required select with Residential — single family, Residential — multi-family, Commercial, Agricultural / farm.
+- Property Location / ZIP: required text, maxLength 20.
+- Average Monthly Electricity Bill: required number, minimum 0.
+- Property Ownership: required select with I own the property, I rent, Business owner / operator, Property manager.
+- Interested in battery storage?: required radio cards Yes — include a battery, Maybe — show me the numbers, No — solar only.
+- Continue button validates these fields natively, changes the progress line to step 2, and scrolls the estimate section into view after approximately 40ms.
+
+Step 2 — Contact:
+- required Name;
+- required Email;
+- required Phone;
+- required Financing Preference with Cash purchase, Solar loan, Lease / PPA, Not sure — show me options;
+- optional Utility Bill Upload accepting PDF/JPG/JPEG/PNG and displaying the selected filename.
+- Back button returns to Step 1.
+- Submit button says “Get My Estimate” or “Submitting…” while loading.
+
+Include hidden website_alt honeypot. On submit, URL-encode form fields and POST to the external Readdy endpoint only as a placeholder. Remove website_alt. If a file is selected, remove the file object and append utilityBill with the string “Uncollectable”; do not claim real file upload. Handle success, error, network error, spam text, form reset, step reset, and success message “Thanks — your estimate request is in. A specialist will reach out within one business day.”
+
+Residential Page
+
+Use a sticky subpage header with Back and “Residential Solar”. On back, return to / and restore the saved Home scrollY or fall back to #solutions. On estimate CTA, save #estimate and navigate home. Build:
+1. intro split with “Solar for your home.” and “A complete residential energy solution combining solar, storage, and smarter energy use.” plus CTA;
+2. white “The system” section titled “One system. Three parts.” with Solar Panels, Battery Storage, Smart Energy;
+3. light-gray Outcome section titled “Made for everyday energy.” with Lower grid dependence, More predictable energy costs, Backup when you need it, plus residential image and CTA;
+4. shared Footer.
+
+Commercial Page
+
+Use the same subpage shell and return behavior, with label “Commercial Solar”. Build:
+1. intro split with “Solar for your business.” and scalable energy copy plus “Request an Assessment”;
+2. white “The system” section titled “One system. Three priorities.” with Solar Generation, Energy Storage, Energy Management;
+3. light-gray Outcome section titled “Built to perform for business.” with Lower operating costs, More predictable energy spend, Greater energy resilience, image and CTA;
+4. shared Footer.
+
+Applications Page
+
+Use a sticky subpage header with Back and “Applications”. Back returns to / and restores projects. Intro title: “Built around real places.” with copy for homes, businesses, and destinations. Show three static 3-column cards:
+- Residential — Solar for the home you live in.
+- Commercial — Energy designed around how business operates.
+- Hospitality — Clean energy integrated into places people stay and gather.
+
+Use portrait-oriented image crops on desktop, 4/3 on mobile, lazy loading, and subtle scale/brightness hover. The cards are display-only in the source; do not create unverified routes from them.
+
+Footer
+
+Create a light blue-gray footer with Sunfield mark and description “Clean, reliable solar infrastructure for the homes and businesses building a cleaner future.”. Include columns Solutions, Company, Support, and Legal. Preserve the current link boundary: only Residential is an internal route; most other footer links use # placeholders. Add copyright “© 2026 Sunfield Energy Inc. All rights reserved.” and Instagram, LinkedIn, YouTube placeholder icons.
+
+Responsive Design
+
+Use the container breakpoints and padding from the design system. On mobile stack split layouts, make Hero actions vertical, reduce title sizes, keep 2-column or 1-column grids as specified, make the mobile Nav a full-height white panel below the 64px header, and keep Estimate controls full width. Preserve 560vh hero behavior but provide a poster/static fallback if video performance is unacceptable.
+
+Motion and Accessibility
+
+Implement hero-progress custom event, video chase/seek behavior, solar glint timing, nav contrast changes, smooth anchor scrolling, IntersectionObserver reveals, count-ups, project pointer tilt, PageFade, focus-visible rings, aria labels, native form validation, and reduced-motion rules. Do not hide key content behind hover. Document that Native View Transition CSS exists but is not explicitly activated by the source App.
+
+Technical Requirements
+
+Use React, TypeScript, React Router, Tailwind CSS, semantic HTML, typed local state, sessionStorage only for Home return state, and external form POST only as a placeholder. Do not add a database, CRM, live calculator, uploaded utility bill storage, account system, payment system, or authenticated portal. Keep remote images and video as explicit assets.
+
+Quality Assurance
+
+Verify all four routes and the not-found state, Home section order, 560vh hero, video fallback, text contrast phases, hero-progress event, anchor hashes, subpage return restoration, mobile menu scroll lock, count-up start thresholds, benefit stagger, savings values, project tilt reset, estimate step validation, file placeholder behavior, form success/error, and Footer placeholder links. Check narrow mobile, tablet, desktop, and wide desktop layouts. Check prefers-reduced-motion.
+
+Explicit Constraints and Avoidances
+
+Do not redesign Sunfield into a generic climate dashboard. Do not add unsupported live savings calculations, real certification claims beyond the source copy, real utility-bill upload, backend CRM, payment flow, or applications detail pages. Preserve the source limitations and mark remote assets and external endpoints as unverified.
+
+============================================================
+3. 分模块 Prompt（15 段）
+============================================================
+
+S01 — Sunfield Global Navigation
+
+Create a fixed Sunfield navigation bar with a green sun icon, the wordmark “Sunfield”, desktop anchor buttons Solutions, Savings, Process, Projects, and Financing, and a green “Get Estimate” CTA that scrolls to #estimate. At the top of the home hero use a transparent day mode with dark text; when the hero progress indicates dusk, use readable white text and a subtle black translucent background; after scrollY exceeds 40, use a near-white translucent background with backdrop blur, thin border, and dark text. On mobile show a hamburger icon and render a fixed white menu panel below the 64px header with all anchors and a full-width “Get Estimate” button. Lock body scroll while the mobile menu is open.
+
+S02 — Scroll-Scrub Solar Hero
+
+Build a 560vh Sunfield hero with a sticky 100vh stage and a muted solar-community timelapse video using a poster fallback. Center the headline “Clean energy for the way communities live.”, supporting copy “Solar solutions for homes and businesses — bright by day, reliable by night.”, a green “Get My Estimate” button that scrolls to #estimate, and an “Explore Solutions” action that scrolls to #solutions. Map scroll progress to video time with requestAnimationFrame: move forward using dynamic playbackRate between about 1 and 12, move backward with small currentTime seeks no larger than about 0.5 seconds per frame, pause when within about 0.05 seconds of target, and keep chasing after scrolling stops. Change text from dark to light during the later video phase, highlight “Clean energy” in green, show a sun-to-moon progress cue, and trigger a subtle 1600ms solar glint at randomized predefined points every 4–7 seconds after an initial delay.
+
+S03 — Solutions
+
+Create a light-gray Sunfield Solutions section with eyebrow “Solutions”, heading “Two paths. One clean future.”, and copy explaining systems for individual homes and property portfolios. Show two rounded 4:3 cards: Residential — “Solar for the home you live in.” with custom roof/usage/bill copy and “Explore residential” to /residential; Commercial — “Solar for the places you build.” with scalable office, retail, hospitality, warehouse, and mixed-use copy and “Explore commercial” to /commercial. On click, save the current home scroll position and the solutions section in sessionStorage before navigation. Use subtle 1.02 image scale over about 700ms and visible keyboard focus rings.
+
+S04 — Benefits
+
+Create a white Sunfield benefits section titled “Why the smart move is the sun.”. Display four numbered items with thin top dividers: “Lower monthly energy costs.”, “Independence from the grid.”, “Long-term property value.”, and “Cleaner air, quieter impact.”, each with the source explanatory copy. Observe the grid with an IntersectionObserver around 0.15 threshold. On first entry reveal items from opacity 0 and translateY 12px with approximately 90ms stagger and 700ms transitions. Add a subtle hover lift and a top line that expands from zero width.
+
+S05 — Savings and ROI
+
+Build a light-gray Sunfield Savings & ROI section with the heading “The math is quiet. The savings are not.”. Show a large count-up “$1,840” labeled “Estimated annual savings” with the source qualification for an average residential 6.4 kW system. Below it show “7.2 yr” estimated payback period, “89%” electricity offset from solar, and “$46k” projected 25-year lifetime savings. Start the numbers when the section enters around 35% visibility, use an approximately 1600ms cubic ease-out, and present the values as marketing content rather than a live calculator.
+
+S06 — Installation Process
+
+Create a white Sunfield Installation section with eyebrow “Installation”, title “Four steps. Nothing more.”, calm process copy, and a rounded installation detail image. Add the caption “Typical installation — 1–3 days” and “Design → Permit / Install → Activate”. Below, show four top-bordered steps: Site Assessment, System Design, Installation, and Activation, each with the source explanatory copy. Use four columns on desktop and a stacked mobile layout with simple arrow separators only on desktop.
+
+S07 — Projects Portfolio
+
+Build a light-gray Sunfield Projects section with eyebrow “Projects”, heading “Real roofs. Real numbers.”, and a quiet portfolio description. Use an asymmetric layout: a large Canyon Residence image labeled “Residential · 12.8 kW”, a right column with North Loop Offices “Commercial · 94 kW” and Linden Home “Residential · 8.4 kW”, and a full-width Harbor View Resort image labeled “Hospitality · 312 kW”. Fill the large left-column gap with a solar-yellow button card saying “Built around real places.” and “Residential · Commercial · Hospitality”, linking to /applications. On pointer movement over the yellow card, calculate a restrained perspective rotateX/rotateY based on pointer position, translate it upward about 4px, and add a directional soft shadow; reset on pointerleave and skip tilt when hover is unavailable.
+
+S08 — Financing
+
+Create a white Sunfield Financing section with eyebrow “Financing”, heading “Three ways in. All designed to save.”, and a yellow callout “$0 down options available”. Show three rounded bordered cards: Cash Purchase with “Best lifetime savings”, Solar Loan with “Predictable monthly cost”, and Lease / PPA with “Zero-down entry”. Each card needs source copy and a “See details” arrow. Below, add a three-column notes row for Federal Tax Credit, State & Utility Incentives, and Commercial Depreciation. Use hover border, background, small lift, and arrow movement, but do not create a financial calculator or real financing interaction.
+
+S09 — Energy Impact
+
+Create a light-gray Sunfield Energy Impact section titled “A small change on the roof. A measurable change in the atmosphere.”. Show count-up metrics “14.2 tons”, “18,900 kWh”, and “25 yrs” with their source descriptions. Start them when the section reaches about 30% visibility, using durations near 1000ms, 1100ms, and 900ms with delays 0ms, 120ms, and 240ms. Reveal metric blocks with a 700ms opacity and translateY transition. Add “Over 42,000 systems installed. Every one of them still generating quietly, every sunny day.” and a three-cell row for A+ BBB rating, NABCEP Certified installers, and 4.9 Customer rating.
+
+S10 — Estimate Form
+
+Build a two-step Sunfield estimate form headed “See what solar could save you.”. Step 1 is “Your property” and requires Property Type, Property Location / ZIP, Average Monthly Electricity Bill, Property Ownership, and one Battery Interest radio choice. Step 2 is “Contact” and requires Name, Email, Phone, and Financing Preference, with an optional Utility Bill Upload accepting PDF, JPG, JPEG, or PNG. Use 52px rounded controls, a green progress line, Continue and Back controls, and a hidden website_alt honeypot. Validate only the active step before continuing. On submit, URL-encode the fields and POST to an external integration placeholder; if a file exists, send the string “Uncollectable” rather than uploading the file. Show loading, error, and “Thanks — your estimate request is in. A specialist will reach out within one business day.” success states. Never claim live savings calculation or stored file upload.
+
+S11 — Residential Page
+
+Create a responsive Sunfield Residential Solar page with a sticky subpage header showing Back and “Residential Solar”. The main intro says “Solar for your home.” with copy about solar, storage, and smarter energy use plus a “Get My Estimate” CTA. Follow with a white section “One system. Three parts.” containing Solar Panels, Battery Storage, and Smart Energy. Add a light-gray Outcome section titled “Made for everyday energy.” with Lower grid dependence, More predictable energy costs, Backup when you need it, a residential image, and another estimate CTA. On Back, navigate to / and restore the saved Home scroll position or fall back to #solutions; estimate CTAs return to #estimate.
+
+S12 — Commercial Page
+
+Create a responsive Sunfield Commercial Solar page with a sticky header labeled “Commercial Solar”, a Back button, and an intro titled “Solar for your business.”. Explain scalable systems that reduce operating costs, strengthen resilience, and improve property performance. Add “Request an Assessment” actions. Follow with “One system. Three priorities.” containing Solar Generation, Energy Storage, and Energy Management. Add an Outcome section titled “Built to perform for business.” with Lower operating costs, More predictable energy spend, Greater energy resilience, and a commercial property image. Back returns to the saved Home position or #solutions; assessment returns to #estimate.
+
+S13 — Applications
+
+Create a Sunfield Applications page with a sticky header labeled “Applications”, a Back button, and intro title “Built around real places.” with copy about homes, businesses, and destinations. Show three display-only cards: Residential — “Solar for the home you live in.”, Commercial — “Energy designed around how business operates.”, and Hospitality — “Clean energy integrated into places people stay and gather.”. Use a 3-column desktop layout with portrait image crops, a stacked mobile layout, rounded corners, lazy images, and a restrained 1.01 scale plus brightness hover. Do not invent detail routes for these cards.
+
+S14 — Footer
+
+Create a pale blue-gray Sunfield footer with a green sun icon, the wordmark “Sunfield”, and the description “Clean, reliable solar infrastructure for the homes and businesses building a cleaner future.”. Add columns named Solutions, Company, Support, and Legal. Include Residential as an internal /residential route, and preserve placeholder links for Commercial, Multi-family, Storage & Battery, About, Projects, Careers, Press, Contact, FAQ, Warranty, Monitoring, Privacy, Terms, Accessibility, and Cookies unless real routes are explicitly added. Finish with “© 2026 Sunfield Energy Inc. All rights reserved.” and Instagram, LinkedIn, and YouTube placeholder icons.
+
+S15 — Route Fade and Home Return
+
+Implement a lightweight subpage fade that scrolls to the top on mount and fades opacity from zero to one over about 200ms using two requestAnimationFrame calls; immediately show content when prefers-reduced-motion is active. Before navigating from Home to Residential, Commercial, or Applications, store pathname “/”, current scrollY, target section, and a timestamp in sessionStorage. On Home mount consume and clear that record: restore the exact scrollY when it is positive, otherwise scroll immediately to the stored section. For direct section navigation on Home, smooth-scroll to the section and replace the URL with /#section without changing routes.

@@ -1,0 +1,361 @@
+.overlay {
+  position: fixed;
+  z-index: 500;
+  inset: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #1d1d1f;
+  font-family: var(--font-apple), 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  overscroll-behavior: contain;
+  /* Restore the system cursor so the close button and failure-state actions
+     stay discoverable even while the global custom cursor (SmoothFollower)
+     is hidden for the demo. The body keeps `md:cursor-none` for the rest of
+     the portfolio. */
+  cursor: auto;
+}
+
+.light {
+  background: #fff;
+  color: #1d1d1f;
+}
+
+.dark {
+  background: #0b0b0d;
+  color: #f5f5f7;
+}
+
+/* The only persistent portfolio control: it floats above the full-screen demo. */
+.toolbar {
+  position: fixed;
+  z-index: 4;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.toolbarLabel {
+  display: none;
+}
+
+.closeButton,
+.desktopHeader a,
+.newWindowLink,
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: currentColor;
+  background: transparent;
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: opacity 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.closeButton {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 44px;
+  min-height: 38px;
+  padding: 0 12px;
+  overflow: hidden;
+  border-color: rgba(29, 29, 31, 0.2);
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 22px rgba(29, 29, 31, 0.12);
+  backdrop-filter: blur(12px) saturate(0.9);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: width 240ms cubic-bezier(.22, .78, .18, 1), opacity 180ms ease, background-color 180ms ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  width: 126px;
+  opacity: 1;
+  transform: none;
+}
+
+.closeGlyph {
+  flex: 0 0 18px;
+  width: 18px;
+  font-size: 15px;
+  line-height: 1;
+  text-align: center;
+}
+
+.closeText {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 160ms ease 30ms, transform 200ms ease;
+}
+
+.closeButton:hover .closeText,
+.closeButton:focus-visible .closeText {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dark .closeButton {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(20, 20, 23, 0.82);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+}
+
+.desktopHeader a:hover,
+.newWindowLink:hover,
+.primaryButton:hover,
+.secondaryButton:hover {
+  opacity: 0.7;
+  transform: translateY(-1px);
+}
+
+/* Desktop demo is the viewport itself. There is no card, shell, blur backdrop, or
+   second frame around the supplied demo page. */
+.desktopShell {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.desktopHeader {
+  display: none;
+}
+
+.iframeWrap {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  background: #fff;
+}
+
+.dark .iframeWrap {
+  background: #0b0b0d;
+}
+
+.viewportLoading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.dark .viewportLoading {
+  background: #0b0b0d;
+}
+
+.iframe {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  background: transparent;
+  transition: opacity 260ms ease;
+}
+
+.iframe.ready {
+  opacity: 1;
+}
+
+.loadingState,
+.errorState {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 11px;
+  padding: 24px;
+  color: rgba(29, 29, 31, 0.62);
+  text-align: center;
+}
+
+.dark .loadingState,
+.dark .errorState {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.loadingState strong,
+.errorState strong {
+  color: currentColor;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.loadingState span:not(.loader),
+.errorState span {
+  font-size: 11px;
+  opacity: 0.72;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 1px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+}
+
+.errorActions,
+.mobileActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 34px;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.primaryButton {
+  border-color: #a13c3b;
+  color: #fff;
+  background: #a13c3b;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.dark .secondaryButton {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile keeps the previously requested lightweight preview instead of loading the
+   unfinished mobile demo. It still uses the same floating return control above. */
+.mobilePanel {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: min(88vw, 390px);
+  display: grid;
+  justify-items: center;
+  padding: 24px 20px 26px;
+  border: 1px solid rgba(29, 29, 31, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 24px 70px rgba(29, 29, 31, 0.16);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.dark .mobilePanel {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(20, 20, 23, 0.96);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+}
+
+.phoneFrame {
+  position: relative;
+  width: min(74vw, 290px);
+  aspect-ratio: 9 / 17;
+  overflow: hidden;
+  border: 7px solid #141416;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+}
+
+.phoneNotch {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  width: 42%;
+  height: 18px;
+  border-radius: 0 0 12px 12px;
+  background: #141416;
+  transform: translateX(-50%);
+}
+
+.mobilePreview {
+  object-fit: cover;
+  object-position: 50% 20%;
+  filter: saturate(0.9);
+}
+
+.mobilePanel h2 {
+  margin: 22px 0 0;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.mobilePanel p {
+  max-width: 270px;
+  margin: 10px 0 0;
+  color: rgba(29, 29, 31, 0.62);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dark .mobilePanel p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.newWindowLink {
+  margin-top: 16px;
+  padding: 0 2px 4px;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  font-size: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+  .toolbar {
+    top: 50%;
+    right: 0;
+  }
+
+  .closeButton {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 9px;
+  }
+
+  .mobilePanel {
+    padding-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iframe,
+  .closeButton,
+  .desktopHeader a,
+  .newWindowLink,
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+
+  .loader {
+    animation: none;
+  }
+}

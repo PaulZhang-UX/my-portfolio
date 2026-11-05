@@ -1,0 +1,523 @@
+Modern AI Automation Consultancy — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/44d49722-2ffc-498f-8f51-3832d39c7bd3/14644863
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a frontend design system for a B2B consultancy website named “methodic”, focused on AI automation and implementation for growing businesses.
+
+Use an editorial operations-system visual language: an almost-white paper canvas, cool gray structural rules, a restrained Signal Blue accent, small uppercase monospace labels, light-weight IBM Plex Sans headlines, and IBM Plex Mono metadata. The page should feel precise, calm, technical, and human-controlled rather than like a generic SaaS dashboard.
+
+Use these source-aligned colors:
+- White paper background: oklch(1 0 0)
+- Soft cool-gray surfaces: background neutral values around oklch(0.966 0 0) and oklch(0.912 0 0)
+- Dark text: oklch(0.2 0 0)
+- Muted text: oklch(0.4 0 0) to oklch(0.53 0 0)
+- Primary Signal Blue: #0F62FE, with lighter blue tints for rules and surfaces
+- Verified state green: #168B61
+- Technical diagram grays: #A0ABBB, #8E9AAC, and #D0D8E3
+
+Use IBM Plex Sans for headings and body copy. Use IBM Plex Mono for section indices, system labels, event traces, status readouts, and metadata. Headlines are light, compact, and slightly tight in tracking. Labels are uppercase with generous letter spacing.
+
+Build layouts around a centered 1440px frame with responsive horizontal padding of approximately 20px, 40px, and 80px. Add two persistent vertical rails and full-width chapter rules. Use generous whitespace, border-separated rows, square controls, and rectangular CTAs. Avoid rounded cards, heavy shadows, decorative stock imagery, and excessive gradients.
+
+Visualize workflow concepts with thin SVG diagrams, procedural line drawings, state dots, path traces, and restrained Canvas motion. Blue indicates active routing or brand emphasis. Green indicates verified or completed states. Every animation must have a readable resting state and a prefers-reduced-motion fallback.
+
+The responsive system must preserve the information hierarchy. Stack editorial and interactive system columns below tablet widths, convert wide diagrams into readable mobile maps or vertical node lists, and replace desktop navigation with a compact menu.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+You are rebuilding a frontend-only website called “methodic” for an AI automation and implementation consultancy serving growing businesses.
+
+The goal is to reproduce the supplied website’s information architecture, visual system, layout rhythm, interaction states, and motion behavior. Do not redesign the product, add a backend database, or introduce a different visual direction. Treat the instructions below as the source of truth for the reconstruction.
+
+## Project Definition
+
+Build a responsive React website with client-side routing and static/mock content. The site explains how methodic redesigns operational workflows and connects AI to the systems a team already uses.
+
+Use these routes:
+- `/` — the full Home page.
+- `/services`, `/approach`, and `/outcomes` — render the Home page and position the viewport at the matching Home section. Use plain paths as the navigation contract; do not depend on hash-only navigation.
+- `/contact` — the Contact page with a consultation form.
+- `/services/customer-operations` — the Customer Operations detail page.
+- `/services/finance-operations` — the Finance Operations detail page.
+- `/services/sales-operations` — the Sales Operations detail page.
+- `/services/internal-workflows` — the Internal Workflows detail page.
+- Any unknown route — a simple 404 page.
+
+The site is frontend-only. Use static data objects for page copy. Keep the form receiver configurable and do not create a database or invented server-side workflow.
+
+## Global Visual Direction
+
+Create an editorial operations-system aesthetic:
+- Almost-white paper background with cool neutral gray surfaces.
+- Signal Blue as the primary brand accent and CTA color.
+- Thin gray and pale-blue structural rules.
+- Light, precise typography with large quiet headlines.
+- Uppercase monospace labels, numbered chapters, status dots, workflow traces, and technical diagram annotations.
+- A calm, controlled, human-in-the-loop feeling.
+
+Do not use stock photography, image-heavy hero artwork, rounded SaaS cards, large shadows, glossy gradients, or a generic dashboard appearance. The main visual assets are procedural Canvas and SVG diagrams, fine rules, framed sections, and restrained state changes.
+
+## Design System
+
+Use IBM Plex Sans for headings and body copy. Use IBM Plex Mono for labels, section indices, system metadata, event readouts, and status values. Headings are mostly weight 300 with compact line-height around 1.06–1.1. Body copy is light and relaxed around 1.5–1.6. Labels are uppercase with letter spacing around 0.1–0.18em.
+
+Use these source-aligned colors:
+- Paper background: white, source token `oklch(1 0 0)`.
+- Light neutral surfaces: source background values around `oklch(0.966 0 0)` and `oklch(0.912 0 0)`.
+- Primary text: source foreground value around `oklch(0.2 0 0)`.
+- Muted text: source foreground values around `oklch(0.4 0 0)` to `oklch(0.53 0 0)`.
+- Signal Blue: `#0F62FE`, with pale blue tints for backgrounds and rules.
+- Verified green: `#168B61`.
+- Diagram gray strokes: `#A0ABBB`, `#8E9AAC`, and `#D0D8E3`.
+
+Build the page inside a centered outer frame with a maximum width of about 1440px and responsive horizontal padding of approximately 20px, 40px, and 80px. Add two permanent vertical rails aligned to this frame. Each major chapter has a top and bottom full-width rule with empty breathing space between chapters.
+
+Use square or minimally softened controls, border-separated rows, thin underlines, and rectangular buttons. A primary button is filled Signal Blue with white text and a right arrow. A light button is white with blue text. Hover states are quiet but clearly visible.
+
+## Website Information Architecture
+
+The global Header is positioned at the top of the page frame. On desktop, show the `methodic /` wordmark, links for Services, Approach, and Outcomes, and a “Discuss a Workflow →” CTA. On mobile, replace the desktop navigation with a menu button and a vertical menu panel containing the same section links and CTA.
+
+Internal Home section navigation must behave as follows: when already on a Home path, smoothly scroll to the target section; otherwise navigate to the plain path and let the Home page align to the target after navigation. Preserve the page’s manual scroll restoration behavior.
+
+## Page-by-Page Structure
+
+### Home page
+
+Render the following sections in exactly this order:
+
+1. Hero.
+2. Services with an embedded Approach visual area.
+3. Outcomes.
+4. Selected Work.
+5. Working Together.
+6. Final CTA and Footer.
+
+### Contact page
+
+Render one framed Contact chapter with a two-column desktop layout: explanatory content on the left and the consultation form on the right. Stack the columns on small screens, then render the shared footer.
+
+### Customer Operations page
+
+Render these chapters in order: Introduction, Operational Friction, Request Routing System, What We Implement, Consultation, Footer.
+
+### Finance, Sales, and Internal Workflows pages
+
+Use one shared detail-page template with these chapters in order: Introduction, Operational Friction, Interactive System, What We Implement, Consultation, Footer. Change only the page-specific copy, system title, status labels, and interactive illustration.
+
+## Home Section Requirements
+
+### 1. Hero
+
+Purpose: establish the consultancy’s promise and visual identity.
+
+Content:
+- Small monospace label with a short horizontal line and the text “AI Automation & Implementation”.
+- Large three-line headline: “Make the work / behind your business / work better.”
+- Supporting text: “We redesign operational workflows and implement AI into the systems your team already uses.”
+
+Layout:
+- A framed, nearly one-screen section with the header occupying the top gap.
+- Place the text toward the left side inside the shared frame.
+- Keep the content vertically balanced with generous empty space.
+
+Visual behavior:
+- Draw a large diagonal three-band liquid ribbon with a transparent Canvas layer behind the text.
+- Use blue, lavender-blue, and pale-blue bands on the white canvas.
+- The ribbon must never intercept clicks.
+
+Motion behavior:
+- Reveal the headline one character at a time after a short initial delay of about 0.5 seconds, using approximately 45ms per character.
+- Show a small caret during the typewriter sequence, with a step-like blink around 900ms and a fade-out after the text completes.
+- Continuously animate the Canvas ribbon while the section is visible.
+- Feed mouse movement into a localized liquid wake so the lines bend and drift after the pointer passes through the ribbon region.
+- Pause or reset the Canvas animation when the document is hidden, the section is offscreen, or reduced motion is requested.
+
+Relationship: this is the opening chapter and the first permanent framed screen. The next chapter starts after the hero’s bottom rule and breathing gap.
+
+### 2. Services and embedded Approach
+
+Purpose: present the four service areas and explain the three-step method.
+
+Content:
+- Section label `02 / Automation + Implementation`.
+- Heading: “What we automate — and how we make it work.”
+- Four rows: Customer operations, Finance operations, Sales operations, and Internal workflows.
+- Each row has an index, title, description, and right arrow.
+- Below the list, show three method cards: Discover, Implement, Improve.
+
+Layout:
+- Begin with the label and heading inside the shared inset.
+- Place the service list as a full-width border-separated stack.
+- On larger screens, each row uses an index column, title column, description column, and arrow column.
+- Put the Approach visual cards underneath the list, with three columns on desktop and stacked rows on mobile.
+
+Visual behavior:
+- Rows have a pale blue resting tint only for the source-highlighted entries and a blue left rule.
+- An active hover row receives a dark Signal Blue fill, white text, and a blue-to-white state change.
+- Use fine borders instead of rounded cards.
+- Each method card contains a small procedural technical figure, an index, a short title, and a short description.
+
+Interaction:
+- Only one service row can be active at a time.
+- Desktop mouse enter activates the row; pointer leave clears it.
+- Clicking a service row navigates to its detail page.
+- Method figures respond to hover only on fine pointers. Discover lifts and separates a tray stack, Implement moves documents into a file sleeve, and Improve expands paired performance columns.
+- Respect reduced motion by showing the settled figure without the transition.
+
+Relationship: this is the first content chapter after the Hero. The embedded Approach area is part of this chapter and is the target of the `/approach` plain route.
+
+### 3. Outcomes
+
+Purpose: show four operational results as live but restrained system readouts.
+
+Content:
+- Section label `03 / Outcomes`.
+- Heading: “What changes when the workflow works better.”
+- Four outcome cells: Less manual work, Faster operations, Fewer errors, Better visibility.
+
+Layout:
+- Use a framed two-by-two grid on larger screens.
+- Each cell has a title and a compact instrument-panel simulation beneath it.
+- Maintain the section’s full-height visual rhythm, but allow it to grow on short viewports and narrow screens.
+
+Panel behavior:
+- Less manual work: cycle through Request received, Classify information, Route to system, and Update CRM, moving each row from PENDING to PROCESSING to DONE and growing an automation progress bar.
+- Faster operations: show timestamped terminal steps that advance from PENDING to PROCESSING to COMPLETE, with a processing cursor that cycles through one to three dots.
+- Fewer errors: show a validation progress bar, a percentage readout, and four checks moving from WAITING to CHECKING to their final PASS, VERIFIED, or CONFIRMED state.
+- Better visibility: reveal four monitoring rows in a staggered sequence, highlight one active row at a time, and switch the footer state between OBSERVING and REFRESHING.
+
+Motion:
+- Use independent loops rather than one shared animation. The source cycles are approximately 7.2s, 6.4s, 7.6s, and 6.8s.
+- Run loops only while visible and pause them when the document is hidden.
+- Under reduced motion, render the final completed/operational state.
+
+Relationship: this chapter follows Services and is the target of `/outcomes`.
+
+### 4. Selected Work
+
+Purpose: demonstrate how a manual customer-operations workflow becomes a connected system.
+
+Content:
+- Section label `04 / Selected Work`.
+- Heading: “One workflow, rebuilt end to end.”
+- Supporting copy describing AI and human review working together.
+- Metadata: `CUSTOMER OPERATIONS / REPRESENTATIVE ENGAGEMENT`.
+- Workflow comparison with Current and Rebuilt tabs.
+- Outcome strip: `FROM / MANUAL COORDINATION`, `TO / ORCHESTRATED WORKFLOW`, `HUMAN REVIEW / PRESERVED`, `CRM / CONNECTED`.
+
+Layout:
+- Use a white embedded panel inside the framed chapter.
+- Put the title and Current/Rebuilt switch in a compact header.
+- Use a large SVG workflow map on desktop.
+- Use a vertical ordered node list on mobile.
+- Keep the outcome strip as a bottom band; convert it to a two-column grid on mobile.
+
+Interaction:
+- Default to Rebuilt.
+- Hovering a tab on a fine pointer previews that mode; focus and click also select it.
+- Re-render edges and nodes when switching modes.
+- Animate edge visibility with approximately 450ms easing.
+- Move small tokens along edges indefinitely: about 4.6s for Rebuilt and 6.4s for Current, with per-edge delays.
+- Respect reduced motion by removing token animation and immediately showing the selected state.
+
+Relationship: this chapter follows Outcomes and precedes the practical collaboration steps.
+
+### 5. Working Together
+
+Purpose: explain what happens after a visitor reaches out.
+
+Content:
+- Section label `05 / Working Together`.
+- Heading: “What happens after you reach out.”
+- Supporting paragraph about a practical starting point, clear scope, and a plan around the team’s workflow.
+- Three numbered rows: Share the friction, Define the opportunity, Plan the next step.
+
+Layout and interaction:
+- Use a top rule and border-separated rows.
+- On desktop, use index, title, and description columns.
+- On mobile, use index, title, and description stacked within each row.
+- Hovering a row changes its background tint and draws a blue vertical line from top to bottom over about 300ms.
+
+Relationship: this is content-driven rather than locked to one viewport height.
+
+### 6. Final CTA and Footer
+
+Purpose: end the Home page with a decisive conversion prompt.
+
+Content:
+- Section label `06 / Contact`.
+- Heading: “Bring us one workflow.”
+- Supporting copy about finding practical AI leverage without rebuilding everything.
+- Primary CTA: “Discuss a Workflow →”.
+- Footer wordmark, descriptor, copyright, section links, and optional email/LinkedIn links.
+
+Layout and behavior:
+- Use a Signal Blue panel inside the shared outer rails.
+- Put a white-tinted version of the diagonal ribbon behind the content.
+- Use white text and a white CTA button with blue text.
+- Use the same underline and arrow interaction language as the header.
+- The CTA routes to `/contact`.
+
+## Detail Page Requirements
+
+### Shared Introduction chapter
+
+Use a breadcrumb row with Home, Services, and the page name. Below it, use a wide left content column and a narrower right metadata definition list. Show section index `01`, a two-line light headline, descriptive copy, and a “Book a consultation” text link with an arrow. Metadata uses uppercase monospace labels and thin dividers.
+
+### Operational Friction chapter
+
+Show section index `02`, a page-specific heading, and three numbered border-separated rows. Each row contains a short problem title and explanation. On mouse hover, add a pale blue fill and a blue left rule; only one row is active at once.
+
+### Customer Operations system
+
+Use section index `03 / Request routing system`, heading “From request to resolution.”, and the note “Routine requests move forward automatically. Exceptions stay with people.”
+
+Build a split system panel with editorial copy on the left and an interactive request-routing diagram on the right. The diagram contains Intake, Classify, Routine/Records, and Exception/Review nodes connected by routes. Support three modes: Automated, Human review, and Reset. Hovering a route previews the corresponding state; clicking a control commits the state. Show a live header, a trace row, and moving SVG travel dots on the active route. The travel dots use a repeating path animation around 4.2s and should pause offscreen, when hidden, or under reduced motion.
+
+### Finance Operations system
+
+Use the shared system shell with the title “Matching records. Surfacing exceptions.” Build a procedural isometric diagram with source records, ledger entries, a comparison desk, a matched destination, and a review queue.
+
+The system cycles through Rest, Matching, Matched, and Review. Hovering the figure pauses autoplay. Buttons allow Matching, Matched, and Review previews; a manual selection holds for about 6 seconds before autoplay resumes. The readout must not report Matched or Review before the archive motion has actually arrived.
+
+### Sales Operations system
+
+Use the shared system shell with the title “From new inquiry to owned next step.” Build a procedural isometric diagram with inquiry papers, a qualification clipboard, and an open folder for the next owner.
+
+The system cycles through New, Qualified, Assigned, and Review. Hovering pauses autoplay. Buttons allow New, Qualified, Assigned, and Review previews; a manual selection holds for about 6 seconds before autoplay resumes. The readout follows the physical card position and must not get ahead of the moving sheet.
+
+### Internal Workflows system
+
+Use the shared system shell with the title “Every request has a clear next step.” Build a procedural human approval gate with a request stack, a review/signature desk, a pen, and an approved archive folder.
+
+Start in Pending. Do not autoplay and do not create a hover approval path. Provide Review, Approve, and Changes controls. Approval is reachable only through the explicit Approve action. The sheet must move to the review desk before signing, then continue to the archive. If returning from the archive, stop at the review desk before moving left. Update the trace only after the visual state is reached.
+
+### What We Implement chapter
+
+Use section index `04`, a page-specific heading, and a three-column desktop grid of numbered implementation cards. Each card has a top index line, a short title, and an explanatory paragraph. On mobile, stack the cards.
+
+### Consultation chapter
+
+Use a two-column layout with a pale blue content panel on the left and a large blue CTA block on the right. Show section index `05`, a page-specific title and paragraph, and a “Discuss a Workflow →” link to `/contact`.
+
+## Contact Page Requirements
+
+Use a framed two-column chapter. Left side: section index `01 / Contact`, title “Bring us one workflow.”, explanatory copy, and two metadata rows: Reply / Within 2 business days; Format / 30-min workflow review. Right side: the consultation form.
+
+The form contains required Name, Work email, Company, and Workflow fields; optional Systems involved and What would better look like fields; character counters capped at 500 for the two text areas; inline validation; a loading state; an error message; and a success state with a “Send another workflow” reset action. Preserve the honeypot behavior and keep the submission endpoint configurable. Do not assume a database.
+
+## Interaction and Motion Rules
+
+Implement the following global behavior:
+- Page fade-in around 320ms ease-out on route changes, with Home section routes sharing one fade key.
+- Chapter top rules draw over about 1100ms with a strong ease-out; bottom rules start about 180ms later.
+- Outer rails drop from top to bottom over about 1800ms.
+- Plain text links grow a 1px underline over about 260ms.
+- CTA arrows nudge right by about 4px over roughly 220ms.
+- Global keyboard focus uses a visible blue 2px outline with a small offset.
+- Use a custom four-corner target cursor only on fine pointers. Hide the native cursor over target elements, lock the frame to target bounds, rotate slowly while idle, and disable it on touch/coarse pointers or reduced motion.
+
+Every animation must fail open: the resting UI must remain visible if IntersectionObserver, animation-timeline, Canvas, or a motion preference branch is unavailable.
+
+## Responsive Design
+
+Support desktop, tablet, and mobile layouts explicitly:
+- Desktop Header navigation becomes a mobile menu below the medium breakpoint.
+- Home content keeps the shared rails and expands vertically when a short viewport cannot fit a screen-locked chapter.
+- Service editorial/system columns stack below approximately 860px.
+- Service readouts and controls stack below approximately 560px.
+- Use a dedicated mobile routing map below 560px.
+- Use vertical workflow nodes instead of the desktop Selected Work map below 760px.
+- Stack the three Method figures below 767px and keep each illustration readable.
+- Preserve keyboard access, visible focus, semantic labels, and reduced-motion behavior at every size.
+
+## Technical Requirements
+
+- Use React with TypeScript and client-side routing.
+- Use componentized shared layout primitives for the frame, rules, header, section labels, links, and service template.
+- Use static data objects for page copy.
+- Use SVG and Canvas only where necessary for the supplied diagrams.
+- Clean up requestAnimationFrame loops, observers, event listeners, and generated SVG nodes on unmount.
+- Pause visible-loop animations when their panel is offscreen or the document is hidden.
+- Keep all external font, icon, and form endpoints configurable.
+- Do not add a database, authentication, CMS, payment flow, or unrelated third-party service.
+
+## Quality Assurance
+
+Verify:
+1. Every route resolves to the correct page.
+2. `/services`, `/approach`, and `/outcomes` reach the correct Home section after navigation.
+3. The Header, rails, chapter rules, section numbering, typography, and color hierarchy remain consistent.
+4. All major Section orders match the specification above.
+5. Each interactive system updates both the diagram and its textual readout without reporting a future state early.
+6. Reduced-motion mode shows a stable readable state and does not leave the page hidden.
+7. Mobile layouts do not clip essential labels, controls, or form errors.
+8. Canvas, SVG, observer, and timer resources are cleaned up when components unmount.
+9. The Contact form has complete required-field validation and clear loading, error, and success states.
+10. No stock images, unrequested redesigns, database schema, or unrelated integrations are introduced.
+
+## Explicit Constraints and Avoidances
+
+- Reproduce the existing visual direction; do not modernize it into a different design system.
+- Do not replace technical diagrams with generic icons or stock illustrations.
+- Do not collapse all motion into one generic “smooth animation”. Preserve triggers, states, sequence, and timing where specified.
+- Do not treat dormant files or unused package dependencies as active page requirements.
+- Do not claim that a procedural effect is pixel-perfect if the original algorithm is unavailable.
+- Do not modify the existing source project while analyzing or documenting it.
+
+============================================================
+3. 分模块 Prompt（16 段）
+============================================================
+
+GLOBAL-01 — Framed Shell and Header
+
+Create a reusable site frame for a precise B2B operations consultancy website. Use a centered content shell with a maximum width of about 1440px, responsive horizontal padding around 20px, 40px, and 80px, and two permanent thin vertical rails aligned to the shell. Each major chapter should have a top and bottom full-width rule with breathing space around the framed content.
+
+Add an absolute top Header with a minimal wordmark reading “methodic /”. On desktop, show text links for Services, Approach, and Outcomes plus a solid Signal Blue button labeled “Discuss a Workflow →”. On mobile, replace the desktop navigation with a square menu button that opens a bordered vertical panel containing the same links and CTA.
+
+Use white or near-white surfaces, pale blue-gray rules, IBM Plex Sans for readable text, and IBM Plex Mono for uppercase labels and metadata. Keep controls rectangular, compact, and quiet. Text links should grow a thin underline on hover. CTA arrows should nudge slightly to the right on hover. Preserve visible keyboard focus with a 2px blue outline.
+
+Internal section links must smoothly scroll when already on the Home page and navigate through plain paths when entering the Home page from another route. Keep the frame readable and visible if animation APIs are unavailable.
+
+HOME-01 — Hero with Liquid Ribbon
+
+Build a full-height editorial hero for an AI automation consultancy. Place a small uppercase monospace label with a short horizontal rule above a large light-weight three-line headline:
+
+“Make the work”
+“behind your business”
+“work better.”
+
+Add supporting copy explaining that the consultancy redesigns operational workflows and implements AI into the systems a team already uses. Keep the text aligned to the left side of a centered framed layout with generous vertical whitespace.
+
+Behind the content, render a large diagonal three-band liquid ribbon using a transparent Canvas layer. Use Signal Blue, lavender-blue, and pale blue translucent strokes. The ribbon should continuously drift while visible and respond to fine-pointer movement with a localized fluid wake. The Canvas must not intercept clicks. Reduce the number of strokes on small screens and lower opacity slightly.
+
+Reveal the headline character by character after a short 0.5 second delay, approximately 45 milliseconds per character. Show a small blinking caret during the sequence and hide it after completion. Pause or settle the ribbon and disable the typewriter motion when prefers-reduced-motion is enabled. The resting page must remain fully visible.
+
+HOME-02 — Services List and Approach Figures
+
+Create a Services chapter titled “What we automate — and how we make it work.” Use a small monospace section label `02 / Automation + Implementation` followed by a large light headline.
+
+Render four full-width border-separated service rows: Customer operations — “Triage, routing, follow-up and CRM updates.”; Finance operations — “Reconciliation, reporting and recurring data work.”; Sales operations — “Lead intake, qualification and handoffs.”; Internal workflows — “Approvals, knowledge retrieval and repetitive admin.” Each row must contain a blue index, a light title, a muted description, and a right arrow.
+
+On mouse enter, activate only the current row. Add a dark Signal Blue fill layer whose opacity animates in over about 200ms, switch the text to white, and nudge the arrow slightly right. Clear the active state when the pointer leaves the list. Make each row a navigable link to its service detail page.
+
+Below the list, add three technical method cards titled Discover, Implement, and Improve. Use thin procedural SVG line drawings rather than stock images: a separated diagnostic tray stack, documents moving into a file sleeve, and paired performance columns. Trigger each figure on hover with a controlled geometric transition and show its settled state under reduced motion. Stack the cards into readable mobile rows.
+
+HOME-03 — Instrumented Outcomes Grid
+
+Build an Outcomes chapter titled “What changes when the workflow works better.” Add a small `03 / OUTCOMES` label and a right-aligned live summary reading `SYSTEM / OUTCOMES`, `LIVE`, `Operational change`, and `Monitoring`.
+
+Use a clean two-by-two grid of four instrument panels:
+1. “Less manual work” — show Request received, Classify information, Route to system, and Update CRM. Each row moves from PENDING to PROCESSING to DONE, with an Automation Progress bar.
+2. “Faster operations” — show a terminal-like request cycle with timestamped steps moving from PENDING to PROCESSING to COMPLETE. Animate a processing cursor with changing dots.
+3. “Fewer errors” — show Duplicate check, Required fields, Handoff owner, and Destination progressing from WAITING to CHECKING to PASS, VERIFIED, or CONFIRMED, alongside a percentage progress bar.
+4. “Better visibility” — reveal Workflow status, Reviews, Exceptions, and Systems synced in a staggered sequence. Highlight one active row and alternate a footer state between OBSERVING and REFRESHING.
+
+Use separate loops of approximately 7.2s, 6.4s, 7.6s, and 6.8s. Pause each loop when its panel is offscreen or the document is hidden. When reduced motion is requested, show the completed operational state immediately. Keep the visual language white, technical, and restrained with blue active states and green verified states.
+
+HOME-04 — Selected Work Workflow Comparison
+
+Create a Selected Work chapter titled “One workflow, rebuilt end to end.” Add supporting copy explaining that a manual customer-operations workflow becomes a connected system with AI and human review working together. Show the metadata `CUSTOMER OPERATIONS / REPRESENTATIVE ENGAGEMENT`.
+
+Inside a white system panel, add a compact header labeled `WORKFLOW / COMPARE` with the title `Current state → rebuilt system` and two tabs: CURRENT and REBUILT. Default to REBUILT.
+
+For CURRENT, render nodes for MULTI-CHANNEL, MANUAL TRIAGE, RE-ENTRY, CRM UPDATE, APPROVAL, and CUSTOMER RESPONSE, connected in a visibly manual path. For REBUILT, render UNIFIED INTAKE, AI CLASSIFY, SYSTEM ROUTING, CRM SYNC, HUMAN REVIEW, and CUSTOMER UPDATE. Use 112 by 58 unit rectangular nodes with a thin separator, a small state dot, a monospace label, and a monospace sublabel.
+
+On desktop, show the workflow as a clean SVG map with guide lines. On small screens, replace it with a vertical ordered list of the same nodes. Switching tabs should fade edges in with about 450ms easing and move small tokens along the paths indefinitely. Use a 4.6 second token cycle for REBUILT and a 6.4 second cycle for CURRENT. Under reduced motion, show the selected graph without moving tokens.
+
+Finish with a four-item outcome strip: `FROM / MANUAL COORDINATION`, `TO / ORCHESTRATED WORKFLOW`, `HUMAN REVIEW / PRESERVED`, and `CRM / CONNECTED`.
+
+HOME-05 — Working Together Rows
+
+Create a content-driven chapter labeled `05 / Working Together` with the headline “What happens after you reach out.” Add a short paragraph about a practical starting point, clear scope, and a plan built around the team’s workflow.
+
+Render three numbered rows separated by thin horizontal rules:
+01 Share the friction — Tell us which workflow is slowing your team down and where the work gets stuck.
+02 Define the opportunity — Identify what can be automated, which systems are involved, and where human oversight matters.
+03 Plan the next step — Align on a practical implementation scope, responsibilities, and measures of success.
+
+Use index, title, and description columns on desktop. On hover, tint the row with a pale blue background and animate a 1px Signal Blue vertical rule from top to bottom over about 300ms. Stack the content cleanly on mobile and keep the section height content-driven.
+
+HOME-06 — Final CTA and Footer
+
+Create the final Home CTA as a Signal Blue framed panel inside the site’s permanent rails. Add a white-tinted diagonal procedural ribbon in the background without intercepting pointer events.
+
+Show a small uppercase label `06 / Contact`, the light headline “Bring us one workflow.”, and supporting copy explaining that the consultancy helps identify practical AI leverage without rebuilding everything around it. Add a large white rectangular CTA labeled “Discuss a Workflow →” that links to `/contact`.
+
+At the bottom, add a footer with the `methodic /` wordmark, the descriptor “AI automation & implementation for growing businesses.”, a copyright line, Home section links, and optional email/LinkedIn links only when configured. Use white text, subtle opacity differences, thin underline-grow hover states, and a small arrow nudge. Stack the footer vertically on mobile.
+
+SERVICE-01 — Shared Service Introduction
+
+Create the introduction chapter for a service detail page. Start with a thin uppercase breadcrumb row: `Home / Services / [Service name]`. Below it, use a wide left column and a narrower right column.
+
+In the left column, show a small section label `01 / [Service label]`, a light two-line headline, a concise description, and an underlined text link labeled “Book a consultation →”. In the right column, show a monospace definition list with three rows: Scope, Systems, and Control. Separate every row with a thin pale-blue rule.
+
+Use the shared white paper background, centered 1440px frame, generous top and bottom spacing, light IBM Plex Sans typography, and uppercase IBM Plex Mono metadata. Stack the columns on small screens while preserving the same reading order.
+
+SERVICE-02 — Operational Friction List
+
+Create an Operational Friction chapter with a section label `02 / Operational friction`, a large page-specific heading, and three full-width border-separated problem rows.
+
+Each row must contain a blue monospace index, a light problem title, and a muted explanation. Use a pale blue overlay and a 1px blue left rule that fade in over about 200ms when the pointer enters the row. Only one row can be active at a time; clear the overlay on pointer leave. Keep the resting rows white with cool gray rules.
+
+Use a three-column desktop grid and a readable stacked layout on mobile. Do not use rounded cards or decorative icons.
+
+SERVICE-03 — Customer Request Routing System
+
+Build an interactive Request Routing System section for a Customer Operations page. Use a two-column layout: editorial copy on the left and a technical system panel on the right.
+
+The editorial side should read `Workflow / Customer operations`, headline `One intake. Two clear routes.`, and explain that AI classifies and routes routine requests while human review remains available for exceptions and approvals. Add three numbered benefits: Receive requests, Classify & route, Review when needed.
+
+The system panel must include a header reading `System / Request routing` with a live status, a dotted technical background, and a diagram with Intake, Classify, Routine/Records, and Exception/Review nodes. Connect the nodes with thin gray wires and two possible routes. Show the active route in Signal Blue and move small blue travel dots along the selected path using a repeating cycle around 4.2 seconds.
+
+Support Automated, Human review, and Reset controls. Hovering a route previews its state; clicking a control commits it. Update a trace readout with Request received, the classification state, and the route outcome. Pause travel dots when the system is offscreen, the document is hidden, or reduced motion is enabled. Use a simplified mobile SVG map below narrow mobile widths.
+
+SERVICE-04 — Finance Reconciliation Workbench
+
+Create a Finance Operations interactive section titled “Matching records. Surfacing exceptions.” Use the shared service-system shell with an editorial column reading `Workflow / Finance operations`, headline `Two sources. One clear match.`, and three benefits: Receive both sources, Compare paired records, Keep exceptions visible.
+
+On the system side, show `System / Reconciliation`, a dotted technical stage, and an isometric line illustration with two source record stacks feeding a comparison desk. Matched records should move toward a MATCHED destination; an offset record should move toward a REVIEW QUEUE.
+
+Support four visual states: Rest, Matching, Matched, and Review. Autoplay through the states at approximately 2.6 second phase intervals. Pause autoplay when the illustration is hovered with a mouse. Provide Matching, Matched, and Review buttons; a manual choice should hold for approximately 6 seconds before autoplay resumes. Update the trace readout only after the moving records reach their destination. Use blue for matching, green for matched, and muted gray for review. Show a stable final state under reduced motion.
+
+SERVICE-05 — Sales Lead Handoff Pipeline
+
+Create a Sales Operations interactive section titled “From new inquiry to owned next step.” Use a shared service-system shell with editorial copy reading `Workflow / Sales operations`, headline `One lead. A clear next owner.`, and benefits: Receive an inquiry, Confirm the next step, Assign a clear owner.
+
+Build a thin isometric illustration with three stations: inquiry papers, a qualification clipboard, and an open folder representing the next owner. Animate one lead sheet from the inquiry stack to the clipboard and then to the owner folder. Include a review state where missing details hold the handoff.
+
+Support New, Qualified, Assigned, and Review states. Autoplay through the states in approximately 2.6 second phases. Pause while the figure is hovered with a mouse. Provide four buttons and hold manual previews for about 6 seconds before resuming autoplay. The readout must follow the actual position of the moving sheet and should never announce a later state before the sheet arrives. Use blue for qualification, green for assignment, and muted gray for review. Provide a stable reduced-motion state.
+
+SERVICE-06 — Internal Human Approval Gate
+
+Create an Internal Workflows interactive section titled “Every request has a clear next step.” Use the shared service-system shell with editorial copy reading `Workflow / Internal operations`, headline `A human decision. Before the next step.`, and benefits: Receive the request, Review with an owner, Record the decision.
+
+Build a procedural line illustration with a request paper stack on the left, a human review/signature desk in the center, and an approved archive folder on the right. Include a clip and a pen. Start in Pending.
+
+Do not autoplay. Do not create a hover path to approval. Provide Review, Approve, and Changes controls. Only the explicit Approve action can move the request through the signature step. The paper must reach the review desk before the pen signs it, then travel to the archive. If a request returns from the archive, stop at the review desk before moving left. Keep the trace state pending/review until the visible motion has arrived, then show Approved, Recorded, or Needs changes. Disable motion or settle the diagram when reduced motion is requested.
+
+SERVICE-07 — What We Implement Grid
+
+Create a “What We Implement” chapter labeled `04`. Add a large light page-specific heading and a three-column desktop grid of implementation cards.
+
+Each card must contain a small blue index, a thin horizontal rule that changes from pale blue to Signal Blue on hover, a light title, and a concise explanatory paragraph. Use border separators between cards on desktop and stacked bordered blocks on mobile. Keep the cards square, spacious, and editorial rather than rounded or shadowed.
+
+SERVICE-08 — Consultation CTA and Footer
+
+Create a service-page consultation chapter labeled `05 / Consultation`. Use a two-column layout: a pale blue content panel on the left with a large light page-specific headline and supporting paragraph, and a right panel containing a full-width Signal Blue rectangular button labeled “Discuss a Workflow →”.
+
+Link the button to `/contact`. Finish with a shared footer containing the `methodic /` wordmark, descriptor, copyright, Home section links, and optional external profile links. Use thin top and bottom rules, generous padding, no rounded cards, and a stacked mobile layout.
+
+CONTACT-01 — Consultation Form
+
+Build a consultation form for the Contact page. Use a clean square-field layout with uppercase monospace labels and Required/Optional markers.
+
+Required fields: Name, Work email, Company, and “What workflow is slowing you down?”. Optional fields: Systems involved and “What would better look like?”. Use an email validation rule, required-field validation, and a 500-character maximum for both textareas. Show live character counters. Focus the first invalid field and display concise inline error text.
+
+Submit with a full-width Signal Blue button labeled “Discuss this Workflow →”. Show a sending state with a spinner, disable fields while submitting, show a bordered error alert for server/network failures, and show a success card reading “Thanks for reaching out.” with a “Send another workflow” reset button. Include a visually hidden honeypot field and keep the form receiver endpoint configurable. Do not create a database.

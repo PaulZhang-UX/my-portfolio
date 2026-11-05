@@ -1,0 +1,393 @@
+Photography Studio Motion Gallery — 完整重建 Prompt
+模板预览：https://preview.amazingsite.co/preview/e35a242a-3777-464d-8dc3-092d6a8334be/13894194
+
+============================================================
+1. 设计基础 Prompt
+============================================================
+
+Create a full-screen editorial photography studio interface for a brand called Lumen Studio. The experience should feel quiet, tactile, art-directed, and premium, combining Scandinavian restraint with contemporary motion-gallery behavior.
+
+Use a warm-to-cool theme system with four switchable color moods:
+- Rose Clay: base #D96E6A, center #E28480, edge #B85956.
+- Mineral: base #6088A1, center #7699AF, edge #4C7288.
+- Iris: base #8385BE, center #9698CB, edge #6D6FA8.
+- Ink: base #2C3138, center #3B4149, edge #1E2228.
+Render each gallery background as a subtle radial gradient, not a flat fill. Use the theme base as the current accent color and the darker theme color for image-card backing.
+
+Typography:
+- Use Inter at weights 300, 400, and 500 for body copy and controls.
+- Use Fraunces at heavy weight for the Lumen wordmark and large editorial headings, with tight negative tracking.
+- Use small uppercase labels with generous letter spacing around 0.3em to 0.42em.
+- Keep body text around 15px to 17px with line-height between 1.6 and 1.7.
+
+Layout:
+- The primary gallery is a fixed full-viewport canvas with hidden page overflow.
+- Desktop cards are 240px wide by 360px tall with 48px gaps and 48px left inset.
+- Mobile cards are 60vw wide by 46vh tall with 20px gaps and 20px left inset.
+- Cards are fully pill-shaped with a 9999px radius and images use cover cropping centered on the subject.
+- Use generous rounded corners everywhere: 30px to 48px for major image panels, 36px to 44px for information panels, and 64px for the content footer top corners.
+- Use a white content world with #141210 ink, #8A827B muted text, and a very light rgba(20,18,16,0.09) border.
+
+Component language:
+- Buttons are compact rounded pills with uppercase micro-labels.
+- Filters use translucent white frosted glass, a thin white border, blur, and a subtle inner highlight.
+- Theme selectors are circular swatches with a larger outlined active state.
+- Service rows are large rounded bands with thin borders and low-opacity accent hover fills.
+- Forms are placed inside a softly tinted accent panel with white pill-shaped inputs.
+
+Image direction:
+- Use editorial portrait, documentary wedding, and quiet travel photography.
+- Prefer medium-format film character, natural window light, muted neutral palettes, soft shadows, restrained expressions, and honest human moments.
+- Keep the image treatment calm and tactile; avoid glossy stock-photo aesthetics and high-saturation commercial color.
+
+Motion language:
+- The gallery continuously drifts at a slow base speed and reacts to wheel, touch, and drag input with smooth acceleration and decay.
+- Pause the gallery while a user hovers a work or reads a detail view.
+- Preserve image ownership across hover, detail opening, and detail closing so the bitmap appears to travel continuously rather than disappear and reappear.
+- Favor power2.out and power3.inOut easing, soft scale changes, subtle shadows, and a deliberate editorial rhythm.
+- Respect the exact motion timings and trigger conditions described by the master reconstruction prompt.
+
+Responsive behavior:
+- Use a 767px mobile breakpoint.
+- On mobile, replace desktop interaction hints with Swipe to explore, hide desktop center navigation, make detail content vertically scrollable, and make the detail CTA full width.
+- Keep the brand, theme system, rounded image language, and calm motion identity consistent across breakpoints.
+
+============================================================
+2. 整站重建 Prompt
+============================================================
+
+Project Definition
+
+Reconstruct a complete front-end website for an independent editorial photography studio called Lumen Studio. The site is a full-screen motion gallery first, with a secondary white content world for the studio story, services, process, and contact inquiry. It is a front-end-only experience with no database, account system, cart, payment flow, or custom backend.
+
+The primary route is / and should render the entire experience. A catch-all route may render a generic not-found screen. Do not create separate routes for Studio, Services, Contact, or individual works; those views are overlays or in-page worlds controlled by local UI state.
+
+Global Visual Direction
+
+Make the visual language quiet, tactile, editorial, and premium. Combine Scandinavian restraint, natural-light photography, medium-format film character, generous negative space, and contemporary motion design. The gallery must feel like a moving sequence of physical photographic prints rather than a conventional card grid.
+
+Use a full-viewport colored gallery world with a subtle radial gradient. Use a separate white editorial content world when the user opens the studio information panel. Keep controls restrained so the photographs and the large Lumen wordmark remain the dominant visual elements.
+
+Design System
+
+Color themes:
+- Rose Clay is the default: base #D96E6A, center #E28480, edge #B85956, item background #B85956.
+- Mineral: base #6088A1, center #7699AF, edge #4C7288, item background #4E7389.
+- Iris: base #8385BE, center #9698CB, edge #6D6FA8, item background #6E70AA.
+- Ink: base #2C3138, center #3B4149, edge #1E2228, item background #1E2228.
+
+The current theme base color is also the accent color used in the white content world. The gallery uses white text with reduced-opacity secondary labels. The content world uses #FFFFFF background, #141210 main text, #8A827B muted text, and rgba(20,18,16,0.09) borders. Use #E8E2D6 as the neutral placeholder background for transition proxies.
+
+Typography:
+- Use Inter at weights 300, 400, and 500 for body text, labels, forms, and controls.
+- Use Fraunces at heavy weight for the Lumen wordmark and editorial headings. Use tight negative letter spacing.
+- Space Grotesk 700 may be used for the compact logo utility. Instrument Serif italic may be used as the auxiliary logo style if needed.
+- Use uppercase micro-labels around 9px to 10px with letter spacing around 0.3em to 0.42em.
+- Use body copy around 15px to 17px with line-height around 1.6 to 1.7.
+
+Global geometry:
+- Keep the body and root at full viewport height and prevent page-level scrolling while the gallery world is active.
+- Use fully rounded image cards with a 9999px radius.
+- Use 30px to 48px radii for major image and information panels.
+- Use a 64px radius on the top corners of the content footer.
+- Use object-fit: cover and object-position: center for all photography.
+
+Website Information Architecture
+
+The active application hierarchy is:
+1. Full-screen gallery world.
+2. Top navigation and controls.
+3. Horizontal looping work track.
+4. Centered Lumen wordmark.
+5. Hover proxy layer.
+6. Work detail overlay.
+7. Bottom pull-tab and white content world.
+
+The content world contains these sections in order:
+1. Sticky content header.
+2. 01 / Studio.
+3. 02 / Services.
+4. Process.
+5. 03 / Contact.
+6. Footer.
+
+Use local state for theme, category filter, active work, detail visibility, content visibility, and content scroll target.
+
+Page-by-Page Structure
+
+Page: Gallery Home
+
+Render a fixed full-screen gallery canvas. Apply the current theme radial gradient to the background. At the top, render the Lumen brand on the left, desktop center navigation for Studio, Services, and Contact, and controls on the right. In the center, render a continuously moving horizontal strip of portrait works. Keep the large Lumen wordmark and the subtitle a photography studio centered behind or between the moving cards. At the bottom, render an interaction hint and the filtered work count.
+
+The default gallery contains 24 works:
+- 8 Portrait works.
+- 8 Wedding works.
+- 8 Travel works.
+
+The default All feed should interleave the three categories in a deterministic Portrait, Wedding, Travel sequence so the feed does not appear blocked by category. Render two copies of the filtered array to create a seamless loop. Each work should have an id, image source, title, category, year, description, tags, optional client, and orientation.
+
+Page: Work Detail Overlay
+
+When a work is selected, open a full-screen detail world using the current theme radial gradient. Preserve the selected image as the visual source of the transition. On desktop, place a large image on the left and the information column on the right. Use a portrait image box around 38vw wide and 78vh high, or a non-portrait image around 52vw wide and 62vh high, capped at 780px wide. Use a 48px radius, cover crop, and a soft shadow.
+
+Show:
+- A compact category and year badge.
+- The work title in the Fraunces display face.
+- The work description.
+- Two metadata cards: Coverage and Format.
+- A View services & pricing CTA.
+- A Back to gallery action.
+
+Use category-derived coverage labels: Portrait Session, Full-day Wedding, or Half-day Travel. The format label is Film + Digital.
+
+Page: Content World
+
+Open a fixed white content surface from the bottom pull-tab. Leave a small pull-tab visible at the top edge. Use a sticky header with the Lumen Studio lockup, Studio / Services / Contact in-page navigation on desktop, and Return to gallery. The content surface should be scrollable only while open.
+
+Section 01 / Studio:
+- Use a two-column desktop layout and a single-column mobile layout.
+- Left column: the label 01 / Studio, heading Independent, by design., two paragraphs about an independent photography studio, and metadata capsules for Based in Copenhagen, Denmark; Availability Europe & worldwide; Visits By appointment.
+- Right column: a 440px-high, 48px-radius image panel using two editorial studio images, with a 900ms opacity crossfade.
+- Provide two image indicators and two selectable team labels: Mila Hansen, Photographer; Jonas Reed, Photographer & Producer.
+- Automatically advance the studio image every 5 seconds while the content world is open.
+
+Section 02 / Services:
+- Use the label 02 / Services and the heading Photography, made personal.
+- Add a short explanatory paragraph about individually quoted projects.
+- Render three large rounded service bands in this order: Portrait, Wedding, Travel.
+- Portrait: Individual, couple and editorial portrait sessions; 90 minutes; 25+ edited photographs; From €450.
+- Wedding: From intimate ceremonies to full-day celebrations; 6–10 hours; Private online gallery; From €1,800.
+- Travel: Destination portraits and documentary travel sessions; Half-day or full-day coverage; Location scouting included; From €650.
+- Each band has a numbered circle, service title, description, metadata pills, and right-aligned starting price on desktop.
+- Add a Process block with three steps: Plan, Shoot, Delivery.
+
+Section 03 / Contact:
+- Use the label 03 / Contact and the heading Let’s make something together.
+- Explain that the studio will return with availability and a tailored quote.
+- Show Copenhagen, Denmark; Available worldwide; hello@lumen.studio; Instagram; and Replies within 2 business days.
+- Place the inquiry form inside a large rounded accent-tinted panel.
+- Required fields: Name and Email.
+- Choice buttons: Portrait, Wedding, Travel, with Portrait selected by default.
+- Optional fields: Preferred date, Location, Estimated budget, and a message textarea limited to 500 characters.
+- Include a hidden honeypot field named company_alt.
+- The submit action is Send inquiry. Show sending, success, and error states.
+- Submit URL-encoded form data with a POST request to the configured external form endpoint. Treat the endpoint as an external integration, not as a local database.
+
+Footer:
+- Use the current theme accent as a solid footer background.
+- Use a large Lumen wordmark, A Photography Studio, and Copenhagen · Worldwide.
+- Show hello@lumen.studio and Instagram.
+- Add a Back to top pill button.
+- Finish with © 2026 Lumen Studio and Photography · Copenhagen.
+
+Interaction and Motion Behavior
+
+Gallery motion:
+- Start the gallery at a baseline signed velocity of 60 pixels per second in the default right-to-left visual direction.
+- Keep a signed accumulated position and wrap it by the measured width of one rendered copy.
+- Write the track transform from one GSAP ticker only.
+- Convert wheel, touch, and pointer drag input into a signed impulse. Use deltaY minus deltaX, normalize by 60, clamp each event to approximately plus or minus 4 units, multiply by a gain of 55, and clamp the accumulated impulse to plus or minus 260.
+- Decay the impulse exponentially at 2.2 per second.
+- Smooth the current velocity toward the baseline plus impulse at 6 per second. Cap both forward and reverse speed at 180 pixels per second.
+- Clamp ticker delta time to a maximum of 0.1 seconds to survive tab-switch pauses.
+- When hover, detail, or a content world requests a stop, smooth the velocity to zero, snap at an epsilon of 0.5, and stop writing position while fully stopped.
+- When released, resume toward the baseline using gentler smoothing at 3.5 per second.
+
+Hover behavior:
+- On pointer enter, stop gallery motion.
+- Clone the already-rendered source image into a fixed, pointer-events-none proxy layer so the browser can reuse the decoded bitmap.
+- Preserve a fully pill-shaped border radius.
+- Atomically reveal the proxy and hide the source. If the image is not decoded, wait for decode and commit the swap on the next animation frame so there is no blank frame.
+- Scale the proxy to 1.05 and add a soft shadow over 0.4 seconds using power2.out.
+- On pointer leave, animate the proxy back to the exact source item using Flip.fit over 0.35 seconds with power2.out, remove the shadow, reveal the source, remove the proxy, and resume gallery motion.
+- If the pointer moves directly from one card to another, tear down the old proxy synchronously and establish the new proxy without restarting the gallery motion between cards.
+- After returning from detail, suppress hover on the origin card until the pointer genuinely leaves it.
+
+Detail opening:
+- Allow activation from gallery or hover state only.
+- If a hover proxy exists for the clicked card, inherit that proxy rather than creating a new image.
+- Stop gallery motion, preload the selected image, and wait approximately 150ms before opening the detail state.
+- Hide the source card and show the detail overlay.
+- Use GSAP Flip.fit to move the proxy into the detail image box over 0.82 seconds with power3.inOut and a 24px final radius.
+- Begin the detail text sequence around 0.5 seconds into the image transition.
+- Animate category badge, title, description, metadata cards, CTA, and back action from opacity 0 and y 12 to visible using 0.55 seconds, power2.out, and 0.07 seconds stagger.
+- Use a 2-second watchdog and restore the gallery safely if the transition cannot complete.
+
+Detail closing:
+- Only accept Back to gallery while the detail state is active.
+- Stop gallery motion and set the origin card as the return destination.
+- Clone the decoded detail image into a fixed proxy and animate top, left, width, height, and border radius back to the origin over 0.78 seconds using power3.inOut.
+- Hide the detail image during the return.
+- At completion, remeasure the current origin image, snap the proxy exactly over it, reveal the real card underneath, wait one animation frame, remove the proxy, restore gallery state, and resume motion with the gentler smoothing.
+- If geometry or refs are invalid, run a safe teardown that restores both the detail image and the origin card.
+
+Detail-to-services chain:
+- When View services & pricing is clicked, first finish the detail close transition, wait for the next paint, open the content world, and target the Services section.
+- Do not allow repeated chain activation while this sequence is in progress.
+
+Content world:
+- Opening translates the white surface upward with approximately 0.9 seconds and cubic-bezier(0.7, 0, 0.15, 1).
+- Closing translates it down with approximately 0.75 seconds and the same easing.
+- Keep a 26px top peek and a 132px-wide pull-tab. Animate a small arrow between up and down states.
+- Add a 3.4-second infinite breathing animation to the closed pull-tab, moving it upward by 4px at the midpoint.
+- When a top-nav section is requested, wait approximately 950ms for the panel to settle, then smooth-scroll to the section with a 72px sticky-header offset.
+- Track the active section from the scroller position using a 140px reading threshold.
+- The content world owns wheel/touch scrolling while open; the gallery Observer must be suspended.
+
+Theme and filtering:
+- The filter dropdown contains All, Portrait, Wedding, and Travel.
+- Close the dropdown after selection and also when a mousedown happens outside its wrapper.
+- The popover uses frosted glass, scale and opacity transitions, and an active dot.
+- Theme swatches are Rose Clay, Mineral, Iris, and Ink. The active swatch is larger and outlined. Theme changes update the gallery background, item backing, white content-world accent, and detail overlay accent.
+
+Responsive Design
+
+Use a mobile breakpoint at max-width 767px.
+
+Desktop:
+- Gallery cards are 240px by 360px with 48px gap and 48px left inset.
+- The track is vertically centered using top 50% and margin-top -180px.
+- The top navigation shows the center Studio, Services, Contact links.
+- Detail uses a horizontal image-and-copy layout.
+- Content sections use 12-column desktop grids where defined.
+
+Mobile:
+- Gallery cards are 60vw by 46vh with 20px gap and 20px left inset.
+- The track uses top 50% and margin-top -23vh.
+- Replace the bottom hint with Swipe to explore.
+- Hide the desktop center navigation and the small Studio subtitle beside the brand.
+- Keep the gallery full-screen and touch-driven.
+- Detail becomes a vertically scrollable column with 20px side padding, 24px top spacing, safe-area-aware bottom padding, and touch-action pan-y.
+- Detail portrait image height is 58vh; non-portrait image height is 46vh; use a 30px radius.
+- Make the services CTA full width on mobile.
+- Collapse Studio, Services, Process, Contact, and Footer grids to single-column layouts.
+
+Technical Requirements
+
+- Use React and TypeScript with a component structure equivalent to Gallery, TopNav, Detail, ContentPage, photos data, themes data, and useIsMobile.
+- Use GSAP 3 with Observer and Flip, or reproduce the same observable behavior with an equally precise motion system.
+- Do not use a CSS-only marquee if it cannot preserve the measured loop width, signed wheel impulse, pause/resume states, and origin-preserving transitions.
+- Keep gallery motion position-based with a single writer for the track transform.
+- Use image proxies for hover and detail transitions to avoid bitmap flashes.
+- Keep all content and form state local to the front end.
+- Use external remote image URLs only when supplied or intentionally configured. Do not invent a database or server API.
+- Keep the route surface limited to the home page and a generic fallback route.
+- Make all controls keyboard-focusable and add meaningful aria labels for filter, swatches, gallery work, pull-tab, carousel indicators, and form status.
+- Never alter the supplied original source archive.
+
+Quality Assurance
+
+- Confirm the app builds with the intended React/Vite/TypeScript dependencies.
+- Confirm the root route renders the gallery and the catch-all renders 404.
+- Confirm all 24 works appear in All and each category filter shows exactly 8 works.
+- Confirm the default All order interleaves Portrait, Wedding, and Travel.
+- Confirm the track loops without a visible jump after one copy width.
+- Confirm automatic motion starts at the baseline speed, wheel/drag input accelerates and reverses, and the impulse decays.
+- Confirm motion pauses on hover and detail, then resumes smoothly.
+- Confirm hover proxy swaps do not produce a blank frame and return to the source card.
+- Confirm click-to-detail uses the selected image and preserves the visual origin.
+- Confirm Back to gallery returns to the exact originating card without a flash.
+- Confirm the detail CTA closes the detail and opens Services at the correct section.
+- Confirm all four themes update both the gallery and content-world accent.
+- Confirm the content world opens and closes from the pull-tab, has working section navigation, and updates the active section while scrolling.
+- Confirm the Studio carousel advances every 5 seconds and responds to manual selection.
+- Confirm the contact form enforces Name and Email, limits message length, handles sending/success/error states, and does not expose the honeypot field.
+- Test at desktop and mobile widths, including safe-area devices and reduced-height viewports.
+
+Explicit Constraints and Avoidances
+
+- Do not redesign the site into a standard hero plus vertical portfolio grid.
+- Do not replace the continuous motion gallery with pagination, a static masonry grid, or a basic CSS marquee.
+- Do not remove the four-theme switcher, category filter, hover proxy, detail transition, pull-tab, or content world.
+- Do not add pages that are not represented in the source route configuration.
+- Do not describe the image or form endpoints as a local backend.
+- Do not treat remote generated images, exact runtime appearance, or endpoint availability as guaranteed.
+- Do not substitute generic “smooth animation” for the explicit state transitions, timing, easing, proxy ownership, and failure recovery rules above.
+- Do not claim a visual match until the remote assets and the browser runtime have been verified.
+
+============================================================
+3. 分模块 Prompt（10 段）
+============================================================
+
+S01 — Global Gallery Shell
+
+Create a fixed full-viewport gallery shell for an editorial photography brand called Lumen Studio. Use a theme-controlled radial gradient background with Rose Clay as the default mood: #E28480 at the center, #D96E6A through the middle, and #B85956 at the edge. Keep body overflow hidden while the gallery world is active.
+
+Place a large Fraunces wordmark reading Lumen in the center of the canvas, with the small uppercase subtitle a photography studio below it. Leave the moving photo cards visually in front of the background but let the wordmark remain the central brand anchor. Add a quiet bottom status bar with an interaction hint on the left and a two-digit filtered work count on the right.
+
+On desktop, show Scroll · Drag · Hover. On mobile, show Swipe to explore. Use white text with reduced opacity for status labels, generous letter spacing, and a calm editorial hierarchy. The shell must expose layers for the moving track, hover proxy, detail transition proxy, and content surface without changing the route.
+
+S02 — Top Navigation, Filter, and Themes
+
+Create a transparent absolute top navigation for Lumen Studio over a colored photography gallery. Place the Lumen wordmark on the left. On desktop, center three uppercase links: Studio, Services, Contact. On the right, place a compact frosted-glass filter pill and four circular theme swatches.
+
+The filter pill should be about 28px high, use translucent white fill, a thin translucent white border, backdrop blur, and a small downward arrow. Its popover should open from the top-right with a subtle scale and opacity transition, use a rounded 14px glass panel, and list All, Portrait, Wedding, and Travel. Mark the active filter with a bright dot and a low-opacity white row background. Close the popover after selection and when the user clicks outside the wrapper.
+
+Use four swatches for Rose Clay #D96E6A, Mineral #6088A1, Iris #8385BE, and Ink #2C3138. The active swatch should grow from 14px to 18px and gain a bright outline plus a soft dark outer ring. Update the gallery theme immediately when a swatch is selected. Hide desktop center navigation and the small Studio subtitle on mobile.
+
+S03 — Continuous Motion Gallery Track
+
+Build a horizontal motion gallery for 24 editorial photographs. The data contains 8 Portrait, 8 Wedding, and 8 Travel works. For the default All feed, interleave the categories deterministically in Portrait, Wedding, Travel order. Render two identical copies of the active filtered list so the track can wrap seamlessly by the measured width of one copy.
+
+On desktop, each gallery item is 240px wide and 360px tall, with a 48px gap and 48px left inset. Vertically center the track with top 50% and margin-top -180px. On mobile, use 60vw width, 46vh height, 20px gaps, 20px left inset, and margin-top -23vh. Each visual is a fully pill-shaped overflow-hidden image with object-fit cover and centered object position.
+
+Use a position-based motion engine with a single GSAP ticker writer. Start at 60px per second in a right-to-left visual direction. Convert wheel, touch, and pointer drag input into a signed impulse using deltaY minus deltaX, normalize by 60, clamp per-event input to plus or minus 4, multiply by 55, decay at 2.2 per second, and clamp accumulated impulse to plus or minus 260. Smooth toward the baseline plus impulse at 6 per second and cap both directions at 180px per second. Stop and resume the engine when hover, detail, or the content world owns the interaction.
+
+S04 — Hover Image Proxy
+
+Add a hover interaction to every gallery card without replacing the source image with a blank or newly decoded image. On pointer enter, clone the already-rendered image element into a fixed, pointer-events-none proxy layer. Start the proxy at the exact card rectangle and preserve a 9999px radius.
+
+If the source image is already decoded, atomically reveal the proxy and hide the source in the same browser frame. If it is not decoded, wait for decode and commit the swap on the next animation frame. Then scale the proxy to 1.05 and add a soft shadow over 0.4 seconds using power2.out.
+
+On pointer leave, keep gallery motion stopped while using Flip.fit to return the proxy to the exact card rectangle over 0.35 seconds with power2.out. Remove the shadow, reveal the original visual, remove the proxy, and resume the gallery using gentler smoothing. If the pointer goes directly from card A to card B, tear down A synchronously and establish B without an intermediate motion resume. Suppress hover on the origin card for one genuine pointer leave after a detail view closes.
+
+S05 — Work Detail Overlay
+
+Create a full-screen detail overlay for a selected Lumen Studio photograph. Use the current gallery radial theme as the background and keep all text white. On desktop, place a large image on the left and a copy column on the right. For portrait images use approximately 38vw by 78vh; for non-portrait images use approximately 52vw by 62vh; cap width at 780px and use a 48px radius, cover crop, and a soft shadow.
+
+At the top of the copy column, show a small pill badge with the category and year. Show the selected work title in a heavy Fraunces display face, followed by its description. Add two translucent rounded metadata cards labeled Coverage and Format. Use category-specific coverage labels: Portrait Session, Full-day Wedding, or Half-day Travel. Use Film + Digital as the format.
+
+Add a rounded View services & pricing button with the current theme accent and a Back to gallery text action. On mobile, turn the overlay into a vertically scrollable column with 20px side padding, 24px top spacing, safe-area-aware bottom padding, a 30px image radius, and a full-width services button.
+
+Animate the detail image from the originating card with a proxy FLIP transition. Animate the badge, title, description, metadata cards, CTA, and back action from opacity 0 and y 12 with 0.55 seconds, power2.out, and a 0.07 second stagger. Returning to the gallery must animate the same selected bitmap back to the exact originating card without a blank frame.
+
+S06 — Studio Content World
+
+Create the first section of a white scrollable studio content world for Lumen Studio. Use a centered max-width of 1180px with 56px desktop side padding and 32px mobile side padding. Build a two-column layout on desktop and a single-column layout on mobile.
+
+Use a small accent label reading 01 / Studio and a large Fraunces heading reading Independent, by design. Add two paragraphs describing an independent photography studio working across portraits, weddings, and travel stories, with a personal process from first conversation to final delivery.
+
+Add three rounded metadata capsules: Based in — Copenhagen, Denmark; Availability — Europe & worldwide; Visits — By appointment. On the opposite side, create a 440px-high image panel with a 48px radius and two editorial studio photographs. Crossfade the images over 900ms. Add two pill indicators and two selectable team labels: Mila Hansen, Photographer; Jonas Reed, Photographer & Producer. Auto-advance the active image every 5 seconds while the content world is open.
+
+S07 — Services and Process
+
+Create a services section in the white Lumen Studio content world. Start with a small accent label 02 / Services, the heading Photography, made personal., and a short paragraph explaining that projects are quoted individually while the displayed numbers are honest starting points.
+
+Render three large rounded service bands with thin borders and subtle accent-tinted hover states:
+1. Portrait — Individual, couple and editorial portrait sessions. Metadata: 90 minutes; 25+ edited photographs. Starting price: From €450.
+2. Wedding — From intimate ceremonies to full-day celebrations. Metadata: 6–10 hours; Private online gallery. Starting price: From €1,800.
+3. Travel — Destination portraits and documentary travel sessions. Metadata: Half-day or full-day coverage; Location scouting included. Starting price: From €650.
+
+Each band should have a numbered circular marker, a large service title, a descriptive column, small rounded metadata pills, and a right-aligned price on desktop. Under the service bands, add a Process label and three steps in order: 01 Plan — A short call to align on story, timing and location; 02 Shoot — Calm on-location coverage, film and digital; 03 Delivery — Edited images in a private online gallery.
+
+S08 — Contact Inquiry
+
+Create the contact section for Lumen Studio inside the white content world. Use a two-column desktop layout and a single-column mobile layout. On the left, show the label 03 / Contact, the heading Let’s make something together., a short promise to return with availability and a tailored quote, and these details: Copenhagen, Denmark; Available worldwide; hello@lumen.studio; Instagram; Replies within 2 business days.
+
+On the right, place a large rounded form panel with a low-opacity fill based on the current theme accent and a thin accent border. Use rounded white fields with small uppercase labels. Required fields are Name and Email. Add selectable interest pills for Portrait, Wedding, and Travel with Portrait selected initially. Add optional Preferred date, Location, Estimated budget, and a three-row message textarea with a 500-character maximum.
+
+Add a visually hidden honeypot input named company_alt. On submit, prevent the default browser navigation, remove an empty honeypot value, reject messages over 500 characters, serialize the remaining fields as URL-encoded form data, and POST to the configured external form endpoint. Handle sending, success, and error states visibly. Reset the form and interest selection after a successful submission. Do not pretend the form is backed by a local database.
+
+S09 — Content Pull-tab and Sticky Navigation
+
+Create a bottom pull-tab that reveals a white, vertically scrollable content world above the motion gallery. Keep a 26px peek at the top edge and make the tab 132px wide with a white pill shape and a subtle upward shadow. Add a small horizontal handle line and an arrow that rotates between enter and return states. When closed, animate the tab with a 3.4-second infinite ease-in-out breathing motion that lifts it by 4px at the midpoint.
+
+The content surface should be fixed, full width, and about one viewport plus the 26px peek in height. Open it with transform translateY over 0.9 seconds using cubic-bezier(0.7, 0, 0.15, 1). Close it over 0.75 seconds with the same easing. The internal content area begins below the peek and owns scrolling only while the panel is open.
+
+Add a sticky translucent white header with the Lumen Studio lockup, desktop-only Studio / Services / Contact section links, and a Return to gallery action. When a section is requested from the gallery, wait approximately 950ms for the panel transition, then smooth-scroll to the target with a 72px header offset. Track the active section from scrollTop plus a 140px threshold. Hide the desktop section nav on mobile.
+
+S10 — Footer and 404 Fallback
+
+Create the closing footer for the Lumen Studio content world using the current theme accent as a solid background with 64px rounded top corners. Use a large Fraunces Lumen wordmark, the labels A Photography Studio and Copenhagen · Worldwide, contact links for hello@lumen.studio and Instagram, and a rounded Back to top button with an upward arrow. Finish with © 2026 Lumen Studio and Photography · Copenhagen.
+
+Also provide a generic catch-all not-found fallback outside the main experience. Keep it simple: centered message This page has not been generated, show the current pathname, and use a large faint 404 numeral behind the message. Do not invent additional site pages for paths that are not in the route configuration.

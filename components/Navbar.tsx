@@ -1,88 +1,102 @@
 'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useApp } from '../context/ThemeLanguageContext';
+import { Moon, Sun, Undo2, Terminal } from 'lucide-react';
 
-export const Navbar: React.FC = () => {
-  const { theme, lang, style, toggleTheme, toggleLanguage, toggleStyle } = useApp();
+interface NavbarProps {
+  activeStyle: 'hermes' | 'magazine' | null;
+  onReturn?: () => void;
+}
 
-  // 根据当前 style 计算下一个要切换的风格 Label (轮转：Hermes ➔ 画廊 ➔ 银翼)
-  const getStyleLabel = () => {
-    if (style === 'hermes') {
-      return lang === 'zh' ? '✿ 杂志画廊' : '✿ GALLERY';
+export const Navbar = ({ activeStyle, onReturn }: NavbarProps) => {
+  const { theme, lang, toggleTheme, toggleLanguage, setStyle } = useApp();
+  const isHermes = activeStyle === 'hermes';
+  const handleReturn = () => {
+    if (onReturn) {
+      onReturn();
+      return;
     }
-    if (style === 'magazine') {
-      return lang === 'zh' ? '☄ 银翼杀手' : '☄ 2049 MESA';
-    }
-    return lang === 'zh' ? '⌨ HERMES终端' : '⌨ HERMES TERM';
-  };
-
-  const content = {
-    zh: {
-      logo: 'INDEX.DB',
-      themeLabel: theme === 'dark' ? '☼ LIGHT' : '☽ DARK',
-      langLabel: 'EN / 中文',
-    },
-    en: {
-      logo: 'INDEX.DB',
-      themeLabel: theme === 'dark' ? '☼ LIGHT' : '☽ DARK',
-      langLabel: 'ZH / ENGLISH',
-    },
-  };
-
-  const isDark = theme === 'dark';
-
-  // 动态决定 Nav 容器的样式组合
-  const getNavStyles = () => {
-    if (style === 'bladerunner') {
-      return isDark
-        ? 'bg-[#03050C]/90 text-[#F5EFEB] border-[#E05A10]/30 shadow-[0_10px_30px_rgba(224,90,16,0.04)]'
-        : 'bg-[#E6CEB8]/95 text-[#1D1107] border-[#E05A10]/20 shadow-[0_10px_30px_rgba(29,17,7,0.02)]';
-    }
-    return isDark 
-      ? 'bg-black text-white border-neutral-900' 
-      : 'bg-white text-black border-neutral-200';
+    setStyle(null);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out border-b backdrop-blur-md ${getNavStyles()}`}>
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between font-mono text-xs tracking-widest">
-        {/* Logo */}
-        <div className={`font-bold select-none cursor-pointer ${
-          style === 'bladerunner' ? 'text-[#E05A10] drop-shadow-[0_0_8px_#E05A10]' : ''
-        }`}>
-          {content[lang].logo}
-        </div>
-        
-        {/* 控制面板 */}
-        <div className="flex items-center space-x-8">
-          <button 
-            onClick={toggleLanguage} 
-            className="hover:opacity-70 transition-opacity duration-300 uppercase cursor-pointer"
-          >
-            {content[lang].langLabel}
-          </button>
-          
-          <button 
-            onClick={toggleStyle} 
-            className={`hover:opacity-80 transition-all duration-300 uppercase font-bold cursor-pointer ${
-              style === 'bladerunner' 
-                ? 'text-[#E05A10] drop-shadow-[0_0_8px_#E05A10]' 
-                : (style === 'hermes' 
-                    ? (isDark ? 'text-green-400' : 'text-neutral-950') 
-                    : 'text-neutral-900 dark:text-white')
-            }`}
-          >
-            {getStyleLabel()}
-          </button>
-
-          <button 
-            onClick={toggleTheme} 
-            className="hover:opacity-70 transition-opacity duration-300 uppercase cursor-pointer"
-          >
-            {content[lang].themeLabel}
-          </button>
-        </div>
+    <motion.nav 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 w-full h-16 md:h-20 z-[100] flex items-center justify-between px-4 md:px-16 pointer-events-none ${
+        isHermes ? 'matrix-theme-transition text-[var(--matrix-ink-color)] font-hacker-en' : 'text-foreground font-apple'
+      }`}
+    >
+      {/* Left side: Logo or Name */}
+      <div className="font-bold tracking-[0.2em] pointer-events-auto cursor-pointer flex flex-col justify-center">
+        {isHermes ? (
+          <span className="matrix-glow-strong text-base md:text-xl opacity-90">
+            {theme === 'dark' ? 'MATRIX' : 'ZION'}
+          </span>
+        ) : (
+          <span className="text-xl">ZHANG YONG</span>
+        )}
       </div>
-    </nav>
+
+      {/* Right side: Controls */}
+      <div className="flex items-center gap-2 md:gap-6 pointer-events-auto">
+
+        <button
+          onClick={toggleLanguage}
+          className={`h-9 min-w-9 px-2 flex items-center justify-center text-[10px] md:text-xs font-medium tracking-[0.12em] transition-colors ${
+            isHermes
+              ? 'matrix-control border border-[rgb(var(--matrix-ink-rgb)/0.35)] rounded-none'
+              : 'rounded-full hover:bg-foreground/10'
+          }`}
+          title={lang === 'zh' ? 'Switch to English' : '切换为中文'}
+          aria-label={lang === 'zh' ? 'Switch to English' : '切换为中文'}
+        >
+          {isHermes
+            ? `[ ${lang === 'zh' ? 'EN' : '中'} ]`
+            : lang === 'zh' ? 'EN' : '中'}
+        </button>
+        
+        {/* Toggle Theme (Restored for both modes) */}
+        <button 
+          onClick={toggleTheme}
+          className={`p-2.5 md:p-2 rounded-full transition-colors flex items-center justify-center ${
+            isHermes ? 'matrix-control border border-transparent' : 'hover:bg-foreground/10'
+          }`}
+          title={lang === 'zh'
+            ? `切换为${theme === 'light' ? '深色' : '浅色'}模式`
+            : `Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+        >
+          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+        </button>
+
+        {/* Back to Choice (Red/Blue Pill) */}
+        <button 
+          onClick={handleReturn}
+          className={`flex items-center gap-2 transition-all ${
+            isHermes 
+              ? 'matrix-return-control px-2 md:px-3 py-1.5 border text-[10px] sm:text-xs md:text-sm tracking-wider md:tracking-widest uppercase' 
+              : 'p-2 rounded-full hover:bg-foreground/10 text-xs tracking-widest uppercase'
+          }`}
+          title="Return to Choice"
+        >
+          {isHermes ? (
+            <>
+              <Terminal size={16} className="opacity-80" />
+              <span>[ RETURN ]</span>
+            </>
+          ) : (
+            <>
+              <Undo2 size={20} />
+              <span className="hidden md:inline-block">Restart</span>
+            </>
+          )}
+        </button>
+
+      </div>
+    </motion.nav>
   );
 };

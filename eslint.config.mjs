@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored official Three.js ESM build; application code is linted separately.
+    "components/MatrixPills/vendor/**",
   ]),
 ]);
 
